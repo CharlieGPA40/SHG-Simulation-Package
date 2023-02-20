@@ -1,0 +1,4 @@
+{'SS': 'zxy^{2} \\sin^{2}{\\left(2 \\phi \\right)} \\sin^{2}{\\left(\\theta \\right)}'}
+{'SP': '0'}
+{'PS': '\\left(xyz + yxz + zxy\\right)^{2} \\sin^{2}{\\left(2 \\phi \\right)} \\sin^{2}{\\left(\\theta \\right)} \\cos^{4}{\\left(\\theta \\right)}'}
+{'PP': '4 \\left(xyz \\sin^{2}{\\left(\\phi \\right)} - yxz \\cos^{2}{\\left(\\phi \\right)}\\right)^{2} \\left(\\sin^{4}{\\left(\\theta \\right)} + \\cos^{4}{\\left(\\theta \\right)}\\right) \\sin^{2}{\\left(\\theta \\right)} \\cos^{2}{\\left(\\theta \\right)}'}

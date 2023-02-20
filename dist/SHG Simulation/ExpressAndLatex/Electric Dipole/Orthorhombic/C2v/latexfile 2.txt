@@ -1,0 +1,8 @@
+{'SS': '0'}
+{'SP': '\\left(zxx \\sin^{2}{\\left(\\phi \\right)} + zyy \\cos^{2}{\\left(\\phi \\right)}\\right)^{2} \\sin^{2}{\\left(\\theta \\right)}'}
+{'PS': '\\left(xzx - yzy\\right)^{2} \\sin^{2}{\\left(2 \\phi \\right)} \\sin^{2}{\\left(\\theta \\right)} \\cos^{2}{\\left(\\theta \\right)}'}
+{'PP': '\\left(4 \\left(xzx \\cos^{2}{\\left(\\phi \\right)} + yzy \\sin^{2}{\\left(\\phi \\right)}\\right)^{2} \\cos^{4}{\\left(\\theta \\right)} + \\left(zzz \\sin^{2}{\\left(\\theta \\right)} + \\left(zxx \\cos^{2}{\\left(\\phi \\right)} + zyy \\sin^{2}{\\left(\\phi \\right)}\\right) \\cos^{2}{\\left(\\theta \\right)}\\right)^{2}\\right) \\sin^{2}{\\left(\\theta \\right)}'}
+{'SS': '0'}
+{'SP': '\\left(zxx \\sin^{2}{\\left(\\phi \\right)} + zyy \\cos^{2}{\\left(\\phi \\right)}\\right)^{2} \\sin^{2}{\\left(\\theta \\right)}'}
+{'PS': '\\left(xzx - yzy\\right)^{2} \\sin^{2}{\\left(2 \\phi \\right)} \\sin^{2}{\\left(\\theta \\right)} \\cos^{2}{\\left(\\theta \\right)}'}
+{'PP': '\\left(4 \\left(xzx \\cos^{2}{\\left(\\phi \\right)} + yzy \\sin^{2}{\\left(\\phi \\right)}\\right)^{2} \\cos^{4}{\\left(\\theta \\right)} + \\left(zzz \\sin^{2}{\\left(\\theta \\right)} + \\left(zxx \\cos^{2}{\\left(\\phi \\right)} + zyy \\sin^{2}{\\left(\\phi \\right)}\\right) \\cos^{2}{\\left(\\theta \\right)}\\right)^{2}\\right) \\sin^{2}{\\left(\\theta \\right)}'}

@@ -1,0 +1,8 @@
+{'SS': '0'}
+{'SP': 'zyx**2*sin(2*phi)**2*sin(theta)**2'}
+{'PS': '(1 - cos(4*theta))*(-xzy*cos(2*phi) + xzy - yzx*cos(2*phi) - yzx)**2/8'}
+{'PP': '(zyx**2 + (xzy + yzx)**2)*sin(2*phi)**2*sin(theta)**2*cos(theta)**4'}
+{'SS': '0'}
+{'SP': 'zyx**2*sin(2*phi)**2*sin(theta)**2'}
+{'PS': '1 - cos(4*theta)*((-xzy)*cos(2*phi) + xzy - yzx*cos(2*phi) - yzx)**2/8'}
+{'PP': '(zyx**2 + (xzy + yzx)**2)*sin(2*phi)**2*sin(theta)**2*cos(theta)**4'}

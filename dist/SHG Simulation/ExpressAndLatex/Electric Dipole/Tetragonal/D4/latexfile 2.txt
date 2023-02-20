@@ -1,0 +1,8 @@
+{'SS': '0'}
+{'SP': '0'}
+{'PS': '\\frac{yzx^{2} \\cdot \\left(1 - \\cos{\\left(4 \\theta \\right)}\\right)}{2}'}
+{'PP': '0'}
+{'SS': '0'}
+{'SP': '0'}
+{'PS': '\\frac{yzx^{2} \\cdot \\left(1 - \\cos{\\left(4 \\theta \\right)}\\right)}{2}'}
+{'PP': '0'}

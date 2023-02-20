@@ -1,0 +1,7 @@
+{'SS': 'yyy^{2} \\cos^{2}{\\left(3 \\phi \\right)}'}
+{'SP': 'yyy^{2} \\sin^{2}{\\left(3 \\phi \\right)} \\cos^{2}{\\left(\\theta \\right)} + zyy^{2} \\sin^{2}{\\left(\\theta \\right)}'}
+{'PS': 'yyy^{2} \\cos^{2}{\\left(3 \\phi \\right)} \\cos^{4}{\\left(\\theta \\right)}'}
+{'PP': '\\left(zyy \\cos^{2}{\\left(\\theta \\right)} + zzz \\sin^{2}{\\left(\\theta \\right)}\\right)^{2} \\sin^{2}{\\left(\\theta \\right)} + \\left(yyy \\sin{\\left(3 \\phi \\right)} \\cos{\\left(\\theta \\right)} - 2 yzy \\sin{\\left(\\theta \\right)}\\right)^{2} \\cos^{4}{\\left(\\theta \\right)}'}{'SS': 'yyy^{2} \\cos^{2}{\\left(3 \\phi \\right)}'}
+{'SP': 'yyy^{2} \\sin^{2}{\\left(3 \\phi \\right)} \\cos^{2}{\\left(\\theta \\right)} + zyy^{2} \\sin^{2}{\\left(\\theta \\right)}'}
+{'PS': 'yyy^{2} \\cos^{2}{\\left(3 \\phi \\right)} \\cos^{4}{\\left(\\theta \\right)}'}
+{'PP': '\\left(zyy \\cos^{2}{\\left(\\theta \\right)} + zzz \\sin^{2}{\\left(\\theta \\right)}\\right)^{2} \\sin^{2}{\\left(\\theta \\right)} + \\left(yyy \\sin{\\left(3 \\phi \\right)} \\cos{\\left(\\theta \\right)} - 2 yzy \\sin{\\left(\\theta \\right)}\\right)^{2} \\cos^{4}{\\left(\\theta \\right)}'}
