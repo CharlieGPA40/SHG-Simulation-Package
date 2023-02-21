@@ -6,3 +6,7 @@
 {'SP': 'zyy**2*sin(theta)**2'}
 {'PS': 'yzx**2*(1 - cos(4*theta))/2'}
 {'PP': '(4*yzy**2*cos(theta)**4 + (zyy*cos(theta)**2 + zzz*sin(theta)**2)**2)*sin(theta)**2'}
+{'SS': '0'}
+{'SP': 'zyy**2*sin(theta)**2'}
+{'PS': 'yzx**2*(1 - cos(4*theta))/2'}
+{'PP': '(4*yzy**2*cos(theta)**4 + (zyy*cos(theta)**2 + zzz*sin(theta)**2)**2)*sin(theta)**2'}

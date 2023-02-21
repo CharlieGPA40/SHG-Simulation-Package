@@ -52,7 +52,7 @@ class Win2:
         label_au = Label(self.root, image=au_logo)
         label_au.image = au_logo
         label_au.grid(column=0, row=0)
-        lbl = Label(self.root, text="This Package is developed by Chunli Tang (Code, Design & Build) and Hussam Mustafa (Term Verification)",
+        lbl = Label(self.root, text="This Package is developed by Chunli Tang (Code, Design & Build) & Hussam Mustafa (Term Verification)",
                     font=40)
         lbl.grid(column=0, row=1, padx=10)
         lbl = Label(self.root,
@@ -255,9 +255,9 @@ class Win2:
         Ack_box = Text(self.tab_2, height=10, width=80, relief='sunken')
         Ack_box.grid(column=0, row=10)
         acknowledge = 'This work was supported by NSF EPM Grant No. DMR-2129879 ' \
-                      '\n\nWe would like to give a special thanks to: \nBrian Opatosky, Matt Galinger'
+                      '\n\nWe would like to give a special thanks to: \nBrian Opatosky, Matt Galinger, J Isaac Garcia'
         Ack_box.insert(END, acknowledge)
-        license_box.config(state='disabled')
+        Ack_box.config(state='disabled')
 
 
         ref_box = Text(self.tab_3, height=10, width=80, relief='sunken')
@@ -441,6 +441,10 @@ class polarplotGUI(Frame):
         Help.add_separator()
         Help.add_command(label="About...", command=lambda: self.about_page_detail())
         menu_bar.add_cascade(label='Help', menu=Help)
+
+        Beta = Menu(menu_bar)
+        Beta.add_command(label='Sample Rotation (beta)', command=lambda: self.about_page_detail())
+        Beta.add_cascade(label='Beta', menu=Beta)
 
         # self.file_menu.entryconfig("Export Polar Graph...", state="disabled")
         # self.file_menu.entryconfig("Export Expression Latex...", state="disabled")
@@ -679,7 +683,7 @@ class polarplotGUI(Frame):
                                                                                      (xzzx, zyyz),
                                                                                      (yyzz, yzzy),
                                                                                      (zyyz, zzyy)]),
-                      'O - 432': Matrix([[xxxx, 0, 0, 0, xyxy, 0, 0, 0, xzxz],
+                      'O – 432': Matrix([[xxxx, 0, 0, 0, xyxy, 0, 0, 0, xzxz],
                                          [0, xxyy, 0, xyyx, 0, 0, 0, 0, 0],
                                          [0, 0, xxzz, 0, 0, 0, xzzx, 0, 0],
                                          [0, yxxy, 0, yyxx, 0, 0, 0, 0, 0],
@@ -1802,8 +1806,8 @@ class polarplotGUI(Frame):
         self.fr_input_up = Frame(master=root, bg='#F2F3F4')
         self.fr_input_up.grid(row=1, column=0, ipadx=250, ipady=152, sticky='NW')
         self.fr_input_up.grid_propagate(False)
-        self.fr_input_dw = Frame(master=root)
-        self.fr_plot = Frame(master=root)
+        # self.fr_input_dw = Frame(master=root)
+        # self.fr_plot = Frame(master=root)
 
     def resetCanvas(self):
         self.ax[0].clear()
@@ -1919,10 +1923,12 @@ class polarplotGUI(Frame):
         # Fatal Python Error: PyEval_RestoreThread: NULL tstate
 
     def _back(self):
-        self.paned.destroy()
-        self.fr_input_dw.destroy()
-        self.fr_button_dw.destroy()
-        self.fr_button_dw_message.destroy()
+        self.newWindow.destroy()
+        self.cal_bt['state'] = ACTIVE
+        # self.paned.destroy()
+        # self.fr_input_dw.destroy()
+        # self.fr_button_dw.destroy()
+        # self.fr_button_dw_message.destroy()
         self.createWidget()
 
 
@@ -2684,18 +2690,26 @@ class polarplotGUI(Frame):
             ['A$_{2u}$','+1','+1','-1','-1','+1','-1','+1','-1','-1','+1','-','-','xyz'],
             ['E$_u$','+2','-1','0','0','+2','-2','0','+1','-2','0','-','-','-'],
             ['T$_{1u}$','+3','0','-1','+1','-1','-3','-1','0','+1','+1','(x,y,z)','-','(x$^3$,y$^3$,z$^3$)[x(z$^2$+y$^2$),y(z$^2$+x$^2$),z(x$^2$+y$^2$)]'],
-            ['T$_{2u}$','+3','0','+1','-1','-1','-3','+1','0','+1','-1','-','-','[x(z$^2$-y$^2$),y(z$^2$-x$^2$),z(x$^2$-y$^2$)]']]
+            ['T$_{2u}$','+3','0','+1','-1','-1','-3','+1','0','+1','-1','-','-','[x(z$^2$-y$^2$),y(z$^2$-x$^2$),z(x$^2$-y$^2$)]']], \
+            [['Iso', '1'],
+             ['1','1']]
 
     def calculate(self):
+        self.cal_bt['state'] = DISABLED
         # self.file_menu.entryconfig("Export Polar Graph...", state="normal")
         # self.file_menu.entryconfig("Export Expression Latex...", state="normal")
         # self.file_menu.entryconfig("Export Expression Text...", state="normal")
         # self.file_menu.entryconfig("Export Table...", state="normal")
+        self.newWindow = Toplevel(root)
+        self.newWindow.title("SHG Simulation Package")
+        # self.newWindow.eval('tk::PlaceWindow . center')
+        self.newWindow.maxsize()
+        self.opened = True
         itm = self.group_box_group.get(self.group_box_group.curselection())
         self.option_var = [itm]
-        self.fr_button_dw_message = Frame(master=root)
+        self.fr_button_dw_message = Frame(self.newWindow)
         self.fr_button_dw_message.grid(row=4, column=0,)
-        self.text_box = Text(self.fr_button_dw_message, height=1, width=215, bg='#D3D3D3')
+        self.text_box = Text(self.fr_button_dw_message, height=1, width=214, bg='#D3D3D3')
         def parse(d):
             dictionary = {}
             # Removes curly braces and splits the pairs into a list
@@ -2706,6 +2720,7 @@ class polarplotGUI(Frame):
                 dictionary[pair[0].strip('\'\'\"\"')] = pair[1].strip('\'\'\"\"')
             return dictionary
 
+        # self.fr_input_up.destroy()
         self.path_exp = 'ExpressAndLatex/' + str(self.input_matrix_c) + '/' + str(self.option_var_1[0]) + '/' + str(
             self.option_var[0]) + '/Expfile.txt'
         self.path = 'ExpressAndLatex/' + str(self.input_matrix_c) + '/' + str(self.option_var_1[0]) + '/' + str(
@@ -2945,13 +2960,13 @@ class polarplotGUI(Frame):
             if phi in self.symbolList_sp:
                 self.symbolList_sp.remove(phi)
 
-        self.fr_input_up.destroy()
+
         # root.eval('tk::PlaceWindow . center')
         self.text_box.delete('1.0', 'end')
         message = str(self.input_matrix_c) + '  :  ' + str(self.option_var_1[0]) + ' - ' + str(self.option_var[0])
         self.text_box.insert('end', message)
         self.text_box.grid()
-        self.paned = Frame(master=root)
+        self.paned = Frame(self.newWindow)
         self.paned.grid(row=0, column=0, ipadx=0, ipady=0)
         self.notebook = ttk.Notebook(self.paned)
         self.notebook.grid(row=0, column=0)
@@ -3143,7 +3158,7 @@ class polarplotGUI(Frame):
             title_text = 'Character table for point group S$_4$'
             self.charSelect = 9
 
-        if self.option_var[0] == 'D4h' or self.option_var[0] == 'D4h – 4|m':
+        if self.option_var[0] == 'C4h' or self.option_var[0] == 'C4h – 4|m':
             title_text = 'Character table for point group D$_{4h}$'
             self.charSelect = 10
 
@@ -3231,6 +3246,10 @@ class polarplotGUI(Frame):
             title_text = 'Character table for point group O$_h$'
             self.charSelect = 31
 
+        if self.option_var[0] == 'Iso':
+            title_text = 'Character table for point group Iso'
+            self.charSelect = 32
+
         cell_text = []
         for row in self.chr_data[self.charSelect]:
             cell_text.append([f'{x}' for x in row])
@@ -3274,7 +3293,7 @@ class polarplotGUI(Frame):
         if self.option_var[0] == 'S4' or self.option_var[0] == 'S4 – 4(Bar)':
             the_table.scale(2.5, 2.5)
 
-        if self.option_var[0] == 'D4h' or self.option_var[0] == 'D4h – 4|m':
+        if self.option_var[0] == 'C4h' or self.option_var[0] == 'C4h – 4|m':
             the_table.scale(2.5, 2.5)
 
         if self.option_var[0] == 'D4' or self.option_var[0] == 'D4 – 422':
@@ -3359,11 +3378,11 @@ class polarplotGUI(Frame):
         self.notebook.add(self.tab_2, text="Expression")
         self.notebook.add(self.tab_3, text="Character Table")
 
-        self.fr_input_dw = ScrolledFrame(master=root)
+        self.fr_input_dw = ScrolledFrame(self.newWindow)
         # root.eval('tk::PlaceWindow . center')
-        self.fr_input_dw.grid(column=0, row=1, ipadx=600, ipady=80)
-        self.fr_button_dw = Frame(master=root)
-        root.eval('tk::PlaceWindow . center')
+        self.fr_input_dw.grid(column=0, row=1, ipadx=600, ipady=70)
+        self.fr_button_dw = Frame(self.newWindow)
+        # root.eval('tk::PlaceWindow . center')
         self.fr_button_dw.grid(row=2, column=0, ipadx=760, ipady=20)
 
         self.fr_input_dw.bind_arrow_keys(root)
@@ -3372,8 +3391,8 @@ class polarplotGUI(Frame):
         # Create a frame within the ScrolledFrame
         self.fr_input_dw_inside = self.fr_input_dw.display_widget(Frame)
 
-        if len(self.symbolList_pp) > 10:
-            num_rows = len(self.symbolList_pp)-5
+        if len(self.symbolList_pp) < len(self.symbolList_ps):
+            num_rows = len(self.symbolList_ps)+1
         else:
             num_rows = len(self.symbolList_pp)+1
         num_cols = 10
@@ -3381,7 +3400,7 @@ class polarplotGUI(Frame):
             for column in range(num_cols):
                 w = Label(self.fr_input_dw_inside,
                           width=15,
-                          height=5,
+                          height=2,
                           borderwidth=0,
                           relief="groove",
                           anchor="center",
@@ -3710,7 +3729,7 @@ class polarplotGUI(Frame):
         # else:
         self.cal_bt = ttk.Button(self.fr_input_up, text='Calculate', command=lambda: self.calculate(), width=10,
                                      style='Accent.TButton')
-
+        self.cal_bt['state'] = ACTIVE
         self.group_box_group.bind('<Return>', lambda x: self.calculate())
         self.group_box_group.bind('<Double-Button-1>', lambda x: self.calculate())
         self.cal_bt.bind('<Double-1>', lambda: self.calculate())
@@ -3743,7 +3762,9 @@ if __name__ == '__main__':
         sv_ttk.set_theme('light')
         # root.tk.call("set_theme", "light")
         root.title("SHG Simulation Tool v1")
-        root.geometry('+450+200')  # window position (450 pixels from left, 200 ones from right)
+        # root.geometry('')  # window position (450 pixels from left, 200 ones from right)
+        root.maxsize(250, 152)
+        # root.maxsize()
         # create a substance
         window1 = polarplotGUI(master=root)
         root.eval('tk::PlaceWindow . center')
