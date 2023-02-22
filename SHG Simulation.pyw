@@ -442,9 +442,9 @@ class polarplotGUI(Frame):
         Help.add_command(label="About...", command=lambda: self.about_page_detail())
         menu_bar.add_cascade(label='Help', menu=Help)
 
-        Beta = Menu(menu_bar)
-        Beta.add_command(label='Sample Rotation (beta)', command=lambda: self.about_page_detail())
-        Beta.add_cascade(label='Beta', menu=Beta)
+        Beta_test = Menu(menu_bar)
+        Beta_test.add_command(label='Sample Rotation (beta)', command=lambda: self._beta_init())
+        menu_bar.add_cascade(label='Beta', menu=Beta_test)
 
         # self.file_menu.entryconfig("Export Polar Graph...", state="disabled")
         # self.file_menu.entryconfig("Export Expression Latex...", state="disabled")
@@ -462,6 +462,7 @@ class polarplotGUI(Frame):
 
         self.top2 = None
         self.createWidget()
+        self.beta = False
 
     def contact(self):
         try:
@@ -1730,6 +1731,46 @@ class polarplotGUI(Frame):
             }
         }
 
+    def _beta_init(self):
+        self.beta = True
+        self.fr_input_up.destroy()
+        self.fr_input_up = Frame(master=root, bg='#F2F3F4')
+        self.fr_input_up.grid(row=1, column=0, ipadx=320, ipady=152, sticky='NW')
+        self.fr_input_up.grid_propagate(False)
+        self.createWidget()
+        self.option_var_3 = []
+        self.sample_rot_label = ttk.Label(self.fr_input_up, text='Sample Rotation:', background='#F2F3F4',
+                                 font=('Arial bold', 15))
+        self.sample_rot_label.place(x=470, y=32)
+        # crystalClass.grid(column=2, row=0, sticky='news')
+        self.sample_rot = Listbox(self.fr_input_up, width=16, justify="left", height=11, font=('Arial', 13),
+                                       yscrollcommand='Vertical', selectmode=SINGLE, relief='sunken',
+                                       exportselection=False)
+        self.sample_rot.place(x=472, y=60)
+
+        self.nex_bt.grid(row=0, column=0, padx=490, pady=260)
+        # self.nex_bt.grid(column=2, row=2, sticky='news')
+        self.myBtn.place(y=260, x=447)
+    def beta_sample_rot(self):
+        self.sample_rot.delete(0, END)
+        self.sample_rot.insert(1, '(0,0,1)')
+        self.sample_rot.insert(2, '(0,1,0)')
+        self.sample_rot.insert(3, '(0,1,1)')
+        self.sample_rot.insert(4, '(1,0,0)')
+        self.sample_rot.insert(5, '(1,0,1)')
+        self.sample_rot.insert(6, '(1,1,0)')
+        self.sample_rot.insert(7, '(1,1,1)')
+
+        self.cal_bt_dis = ttk.Button(self.fr_input_up, text='Calculate', command=lambda: self.calculate(),
+                                     width=10,
+                                     style='Accent.TButton')
+        self.sample_rot.bind('<Return>', lambda x: self.calculate())
+        self.sample_rot.bind('<Double-Button-1>', lambda x: self.calculate())
+        self.sample_rot.bind('<<ListboxSelect>>', lambda x: self.buffer())
+        self.cal_bt_dis.bind('<Double-1>', lambda: self.calculate())
+        self.cal_bt_dis.grid(row=0, column=0, padx=490, pady=260)
+        self.cal_bt_dis['state'] = DISABLED
+
     def createWidget(self):
 
         self.list_init()
@@ -1744,21 +1785,26 @@ class polarplotGUI(Frame):
         pointGroup = ttk.Label(self.fr_input_up, text='Radiation Source:', background='#F2F3F4',
                            font=('Arial bold', 15))
         pointGroup.place(x=34, y=32)
+        # pointGroup.grid(column=0, row=0, sticky='news')
 
         crystalSystem = ttk.Label(self.fr_input_up, text='Crystal System:', background='#F2F3F4',
                               font=('Arial bold', 15))
         crystalSystem.place(x=196, y=32)
+        # crystalSystem.grid(column=1, row=0, sticky='news')
 
         crystalClass = ttk.Label(self.fr_input_up, text='Point Group:', background='#F2F3F4',
                              font=('Arial bold', 15))
         crystalClass.place(x=332, y=32)
+        # crystalClass.grid(column=2, row=0, sticky='news')
         self.group_box_group = Listbox(self.fr_input_up, width=16, justify="left", height=11, font=('Arial', 13),
                                        yscrollcommand='Vertical', selectmode=SINGLE, relief='sunken', exportselection=False)
         self.group_box_group.place(x=335, y=60)
+        # self.group_box_group.grid(column=0, row=1, sticky='news')
 
         self.group_box = Listbox(self.fr_input_up, width=17, justify="left", height=11, yscrollcommand='Vertical',
                                  selectmode=SINGLE, relief='sunken', font=('Arial', 13), exportselection=False)
         self.group_box.place(x=38, y=60)
+        # self.group_box.grid(column=1, row=1, sticky='news')
         self.group_box.insert(1, 'Electric Dipole')
         self.group_box.insert(2, 'Electric Quadrupole')
         self.group_box.insert(3, 'Magnetic Dipole')
@@ -1769,15 +1815,20 @@ class polarplotGUI(Frame):
         self.crystal_system = Listbox(self.fr_input_up, width=16, justify="left", height=11, font=('Arial', 13),
                                       yscrollcommand='Vertical', selectmode=SINGLE, relief='sunken', exportselection=False)
         self.crystal_system.place(x=200, y=60)
+        # self.crystal_system.grid(column=2, row=1, sticky='news')
 
         self.nex_bt = ttk.Button(self.fr_input_up, text='Calculate', command=lambda: self.pop_up_warning(), width=10,
                                  style='Accent.TButton')
         self.nex_bt.bind('<Return>', lambda: self.show_crystal_system())
         self.nex_bt.grid(row=0, column=0, padx=355, pady=260)
-        myBtn = ttk.Button(self.fr_input_up, text='?')
-        myBtn.place(y=260, x=312)
-        myTip = Hovertip(myBtn, 'Please select all the elements to do the calculation. '
+        # self.nex_bt.grid(column=2, row=2, sticky='news')
+        self.myBtn = ttk.Button(self.fr_input_up, text='?')
+        self.myBtn.place(y=260, x=312)
+        # myBtn.grid(column=1, row=2, sticky='news')
+        myTip = Hovertip(self.myBtn, 'Please select all the elements to do the calculation. '
                                 '\nThe calculation model can be found at menu->Model->Calculation Model', hover_delay=1000)
+        # self.cal_bt['state'] = DISABLED
+        self.nex_bt['state'] = DISABLED
 
     def list_init(self):
         self.valueList_ss = []
@@ -1804,7 +1855,7 @@ class polarplotGUI(Frame):
         # self.fr_input_up = Frame(master=root, bg='#f6f6f6')
         # root.geometry(250,152)
         self.fr_input_up = Frame(master=root, bg='#F2F3F4')
-        self.fr_input_up.grid(row=1, column=0, ipadx=250, ipady=152, sticky='NW')
+        self.fr_input_up.grid(row=1, column=0, ipadx=250, ipady=152, sticky='NESW')
         self.fr_input_up.grid_propagate(False)
         # self.fr_input_dw = Frame(master=root)
         # self.fr_plot = Frame(master=root)
@@ -2695,16 +2746,22 @@ class polarplotGUI(Frame):
              ['1','1']]
 
     def calculate(self):
-        self.cal_bt['state'] = DISABLED
+        self.cal_bt_dis['state'] = DISABLED
         # self.file_menu.entryconfig("Export Polar Graph...", state="normal")
         # self.file_menu.entryconfig("Export Expression Latex...", state="normal")
         # self.file_menu.entryconfig("Export Expression Text...", state="normal")
         # self.file_menu.entryconfig("Export Table...", state="normal")
-        self.newWindow = Toplevel(root)
-        self.newWindow.title("SHG Simulation Package")
-        # self.newWindow.eval('tk::PlaceWindow . center')
-        self.newWindow.maxsize()
-        self.opened = True
+        if self.opened == false:
+            self.newWindow = Toplevel(root)
+            self.newWindow.title("SHG Simulation Package")
+            # self.newWindow.eval('tk::PlaceWindow . center')
+            self.newWindow.maxsize()
+            self.opened = True
+
+        if self.beta == True:
+            itm_rot = self.sample_rot.get(self.sample_rot.curselection())
+            self.option_var_3 = [itm_rot]
+
         itm = self.group_box_group.get(self.group_box_group.curselection())
         self.option_var = [itm]
         self.fr_button_dw_message = Frame(self.newWindow)
@@ -2960,8 +3017,6 @@ class polarplotGUI(Frame):
             if phi in self.symbolList_sp:
                 self.symbolList_sp.remove(phi)
 
-
-        # root.eval('tk::PlaceWindow . center')
         self.text_box.delete('1.0', 'end')
         message = str(self.input_matrix_c) + '  :  ' + str(self.option_var_1[0]) + ' - ' + str(self.option_var[0])
         self.text_box.insert('end', message)
@@ -3693,6 +3748,7 @@ class polarplotGUI(Frame):
         self.crystal_box.bind('<<ListboxSelect>>', lambda x: self.show_group())
         self.cal_bt.bind('<Double-1>', lambda: self.calculate())
         self.cal_bt.grid(row=0, column=0, padx=350, pady=260)
+        self.cal_bt['state'] = DISABLED
 
     def show_group(self):
         itm_g = self.crystal_box.get(self.crystal_box.curselection())
@@ -3722,23 +3778,36 @@ class polarplotGUI(Frame):
 
         elif self.input_matrix_c == 'Coming Soon...':
             self.group_box_group.insert(1, 'Coming Soon...')
+        self.opened = false
 
         # if self.input_matrix_c == 'Magnetic Monopole':
         #     self.cal_bt = ttk.Button(self.fr_input_up, text='Calculate', command=lambda: self.suprise(), width=12,
         #                              style='Accent.TButton')
-        # else:
-        self.cal_bt = ttk.Button(self.fr_input_up, text='Calculate', command=lambda: self.calculate(), width=10,
+
+        if self.beta == False:
+            self.cal_bt_dis = ttk.Button(self.fr_input_up, text='Calculate', command=lambda: self.calculate(), width=10,
+                                         style='Accent.TButton')
+            self.group_box_group.bind('<Return>', lambda x: self.calculate())
+            self.group_box_group.bind('<Double-Button-1>', lambda x: self.calculate())
+            self.group_box_group.bind('<<ListboxSelect>>', lambda x: self.buffer())
+            self.cal_bt_dis.bind('<Double-1>', lambda: self.calculate())
+            self.cal_bt_dis.grid(row=0, column=0, padx=200, pady=250)
+            self.cal_bt_dis['state'] = DISABLED
+
+        else:
+            self.sample_rot.delete(0, END)
+            self.cal_bt = ttk.Button(self.fr_input_up, text='Calculate', command=lambda: self.calculate(), width=10,
                                      style='Accent.TButton')
-        self.cal_bt['state'] = ACTIVE
-        self.group_box_group.bind('<Return>', lambda x: self.calculate())
-        self.group_box_group.bind('<Double-Button-1>', lambda x: self.calculate())
-        self.cal_bt.bind('<Double-1>', lambda: self.calculate())
-        self.cal_bt.grid(row=0, column=0, padx=200, pady=250)
+            self.group_box_group.bind('<Return>', lambda x: self.beta_sample_rot())
+            self.group_box_group.bind('<Double-Button-1>', lambda x: self.beta_sample_rot())
+            self.group_box_group.bind('<<ListboxSelect>>', lambda x: self.beta_sample_rot())
+            self.cal_bt_dis.bind('<Double-1>', lambda: self.beta_sample_rot())
+            self.cal_bt_dis.grid(row=0, column=0, padx=490, pady=250)
+            self.cal_bt_dis['state'] = DISABLED
 
-    def suprise(self):
-        webview.create_window(title='Monopole Tutorials', url='https://youtu.be/dQw4w9WgXcQ', hidden=True)
-        webview.start()
 
+    def buffer(self):
+        self.cal_bt_dis['state'] = ACTIVE
 
 if __name__ == '__main__':
     # initialize the global variables
