@@ -15,7 +15,6 @@ from tkinter import ttk
 import tkinter.messagebox as messagebox
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import math
-import webview
 from tkscrolledframe import ScrolledFrame
 from PIL import ImageTk, Image
 import webbrowser
@@ -24,8 +23,8 @@ from sympy.parsing.sympy_parser import parse_expr
 import sv_ttk
 import sys
 from idlelib.tooltip import Hovertip
-from tkinter import filedialog
-from tkinter.filedialog import asksaveasfilename, asksaveasfile
+from tkinter.filedialog import asksaveasfilename
+import symengine as se
 
 # ************************************** #
 # construct a class used to generate the polar plot
@@ -75,9 +74,6 @@ class Win2:
         wb_label = Label(self.root, text="Website", font=40, fg="blue", cursor="hand2")
         wb_label.bind("<Button-1>", lambda e: callback("http://wp.auburn.edu/JinLab/"))
         wb_label.grid(column=0, row=8)
-
-        # lbl = Label(self.root, text="LICENSE", font=80)
-        # lbl.grid(column=0, row=9, pady=20)
 
         self.paned = Frame(master=self.root)
         self.paned.grid(row=9, column=0, ipadx=0, ipady=0)
@@ -445,15 +441,6 @@ class polarplotGUI(Frame):
         Beta_test = Menu(menu_bar)
         Beta_test.add_command(label='Sample Rotation (beta)', command=lambda: self._beta_init())
         menu_bar.add_cascade(label='Beta', menu=Beta_test)
-
-        # self.file_menu.entryconfig("Export Polar Graph...", state="disabled")
-        # self.file_menu.entryconfig("Export Expression Latex...", state="disabled")
-        # self.file_menu.entryconfig("Export Expression Text...", state="disabled")
-        # self.file_menu.entryconfig("Export Table...", state="disabled")
-
-        # p1 = PhotoImage(file='auburn.png')
-        # Icon set for program window
-        # self.master.iconphoto(False, p1)
 
         self.setupDict()
         self.charTable()
@@ -1751,6 +1738,9 @@ class polarplotGUI(Frame):
         self.nex_bt.grid(row=0, column=0, padx=490, pady=260)
         # self.nex_bt.grid(column=2, row=2, sticky='news')
         self.myBtn.place(y=260, x=447)
+        self.beta_back_bt = ttk.Button(self.fr_input_up, text='Back', command=lambda: self.beta_back(),
+                                    width=5,)
+        self.beta_back_bt.place(y=260, x=367)
     def beta_sample_rot(self):
         self.sample_rot.delete(0, END)
         self.sample_rot.insert(1, '(0,0,1)')
@@ -1770,6 +1760,14 @@ class polarplotGUI(Frame):
         self.cal_bt_dis.bind('<Double-1>', lambda: self.calculate())
         self.cal_bt_dis.grid(row=0, column=0, padx=490, pady=260)
         self.cal_bt_dis['state'] = DISABLED
+
+
+    def beta_back(self):
+        self.beta = False
+        self.fr_input_up.destroy()
+        self.fr_input_up = Frame(master=root, bg='#F2F3F4')
+        self.createWidget()
+        self.fr_input_up.grid(row=1, column=0, ipadx=250, ipady=152, sticky='NESW')
 
     def createWidget(self):
 
@@ -1904,6 +1902,7 @@ class polarplotGUI(Frame):
             if chr(952) == self.showSymbol(self.symbolList_sp[0]):
                 self.valueList_sp[0] = math.radians(self.valueList_sp[0])
             self.substitute = [(self.symbolList_sp[i], self.valueList_sp[i]) for i in range(len(self.symbolList_sp))]
+            # self.exprsp = simplify(self.exprsp, evaluate=False)
             for i in range(len(phi_value)):
                 self.substitute.append((phi, phi_value[i]))
                 self.polarList_sp.append(self.exprsp.subs(self.substitute))
@@ -1922,6 +1921,7 @@ class polarplotGUI(Frame):
             if chr(952) == self.showSymbol(self.symbolList_ps[0]):
                 self.valueList_ps[0] = math.radians(self.valueList_ps[0])
             self.substitute = [(self.symbolList_ps[i], self.valueList_ps[i]) for i in range(len(self.symbolList_ps))]
+            # self.exprps = simplify(self.exprps, evaluate=False)
             for i in range(len(phi_value)):
                 self.substitute.append((phi, phi_value[i]))
                 self.polarList_ps.append(self.exprps.subs(self.substitute))
@@ -1941,7 +1941,7 @@ class polarplotGUI(Frame):
             if chr(952) == self.showSymbol(self.symbolList_pp[0]):
                 self.valueList_pp[0] = math.radians(self.valueList_pp[0])
             self.substitute = [(self.symbolList_pp[i], self.valueList_pp[i]) for i in range(len(self.symbolList_pp))]
-
+            # self.exprpp = simplify(self.exprpp, evaluate=False)
             for i in range(len(phi_value)):
                 self.substitute.append((phi, phi_value[i]))
                 self.polarList_pp.append(self.exprpp.subs(self.substitute))
@@ -2788,28 +2788,54 @@ class polarplotGUI(Frame):
                 epin = Matrix([[-cos(theta), 0, sin(theta)]])
                 esin = Matrix([[0, 1, 0]])
                 rot = Matrix([[cos(phi), -sin(phi), 0], [sin(phi), cos(phi), 0], [0, 0, 1]])
+                #
+                # epin = se.Matrix([[-cos(theta), 0, sin(theta)]])
+                # esin = se.Matrix([[0, 1, 0]])
+                # rot = se.Matrix([[cos(phi), -sin(phi), 0], [sin(phi), cos(phi), 0], [0, 0, 1]])
                 input_matrix = self.dic[self.option_var_1[0]][self.option_var[0]]
 
                 # calculate the expression
                 rs_matrix = simplify(self.trans(self.sTB(rot, self.trans(self.sTB(rot, self.bTS(input_matrix, rot.T))))))
 
+                # rs_matrix = se.sympify(
+                #     self.trans(self.sTB(rot, self.trans(self.sTB(rot, self.bTS(input_matrix, rot.T))))))
+
                 # PP
+                rs_matrix = simplify(rs_matrix)
                 pxp = epin * rs_matrix[0:3, 0:3] * epin.T
                 pzp = epin * rs_matrix[6:9, 0:3] * epin.T
-                self.exprpp = simplify((pxp * cos(theta)) ** 2 + (pzp * sin(theta)) ** 2)[0]
+
+                # pxp = se.sympify(pxp)
+                # pzp = se.sympify(pzp)
+
+                # self.exprpp = simplify((pxp * cos(theta))** 2 + (pzp * sin(theta))** 2)[0]
+                self.exprpp = se.sympify((pxp * cos(theta)) ** 2 + (pzp * sin(theta)) ** 2)[0]
 
                 # PS
                 pys = epin * rs_matrix[3:6, 0:3] * epin.T
-                self.exprps = simplify((pys ** 2)[0])
+                # self.exprps = simplify((pys ** 2)[0])
+                self.exprps = se.sympify((pys ** 2)[0])
 
                 # SP
                 sxp = esin * rs_matrix[0:3, 0:3] * esin.T
                 szp = esin * rs_matrix[6:9, 0:3] * esin.T
-                self.exprsp = simplify((sxp * cos(theta)) ** 2 + (szp * sin(theta)) ** 2)[0]
+                # self.exprsp = simplify((sxp * cos(theta)) ** 2 + (szp * sin(theta)) ** 2)[0]
+                self.exprsp = se.sympify((sxp * cos(theta)) ** 2 + (szp * sin(theta)) ** 2)[0]
 
                 # SS
                 sys = esin * rs_matrix[3:6, 0:3] * esin.T
-                self.exprss = simplify((sys ** 2)[0])
+                # self.exprss = simplify((sys ** 2)[0])
+                self.exprss = se.sympify((sys ** 2)[0])
+
+                self.exprss = str(self.exprss)
+                self.exprsp = str(self.exprsp)
+                self.exprps = str(self.exprps)
+                self.exprpp = str(self.exprpp)
+
+                self.exprss = parse_expr(self.exprss, evaluate=False)
+                self.exprsp = parse_expr(self.exprsp, evaluate=False)
+                self.exprps = parse_expr(self.exprps, evaluate=False)
+                self.exprpp = parse_expr(self.exprpp, evaluate=False)
             else:
                 express_txt = open(self.path_exp, 'rt')
                 lines = express_txt.read().split('\n')
@@ -2820,10 +2846,16 @@ class polarplotGUI(Frame):
                         dict_exp_extract[i] = parse(l)
                         i += 1
                 express_txt.close()
+                # sympy
                 self.exprss = parse_expr(dict_exp_extract[0]['SS'],evaluate=False)
                 self.exprsp = parse_expr(dict_exp_extract[1]['SP'],evaluate=False)
                 self.exprps = parse_expr(dict_exp_extract[2]['PS'],evaluate=False)
                 self.exprpp = parse_expr(dict_exp_extract[3]['PP'],evaluate=False)
+
+                # self.exprss = se.sympify(dict_exp_extract[0]['SS'])
+                # self.exprsp = se.sympify(dict_exp_extract[1]['SP'])
+                # self.exprps = se.sympify(dict_exp_extract[2]['PS'])
+                # self.exprpp = se.sympify(dict_exp_extract[3]['PP'])
 
             # every change should clear the symbolList at first
             self.symbolList_pp = self.getList_pp()
@@ -2842,16 +2874,27 @@ class polarplotGUI(Frame):
                 self.symbolList_sp.remove(phi)
         elif self.input_matrix_c == 'Electric Quadrupole':
             isExist = os.path.exists(self.path_exp)
-            if not isExist:  # Create a new directory because it does not exist
-                k = Matrix([[-sin(theta), 0, -cos(theta)]])
-                rot = Matrix([[cos(phi), -sin(phi), 0], [sin(phi), cos(phi), 0], [0, 0, 1]])
-                epin = Matrix([[-cos(theta), 0, sin(theta)]])
-                esin = Matrix([[0, 1, 0]])
+            if isExist == False:  # Create a new directory because it does not exist
+                k = se.Matrix([[-sin(theta), 0, -cos(theta)]])
+                rot = se.Matrix([[cos(phi), -sin(phi), 0], [sin(phi), cos(phi), 0], [0, 0, 1]])
+                epin = se.Matrix([[-cos(theta), 0, sin(theta)]])
+                esin = se.Matrix([[0, 1, 0]])
+
+                # Using sympy
+                # k = Matrix([[-sin(theta), 0, -cos(theta)]])
+                # rot = Matrix([[cos(phi), -sin(phi), 0], [sin(phi), cos(phi), 0], [0, 0, 1]])
+                # epin = Matrix([[-cos(theta), 0, sin(theta)]])
+                # esin = Matrix([[0, 1, 0]])
 
                 input_matrix_quad = self.dic_qud[self.option_var_1[0]][self.option_var[0]]
-                rs_matrix_quad = simplify(self.trans_quad_2Swap(self.trans_quad(self.bTS_quad(self.trans_quad_2Swap(
+                rs_matrix_quad = se.sympify(self.trans_quad_2Swap(self.trans_quad(self.bTS_quad(self.trans_quad_2Swap(
                     self.sTB_quad(rot, self.trans_quad(self.sTB_quad(rot, self.bTS_quad(input_matrix_quad, rot.T))))),
                     rot.T))))
+
+                # Using sympy
+                # rs_matrix_quad = simplify(self.trans_quad_2Swap(self.trans_quad(self.bTS_quad(self.trans_quad_2Swap(
+                #     self.sTB_quad(rot, self.trans_quad(self.sTB_quad(rot, self.bTS_quad(input_matrix_quad, rot.T))))),
+                #     rot.T))))
 
                 # PP
                 pxp = 0
@@ -2869,10 +2912,13 @@ class polarplotGUI(Frame):
                             pzp = pzp + pzp_temp
 
                 # PP
-                self.exprpp = simplify((pxp * cos(theta)) ** 2 + (pzp * sin(theta)) ** 2)
-
+                self.exprpp = se.sympify((pxp * cos(theta)) ** 2 + (pzp * sin(theta)) ** 2)
                 # PS
-                self.exprps = simplify((pys ** 2))
+                self.exprps = se.sympify((pys ** 2))
+
+                # Sympy
+                # self.exprpp = simplify((pxp * cos(theta)) ** 2 + (pzp * sin(theta)) ** 2)
+                # self.exprps = simplify((pys ** 2))
 
                 sxp = 0
                 sys = 0
@@ -2888,11 +2934,23 @@ class polarplotGUI(Frame):
                             sys = sys + sys_temp
                             szp = szp + szp_temp
                 # SP
-                self.exprsp = simplify((sxp * cos(theta)) ** 2 + (szp * sin(theta)) ** 2)
-
-
+                self.exprsp = se.sympify((sxp * cos(theta)) ** 2 + (szp * sin(theta)) ** 2)
                 # SS
-                self.exprss = simplify((sys ** 2))
+                self.exprss = se.sympify((sys ** 2))
+
+                # Sympy
+                # self.exprsp = simplify((sxp * cos(theta)) ** 2 + (szp * sin(theta)) ** 2)
+                # self.exprss = simplify((sys ** 2))
+                self.exprss = str(self.exprss)
+                self.exprsp = str(self.exprsp)
+                self.exprps = str(self.exprps)
+                self.exprpp = str(self.exprpp)
+
+
+                self.exprss = parse_expr(self.exprss, evaluate=False)
+                self.exprsp = parse_expr(self.exprsp, evaluate=False)
+                self.exprps = parse_expr(self.exprps, evaluate=False)
+                self.exprpp = parse_expr(self.exprpp, evaluate=False)
             else:
                 express_txt = open(self.path_exp, 'rt')
                 lines = express_txt.read().split('\n')
@@ -2904,13 +2962,24 @@ class polarplotGUI(Frame):
                         i += 1
                 express_txt.close()
                 ss_temp = dict_exp_extract[0]['SS']
+                # sympy
                 self.exprss = parse_expr(ss_temp, evaluate=False)
+                # self.exprss = se.sympify(ss_temp)
+
                 sp_temp = dict_exp_extract[1]['SP']
+                # sympy
                 self.exprsp = parse_expr(sp_temp, evaluate=False)
+                # self.exprsp = se.sympify(sp_temp)
+
                 ps_temp = dict_exp_extract[2]['PS']
+                # sympy
                 self.exprps = parse_expr(ps_temp, evaluate=False)
+                # self.exprps = se.sympify(ps_temp)
+
                 pp_temp = dict_exp_extract[3]['PP']
+                # sympy
                 self.exprpp = parse_expr(pp_temp, evaluate=False)
+                # self.exprpp = se.sympify(pp_temp)
 
             # every change should clear the symbolList at first
             self.symbolList_pp = self.getList_pp_eQ()
@@ -2930,14 +2999,21 @@ class polarplotGUI(Frame):
         elif self.input_matrix_c == 'Magnetic Dipole':
             isExist = os.path.exists(self.path_exp)
             if not isExist:  # Create a new directory because it does not exist
-                epin = Matrix([[-cos(theta), 0, sin(theta)]])
-                esin = Matrix([[0, 1, 0]])
-                rot = Matrix([[cos(phi), -sin(phi), 0], [sin(phi), cos(phi), 0], [0, 0, 1]])
-                k = Matrix([[-sin(theta), 0, -cos(theta)]])
+                # epin = Matrix([[-cos(theta), 0, sin(theta)]])
+                # esin = Matrix([[0, 1, 0]])
+                # rot = Matrix([[cos(phi), -sin(phi), 0], [sin(phi), cos(phi), 0], [0, 0, 1]])
+                # k = Matrix([[-sin(theta), 0, -cos(theta)]])
+
+                epin = se.Matrix([[-cos(theta), 0, sin(theta)]])
+                esin = se.Matrix([[0, 1, 0]])
+                rot = se.Matrix([[cos(phi), -sin(phi), 0], [sin(phi), cos(phi), 0], [0, 0, 1]])
+                k = se.Matrix([[-sin(theta), 0, -cos(theta)]])
                 input_matrix = self.dic_mag_dip[self.option_var_1[0]][self.option_var[0]]
 
                 # calculate the expression
-                rs_matrix_md = simplify(self.trans(self.sTB(rot, self.trans(self.sTB(rot, self.bTS(input_matrix, rot.T))))))
+                # rs_matrix_md = simplify(self.trans(self.sTB(rot, self.trans(self.sTB(rot, self.bTS(input_matrix, rot.T))))))
+                rs_matrix_md = se.sympify(
+                    self.trans(self.sTB(rot, self.trans(self.sTB(rot, self.bTS(input_matrix, rot.T))))))
 
                 Mpx = 0
                 Mpy = 0
@@ -2959,10 +3035,14 @@ class polarplotGUI(Frame):
                 Spz = Sp[2]
 
                 # PP
-                self.exprpp = simplify((Spx * cos(theta)) ** 2 + (Spz * sin(theta)) ** 2)
+                # self.exprpp = simplify((Spx * cos(theta)) ** 2 + (Spz * sin(theta)) ** 2)
+                #
+                # # PS
+                # self.exprps = simplify((Spy ** 2))
+                self.exprpp = se.sympify((Spx * cos(theta)) ** 2 + (Spz * sin(theta)) ** 2)
 
                 # PS
-                self.exprps = simplify((Spy ** 2))
+                self.exprps = se.sympify((Spy ** 2))
 
                 # SP
                 Msx = 0
@@ -2984,9 +3064,23 @@ class polarplotGUI(Frame):
                 Ssy = Ss[1]
                 Ssz = Ss[2]
 
-                self.exprsp = simplify((Ssx * cos(theta)) ** 2 + (Ssz * sin(theta)) ** 2)
+                # self.exprsp = simplify((Ssx * cos(theta)) ** 2 + (Ssz * sin(theta)) ** 2)
+                # # SS
+                # self.exprss = simplify((Ssy ** 2))
+
+                self.exprsp = se.sympify((Ssx * cos(theta)) ** 2 + (Ssz * sin(theta)) ** 2)
                 # SS
-                self.exprss = simplify((Ssy ** 2))
+                self.exprss = se.sympify((Ssy ** 2))
+
+                self.exprss = str(self.exprss)
+                self.exprsp = str(self.exprsp)
+                self.exprps = str(self.exprps)
+                self.exprpp = str(self.exprpp)
+
+                self.exprss = parse_expr(self.exprss, evaluate=False)
+                self.exprsp = parse_expr(self.exprsp, evaluate=False)
+                self.exprps = parse_expr(self.exprps, evaluate=False)
+                self.exprpp = parse_expr(self.exprpp, evaluate=False)
             else:
                 express_txt = open(self.path_exp, 'rt')
                 lines = express_txt.read().split('\n')
@@ -2997,10 +3091,17 @@ class polarplotGUI(Frame):
                         dict_exp_extract[i] = parse(l)
                         i += 1
                 express_txt.close()
+
+                # sympy
                 self.exprss = parse_expr(dict_exp_extract[0]['SS'],evaluate=False)
                 self.exprsp = parse_expr(dict_exp_extract[1]['SP'],evaluate=False)
                 self.exprps = parse_expr(dict_exp_extract[2]['PS'],evaluate=False)
                 self.exprpp = parse_expr(dict_exp_extract[3]['PP'],evaluate=False)
+
+                # self.exprss = se.sympify(dict_exp_extract[0]['SS'])
+                # self.exprsp = se.sympify(dict_exp_extract[1]['SP'])
+                # self.exprps = se.sympify(dict_exp_extract[2]['PS'])
+                # self.exprpp = se.sympify(dict_exp_extract[3]['PP'])
 
             # every change should clear the symbolList at first
             self.symbolList_pp = self.getList_pp_Md()
@@ -3051,7 +3152,7 @@ class polarplotGUI(Frame):
         # Create a frame within the ScrolledFrame
         self.tab2_scrollable_inside = self.tab2_scrollable.display_widget(Frame)
 
-        self.f_e, self.wx = plt.subplots(4, 1, figsize=(60, 4))
+        self.f_e, self.wx = plt.subplots(4, 1, figsize=(200, 4))
         plt.subplots_adjust(left=0)
         self.wx[0].set_title("Expression SS:", fontsize=15, pad=15, loc='left')
         self.wx[1].set_title("Expression SP:", fontsize=15, pad=15, loc='left')
