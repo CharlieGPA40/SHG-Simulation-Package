@@ -2,7 +2,3 @@
 {'SP': 'yyy^{2} \\sin^{2}{\\left(3 \\phi \\right)} \\cos^{2}{\\left(\\theta \\right)}'}
 {'PS': 'yyy^{2} \\cos^{2}{\\left(3 \\phi \\right)} \\cos^{4}{\\left(\\theta \\right)}'}
 {'PP': 'yyy^{2} \\sin^{2}{\\left(3 \\phi \\right)} \\cos^{6}{\\left(\\theta \\right)}'}
-{'SS': 'yyy^{2} \\cos^{2}{\\left(3 \\phi \\right)}'}
-{'SP': 'yyy^{2} \\sin^{2}{\\left(3 \\phi \\right)} \\cos^{2}{\\left(\\theta \\right)}'}
-{'PS': 'yyy^{2} \\cos^{2}{\\left(3 \\phi \\right)} \\cos^{4}{\\left(\\theta \\right)}'}
-{'PP': 'yyy^{2} \\sin^{2}{\\left(3 \\phi \\right)} \\cos^{6}{\\left(\\theta \\right)}'}

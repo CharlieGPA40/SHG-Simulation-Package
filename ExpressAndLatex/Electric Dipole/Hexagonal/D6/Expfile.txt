@@ -2,7 +2,3 @@
 {'SP': '0'}
 {'PS': 'yxz**2*(1 - cos(4*theta))*(3 - cos(2*phi))**2/32'}
 {'PP': 'yxz**2*sin(2*phi)**2*sin(theta)**2*cos(theta)**4/4'}
-{'SS': '0'}
-{'SP': '0'}
-{'PS': 'yxz**2*(1 - cos(4*theta))*(3 - cos(2*phi))**2/32'}
-{'PP': 'yxz**2*sin(2*phi)**2*sin(theta)**2*cos(theta)**4/4'}

@@ -1,35 +1,4 @@
 {'SS': 'xxx^{2} \\sin^{2}{\\left(3 \\phi \\right)}'}
 {'SP': 'xxx^{2} \\cos^{2}{\\left(3 \\phi \\right)} \\cos^{2}{\\left(\\theta \\right)}'}
 {'PS': '\\left(xxx \\sin{\\left(3 \\phi \\right)} \\cos{\\left(\\theta \\right)} - 2 yzx \\sin{\\left(\\theta \\right)}\\right)^{2} \\cos^{2}{\\left(\\theta \\right)}'}
-{'PP': 'xxx^{2} \\cos^{2}{\\left(3 \\phi \\right)} \\cos^{6}{\\left(\\theta \\right)}'}{'SS': 'xxx^{2} \\sin^{2}{\\left(3 \\phi \\right)}'}
-{'SP': 'xxx^{2} \\cos^{2}{\\left(3 \\phi \\right)} \\cos^{2}{\\left(\\theta \\right)}'}
-{'PS': '\\left(xxx \\sin{\\left(3 \\phi \\right)} \\cos{\\left(\\theta \\right)} - 2 yzx \\sin{\\left(\\theta \\right)}\\right)^{2} \\cos^{2}{\\left(\\theta \\right)}'}
-{'PP': 'xxx^{2} \\cos^{2}{\\left(3 \\phi \\right)} \\cos^{6}{\\left(\\theta \\right)}'}
-{'SS': 'xxx^{2} \\sin^{2}{\\left(3 \\phi \\right)}'}
-{'SP': 'xxx^{2} \\cos^{2}{\\left(3 \\phi \\right)} \\cos^{2}{\\left(\\theta \\right)}'}
-{'PS': '\\left(xxx \\sin{\\left(3 \\phi \\right)} \\cos{\\left(\\theta \\right)} - 2 yzx \\sin{\\left(\\theta \\right)}\\right)^{2} \\cos^{2}{\\left(\\theta \\right)}'}
-{'PP': 'xxx^{2} \\cos^{2}{\\left(3 \\phi \\right)} \\cos^{6}{\\left(\\theta \\right)}'}
-{'SS': 'xxx^{2} \\sin^{2}{\\left(3 \\phi \\right)}'}
-{'SP': 'xxx^{2} \\cos^{2}{\\left(3 \\phi \\right)} \\cos^{2}{\\left(\\theta \\right)}'}
-{'PS': '\\left(xxx \\sin{\\left(3 \\phi \\right)} \\cos{\\left(\\theta \\right)} - 2 yzx \\sin{\\left(\\theta \\right)}\\right)^{2} \\cos^{2}{\\left(\\theta \\right)}'}
-{'PP': 'xxx^{2} \\cos^{2}{\\left(3 \\phi \\right)} \\cos^{6}{\\left(\\theta \\right)}'}
-{'SS': 'xxx^{2} \\sin^{2}{\\left(3 \\phi \\right)}'}
-{'SP': 'xxx^{2} \\cos^{2}{\\left(3 \\phi \\right)} \\cos^{2}{\\left(\\theta \\right)}'}
-{'PS': '\\left(xxx \\sin{\\left(3 \\phi \\right)} \\cos{\\left(\\theta \\right)} - 2 yzx \\sin{\\left(\\theta \\right)}\\right)^{2} \\cos^{2}{\\left(\\theta \\right)}'}
-{'PP': 'xxx^{2} \\cos^{2}{\\left(3 \\phi \\right)} \\cos^{6}{\\left(\\theta \\right)}'}
-{'SS': 'xxx^{2} \\sin^{2}{\\left(3 \\phi \\right)}'}
-{'SP': 'xxx^{2} \\cos^{2}{\\left(3 \\phi \\right)} \\cos^{2}{\\left(\\theta \\right)}'}
-{'PS': '\\left(xxx \\sin{\\left(3 \\phi \\right)} \\cos{\\left(\\theta \\right)} - 2 yzx \\sin{\\left(\\theta \\right)}\\right)^{2} \\cos^{2}{\\left(\\theta \\right)}'}
-{'PP': 'xxx^{2} \\cos^{2}{\\left(3 \\phi \\right)} \\cos^{6}{\\left(\\theta \\right)}'}
-{'SS': 'xxx^{2} \\sin^{2}{\\left(3 \\phi \\right)}'}
-{'SP': 'xxx^{2} \\cos^{2}{\\left(3 \\phi \\right)} \\cos^{2}{\\left(\\theta \\right)}'}
-{'PS': '\\left(xxx \\sin{\\left(3 \\phi \\right)} \\cos{\\left(\\theta \\right)} - 2 yzx \\sin{\\left(\\theta \\right)}\\right)^{2} \\cos^{2}{\\left(\\theta \\right)}'}
-{'PP': 'xxx^{2} \\cos^{2}{\\left(3 \\phi \\right)} \\cos^{6}{\\left(\\theta \\right)}'}
-{'SS': 'xxx^{2} \\sin^{2}{\\left(3 \\phi \\right)}'}
-{'SP': 'xxx^{2} \\cos^{2}{\\left(3 \\phi \\right)} \\cos^{2}{\\left(\\theta \\right)}'}
-{'PS': '\\left(xxx \\sin{\\left(3 \\phi \\right)} \\cos{\\left(\\theta \\right)} - 2 yzx \\sin{\\left(\\theta \\right)}\\right)^{2} \\cos^{2}{\\left(\\theta \\right)}'}
-{'PP': 'xxx^{2} \\cos^{2}{\\left(3 \\phi \\right)} \\cos^{6}{\\left(\\theta \\right)}'}
-{'SS': 'xxx^{2} \\sin^{2}{\\left(3 \\phi \\right)}'}
-{'SP': 'xxx^{2} \\cos^{2}{\\left(3 \\phi \\right)} \\cos^{2}{\\left(\\theta \\right)}'}
-{'PS': '\\left(xxx \\sin{\\left(3 \\phi \\right)} \\cos{\\left(\\theta \\right)} - 2 yzx \\sin{\\left(\\theta \\right)}\\right)^{2} \\cos^{2}{\\left(\\theta \\right)}'}
 {'PP': 'xxx^{2} \\cos^{2}{\\left(3 \\phi \\right)} \\cos^{6}{\\left(\\theta \\right)}'}

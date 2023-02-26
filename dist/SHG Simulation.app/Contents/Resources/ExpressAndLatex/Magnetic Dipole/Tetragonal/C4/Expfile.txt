@@ -1,8 +1,0 @@
-{'SS': 'zxx**2*sin(theta)**2'}
-{'SP': '0'}
-{'PS': '(2*xxz*cos(theta)**2 + zxx*cos(theta)**2 + zzz*sin(theta)**2)**2*sin(theta)**2'}
-{'PP': '4*xyz**2*(sin(theta)**4 + cos(theta)**4)*sin(theta)**2*cos(theta)**2'}
-{'SS': 'zxx**2*sin(theta)**2'}
-{'SP': '0'}
-{'PS': '(2*xxz*cos(theta)**2 + zxx*cos(theta)**2 + zzz*sin(theta)**2)**2*sin(theta)**2'}
-{'PP': '4*xyz**2*(sin(theta)**4 + cos(theta)**4)*sin(theta)**2*cos(theta)**2'}

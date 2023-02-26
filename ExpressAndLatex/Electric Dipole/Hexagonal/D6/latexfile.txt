@@ -2,7 +2,3 @@
 {'SP': '0'}
 {'PS': '\\frac{yxz^{2} \\cdot \\left(1 - \\cos{\\left(4 \\theta \\right)}\\right) \\left(3 - \\cos{\\left(2 \\phi \\right)}\\right)^{2}}{32}'}
 {'PP': '\\frac{yxz^{2} \\sin^{2}{\\left(2 \\phi \\right)} \\sin^{2}{\\left(\\theta \\right)} \\cos^{4}{\\left(\\theta \\right)}}{4}'}
-{'SS': '0'}
-{'SP': '0'}
-{'PS': '\\frac{yxz^{2} \\cdot \\left(1 - \\cos{\\left(4 \\theta \\right)}\\right) \\left(3 - \\cos{\\left(2 \\phi \\right)}\\right)^{2}}{32}'}
-{'PP': '\\frac{yxz^{2} \\sin^{2}{\\left(2 \\phi \\right)} \\sin^{2}{\\left(\\theta \\right)} \\cos^{4}{\\left(\\theta \\right)}}{4}'}

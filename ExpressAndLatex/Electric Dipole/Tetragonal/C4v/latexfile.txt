@@ -2,11 +2,3 @@
 {'SP': 'zyy^{2} \\sin^{2}{\\left(\\theta \\right)}'}
 {'PS': '0'}
 {'PP': '\\left(4 yzy^{2} \\cos^{4}{\\left(\\theta \\right)} + \\left(zyy \\cos^{2}{\\left(\\theta \\right)} + zzz \\sin^{2}{\\left(\\theta \\right)}\\right)^{2}\\right) \\sin^{2}{\\left(\\theta \\right)}'}
-{'SS': '0'}
-{'SP': 'zyy^{2} \\sin^{2}{\\left(\\theta \\right)}'}
-{'PS': '0'}
-{'PP': '\\left(4 yzy^{2} \\cos^{4}{\\left(\\theta \\right)} + \\left(zyy \\cos^{2}{\\left(\\theta \\right)} + zzz \\sin^{2}{\\left(\\theta \\right)}\\right)^{2}\\right) \\sin^{2}{\\left(\\theta \\right)}'}
-{'SS': '0'}
-{'SP': 'zyy^{2} \\sin^{2}{\\left(\\theta \\right)}'}
-{'PS': '0'}
-{'PP': '\\left(4 yzy^{2} \\cos^{4}{\\left(\\theta \\right)} + \\left(zyy \\cos^{2}{\\left(\\theta \\right)} + zzz \\sin^{2}{\\left(\\theta \\right)}\\right)^{2}\\right) \\sin^{2}{\\left(\\theta \\right)}'}
