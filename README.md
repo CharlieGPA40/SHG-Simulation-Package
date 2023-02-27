@@ -33,6 +33,11 @@ Install required packages:
 ```bash
 pip install -r requirements.txt
 ```
+for linux user only, install idle library:
+```bash
+sudo apt install idle3
+```
+
 ## Running
 1. Run from the python code `SHG Simulation.py`. (faster)
 2. Run from application in `dict/SHG Simulation/SHG Simlation.exec`.
