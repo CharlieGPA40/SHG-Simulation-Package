@@ -1,0 +1,4 @@
+{'SS': '0'}
+{'SP': '(zxx*sin(phi)**2 + zyy*cos(phi)**2)**2*sin(theta)**2'}
+{'PS': '(xzx - yzy)**2*sin(2*phi)**2*sin(theta)**2*cos(theta)**2'}
+{'PP': '(4*(xzx*cos(phi)**2 + yzy*sin(phi)**2)**2*cos(theta)**4 + (zzz*sin(theta)**2 + (zxx*cos(phi)**2 + zyy*sin(phi)**2)*cos(theta)**2)**2)*sin(theta)**2'}
