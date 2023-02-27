@@ -34,12 +34,12 @@ Install required packages:
 pip install -r requirements.txt
 ```
 ## Running
-1. Run from the python code `SHG Simulation.pyw`
-2. Run from application in `dict/`
+1. Run from the python code `SHG Simulation.py`
+2. Run from application in `dict/SHG Simulation/SHG Simlation.exec`
 
 ## Expression and Latex
-1. All the expressions can be found under `SHG-Simulation\ExpressAndLatex\`
-2. The calculation geometry is under `SHG-Simulation\Image\Model1.png`
+1. All the expressions can be found under `SHG-Simulation/ExpressAndLatex/`
+2. The calculation geometry is under `SHG-Simulation/Image/Model1.png`
 
 ## About us 
 Our group focuses on studying novel phases of matter in low-dimensional quantum systems. We exploit a variety of experimental techniques, such as femtosecond laser-based nonlinear optical spectroscopy and synchrotron-based photoemission spectroscopy/microscopy, to investigate the electronic and magnetic structure at the surface and interface.
