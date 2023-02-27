@@ -1,50 +1,48 @@
 # SHG Simulation Package
-- HandTracker and GestureNet trained on the [HaGRID Dataset](https://www.kaggle.com/datasets/kapitanov/hagrid): 
-- AlexNet from [ImageNet Classification with Deep Convolutional
-Neural Networks](https://proceedings.neurips.cc/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf) paper.
-
-## Table of contents
-* [Requirements](#requirements)
-* [Setup](#setup)
-
-* [Running](#running)
-* [Contact](#contact)
-* [Reference](#reference)
+The purpose of this package is to assist the Condensed Matter Physics community work efficiently with Rotational-Anisotropic Second-Harmonic Generation (RA-SHG).
+	1. Easier confirmation of RA-SHG experimental results with an all-in-one package.
+	2. Quick visualization of the symmetries of quantum materials.
+	3. Simulation of the nonlinear optical response for the electric dipole (ED), electric quadrupole (EQ), and magnetic dipole (MD) radiation sources.
+Note: This pacakge is for academic research and educational purposes.
 
 ## Requirements
+1. Latex is required. Install Latex on your computer before run the program.
+2. We tested the program on python version 3.9-3.11 on both M1 Mac and Intel Mac.
+3. All the required packages are listed in `requirements.txt`.
 
 ## Setup
-1. Tested on Python versions 3.7-3.9. Install whichever you prefer!
-2. After installing, create a python environment with the following commands (do this outside of `assistant/`):
+### Setup Enviroment
+#### Use default virtual enviroment. Go to `SHG-Simulation/`:
 ```bash
-python -m venv ditto
+source venv/bin/activate
 ```
-3. To Activate the environment, run the following:
+Note: the venv packed with python 3.11
+
+#### Create new virtual enviroment based on your python version:
+First, create a python virtural enviroment:
 ```bash
-source ditto/bin/activate
+python -m venv name
 ```
-4. Navigate into `assistant` and run:
+Second, activate the enviroment:
+```bash
+source name/bin/activate
+```
+Install required packages:
 ```bash
 pip install -r requirements.txt
 ```
 
 ## Running
-This project is simple Lorem ipsum dolor generator.
-	
+1. Run from the python code `SHG Simulation.pyw`
+2. Run from application in `dict/`
+
+## About us 
+Our group focuses on studying novel phases of matter in low-dimensional quantum systems. We exploit a variety of experimental techniques, such as femtosecond laser-based nonlinear optical spectroscopy and synchrotron-based photoemission spectroscopy/microscopy, to investigate the electronic and magnetic structure at the surface and interface.
+
 ## Contact
-Project is created with:
-* Lorem version: 12.3
-* Ipsum version: 2.33
-* Ament library version: 999
-
-## Reference
-To run this project, install it locally using npm:
-
-```
-$ cd ../lorem
-$ npm install
-$ npm start
-```
-
-[ImageNet Classification with Deep Convolutional
-Neural Networks](https://proceedings.neurips.cc/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf)
+This project is contributed by:
+* Chunli Tang (Auburn Univeristy – Electrical and Computer Engineering: chunli.tang@auburn.edu)
+* Hussam Mustafa (Auburn Univeristy – Physics Department: hnm0037@auburn.edu)
+Advisor:
+* [Dr. Masoud Mahjouri-Samani](http://wp.auburn.edu/Mahjouri/) (Auburn Univeristy – Electrical and Computer Engineering: mzm0185@auburn.edu)
+* [Dr. Wencan Jin](http://wp.auburn.edu/JinLab/) (Auburn Univeristy – Physics Department: wjin@auburn.edu)
