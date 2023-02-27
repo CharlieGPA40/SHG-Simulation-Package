@@ -34,8 +34,8 @@ Install required packages:
 pip install -r requirements.txt
 ```
 ## Running
-1. Run from the python code `SHG Simulation.py`
-2. Run from application in `dict/SHG Simulation/SHG Simlation.exec`
+1. Run from the python code `SHG Simulation.py`. (faster)
+2. Run from application in `dict/SHG Simulation/SHG Simlation.exec`.
 
 ## Expression and Latex
 1. All the expressions can be found under `SHG-Simulation/ExpressAndLatex/`
