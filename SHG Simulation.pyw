@@ -331,7 +331,7 @@ class Win4:
                 self.click_loop -= 1
 
         self.click_loop = 0
-        while 0 <= self.click_loop < 3:
+        while 0 <= self.click_loop < 4:
             image = Image.open('Image/Model{}.png'.format(self.click_loop+1))
             resize_image = image.resize((800, 550))
             lst_img = ImageTk.PhotoImage(resize_image)
@@ -1953,20 +1953,7 @@ class polarplotGUI(Frame):
         def save():
             filename = asksaveasfilename(initialfile='Untitled.png', defaultextension=".png",
                                          filetypes=[("All Files", "*.*"), ("Portable Graphics Format", "*.png")])
-
             plt.savefig(filename)
-
-    # def export_expression_latex(self):
-    #     self.path = 'ExpressAndLatex/' + str(self.input_matrix_c) + '/' + str(self.option_var_1[0]) + '/' + str(
-    #         self.option_var[0]) + '/'
-    #     latex_txt = open(self.path + '/latexfile.txt', 'rt')
-    #     f = asksaveasfilename(defaultextension=".txt", filetypes=[("All Files", "*.*"), ("Text Documents", "*.txt")])
-
-
-    # def export_expression(self):
-    #     latex_txt = open(self.path + '/latexfile.txt', 'rt')
-    #     filename = asksaveasfilename(initialfile='Untitled.png', defaultextension=".png",
-    #                                  filetypes=[("All Files", "*.*"), ("Portable Graphics Format", "*.png")])
 
     def _quit(self):
         self.master.quit()  # stops mainloop
@@ -1981,7 +1968,6 @@ class polarplotGUI(Frame):
         # self.fr_button_dw.destroy()
         # self.fr_button_dw_message.destroy()
         self.createWidget()
-
 
     def trans(self, matrix):
         # input is a 9 by 3 matrix, consider a 3 by 1 vector as an element
@@ -2747,10 +2733,6 @@ class polarplotGUI(Frame):
 
     def calculate(self):
         self.cal_bt_dis['state'] = DISABLED
-        # self.file_menu.entryconfig("Export Polar Graph...", state="normal")
-        # self.file_menu.entryconfig("Export Expression Latex...", state="normal")
-        # self.file_menu.entryconfig("Export Expression Text...", state="normal")
-        # self.file_menu.entryconfig("Export Table...", state="normal")
         if self.opened == false:
             self.newWindow = Toplevel(root)
             self.newWindow.title("SHG Simulation Package")
@@ -3409,11 +3391,8 @@ class polarplotGUI(Frame):
         cell_text = []
         for row in self.chr_data[self.charSelect]:
             cell_text.append([f'{x}' for x in row])
-        self.f_char, self.ax_char = plt.subplots(figsize=(15, 4))  #figsize=(14, 4)
+        self.f_char, self.ax_char = plt.subplots(figsize=(15, 4))
         self.canvs_char = FigureCanvasTkAgg(self.f_char, self.tab_3)
-        # self.ax_char.figure(linewidth=2,tight_layout={'pad': 1})
-        # Add a table at the bottom of the axes
-        # self.f_char.patch.set_facecolor('#FAFAFA')
         the_table = self.ax_char.table(cellText=cell_text,
                               cellLoc='center',
                               rowLoc='center',
@@ -3839,7 +3818,7 @@ class polarplotGUI(Frame):
         # elif self.input_matrix_c == 'Magnetic Monopole':
         #     self.crystal_box.insert(1, 'Continue...')
         elif self.input_matrix_c == 'Coming Soon...':
-            self.crystal_box.insert(1, 'Coming Soon...')
+            self.crystal_box.insert(1, 'EFISH/MFISH')
 
         self.cal_bt = ttk.Button(self.fr_input_up, text='Calculate', command=lambda: self.pop_up_warning(), width=10,
                                  style='Accent.TButton')
@@ -3932,13 +3911,9 @@ if __name__ == '__main__':
         sv_ttk.set_theme('light')
         # root.tk.call("set_theme", "light")
         root.title("SHG Simulation Tool v1")
-        # root.geometry('')  # window position (450 pixels from left, 200 ones from right)
         root.maxsize(250, 152)
-        # root.maxsize()
-        # create a substance
         window1 = polarplotGUI(master=root)
         root.eval('tk::PlaceWindow . center')
-        # endless loop unless quit
         root.mainloop()
     except:
         import traceback
