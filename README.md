@@ -1,8 +1,8 @@
 # SHG Simulation Package
-The purpose of this package is to assist the Condensed Matter Physics community work efficiently with Rotational-Anisotropic Second-Harmonic Generation (RA-SHG).
-	1. Easier confirmation of RA-SHG experimental results with an all-in-one package.
-	2. Quick visualization of the symmetries of quantum materials.
-	3. Simulation of the nonlinear optical response for the electric dipole (ED), electric quadrupole (EQ), and magnetic dipole (MD) radiation sources.
+The purpose of this package is to assist the Condensed Matter Physics community work efficiently with Rotational-Anisotropic Second-Harmonic Generation (RA-SHG):
+1. Easier confirmation of RA-SHG experimental results with an all-in-one package.
+2. Quick visualization of the symmetries of quantum materials.
+3. Simulation of the nonlinear optical response for the electric dipole (ED), electric quadrupole (EQ), and magnetic dipole (MD) radiation sources.
 	
 Note: This pacakge is for academic research and educational purposes.
 
