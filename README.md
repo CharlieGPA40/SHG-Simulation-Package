@@ -1,4 +1,8 @@
 # SHG Simulation Package
+![GitHub release version](https://img.shields.io/github/v/release/CharlieGPA40/SHG-Simulation-Package?color=%2350C878&include_prereleases)
+![License](https://img.shields.io/github/license/CharlieGPA40/SHG-Simulation-Package)
+![GitHub Size](https://img.shields.io/github/repo-size/CharlieGPA40/SHG-Simulation-Package)
+
 The purpose of this package is to assist the Condensed Matter Physics community work efficiently with Rotational-Anisotropic Second-Harmonic Generation (RA-SHG):
 1. Easier confirmation of RA-SHG experimental results with an all-in-one package.
 2. Quick visualization of the symmetries of quantum materials.
@@ -36,6 +40,20 @@ pip install -r requirements.txt
 for linux user only, install idle library:
 ```bash
 sudo apt install idle3
+```
+
+linux common issue (tested on Ubuntu):
+1. Latex
+```bash
+sudo apt install texlive-latex-extra
+```
+2. Latex extra package
+```bash
+sudo apt install cm-super
+```
+3. Matplotlib missing file
+```bash
+sudo apt install dvipng
 ```
 
 ## Running
