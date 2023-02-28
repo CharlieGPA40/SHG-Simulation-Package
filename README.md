@@ -71,6 +71,7 @@ Our group focuses on studying novel phases of matter in low-dimensional quantum 
 This project is contributed by:
 * Chunli Tang (Auburn Univeristy – Electrical and Computer Engineering: chunli.tang@auburn.edu)
 * Hussam Mustafa (Auburn Univeristy – Physics Department: hnm0037@auburn.edu)
+
 Advisor:
 * [Dr. Masoud Mahjouri-Samani](http://wp.auburn.edu/Mahjouri/) (Auburn Univeristy – Electrical and Computer Engineering: mzm0185@auburn.edu)
 * [Dr. Wencan Jin](http://wp.auburn.edu/JinLab/) (Auburn Univeristy – Physics Department: wjin@auburn.edu)
