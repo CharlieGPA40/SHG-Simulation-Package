@@ -1,8 +1,7 @@
 '''
 Author  :Chunli Tang, Hussam Mustqfa
 Project :Polar Plot GUI
-FileName:
-Time    :
+FileName: SHG Simulation.py
 Affiliation: Auburn University
 '''
 

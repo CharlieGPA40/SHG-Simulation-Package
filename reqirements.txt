@@ -7,5 +7,4 @@ tkscrolledframe
 PIL
 webbrowser
 sv-ttk
-idlelib
 symengine
