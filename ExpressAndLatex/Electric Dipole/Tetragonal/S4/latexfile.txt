@@ -1,4 +1,7 @@
 {'SS': '0'}
 {'SP': '\\left(zyx \\sin{\\left(2 \\phi \\right)} + zyy \\cos{\\left(2 \\phi \\right)}\\right)^{2} \\sin^{2}{\\left(\\theta \\right)}'}
 {'PS': '\\frac{\\left(1 - \\cos{\\left(4 \\theta \\right)}\\right) \\left(- yzx \\cos{\\left(2 \\phi \\right)} + yzy \\sin{\\left(2 \\phi \\right)}\\right)^{2}}{2}'}
+{'PP': '\\left(4 \\left(yzx \\sin{\\left(2 \\phi \\right)} + yzy \\cos{\\left(2 \\phi \\right)}\\right)^{2} + \\left(zyx \\sin{\\left(2 \\phi \\right)} + zyy \\cos{\\left(2 \\phi \\right)}\\right)^{2}\\right) \\sin^{2}{\\left(\\theta \\right)} \\cos^{4}{\\left(\\theta \\right)}'}{'SS': '0'}
+{'SP': '\\left(zyx \\sin{\\left(2 \\phi \\right)} + zyy \\cos{\\left(2 \\phi \\right)}\\right)^{2} \\sin^{2}{\\left(\\theta \\right)}'}
+{'PS': '- \\frac{\\left(- yzx \\cos{\\left(2 \\phi \\right)} + yzy \\sin{\\left(2 \\phi \\right)}\\right)^{2} \\cos{\\left(4 \\theta \\right)}}{2} + 1'}
 {'PP': '\\left(4 \\left(yzx \\sin{\\left(2 \\phi \\right)} + yzy \\cos{\\left(2 \\phi \\right)}\\right)^{2} + \\left(zyx \\sin{\\left(2 \\phi \\right)} + zyy \\cos{\\left(2 \\phi \\right)}\\right)^{2}\\right) \\sin^{2}{\\left(\\theta \\right)} \\cos^{4}{\\left(\\theta \\right)}'}
