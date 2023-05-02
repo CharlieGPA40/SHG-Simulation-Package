@@ -1,0 +1,4 @@
+{'SS': 'xxyx^{2} \\sin^{2}{\\left(\\theta \\right)}'}
+{'SP': '- \\frac{\\left(yxyx^{2} + zxzx^{2}\\right) \\cos{\\left(4 \\theta \\right)}}{8} + 1'}
+{'PS': '\\left(yxxx \\cos^{2}{\\left(\\theta \\right)} - 2 yxzz \\cos^{2}{\\left(\\theta \\right)} + yzxz \\sin^{2}{\\left(\\theta \\right)}\\right)^{2} \\sin^{2}{\\left(\\theta \\right)}'}
+{'PP': '\\left(\\left(- 2 xxzz \\cos^{2}{\\left(\\theta \\right)} + xzxz \\sin^{2}{\\left(\\theta \\right)} + \\left(yxyx + 2 yyxx\\right) \\cos^{2}{\\left(\\theta \\right)}\\right)^{2} + \\left(zxzx \\cos^{2}{\\left(\\theta \\right)} - 2 zzxx \\sin^{2}{\\left(\\theta \\right)} + zzzz \\sin^{2}{\\left(\\theta \\right)}\\right)^{2}\\right) \\sin^{2}{\\left(\\theta \\right)} \\cos^{2}{\\left(\\theta \\right)}'}

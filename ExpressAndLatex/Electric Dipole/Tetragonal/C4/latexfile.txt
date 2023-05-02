@@ -1,7 +1,4 @@
 {'SS': '0'}
 {'SP': 'zyy^{2} \\sin^{2}{\\left(\\theta \\right)}'}
 {'PS': '\\frac{yzx^{2} \\cdot \\left(1 - \\cos{\\left(4 \\theta \\right)}\\right)}{2}'}
-{'PP': '\\left(4 yzy^{2} \\cos^{4}{\\left(\\theta \\right)} + \\left(zyy \\cos^{2}{\\left(\\theta \\right)} + zzz \\sin^{2}{\\left(\\theta \\right)}\\right)^{2}\\right) \\sin^{2}{\\left(\\theta \\right)}'}{'SS': '0'}
-{'SP': 'zyy^{2} \\sin^{2}{\\left(\\theta \\right)}'}
-{'PS': '\\frac{yzx^{2} \\cdot \\left(1 - \\cos{\\left(4 \\theta \\right)}\\right)}{2}'}
 {'PP': '\\left(4 yzy^{2} \\cos^{4}{\\left(\\theta \\right)} + \\left(zyy \\cos^{2}{\\left(\\theta \\right)} + zzz \\sin^{2}{\\left(\\theta \\right)}\\right)^{2}\\right) \\sin^{2}{\\left(\\theta \\right)}'}
