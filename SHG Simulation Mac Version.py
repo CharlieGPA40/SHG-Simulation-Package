@@ -20,10 +20,8 @@ import webbrowser
 import os
 from sympy.parsing.sympy_parser import parse_expr
 import sv_ttk
-import sys
 from idlelib.tooltip import Hovertip
 from tkinter.filedialog import asksaveasfilename
-import symengine as se
 from CharTable import characterTable
 
 # ************************************** #
@@ -43,7 +41,6 @@ class Win2:
         self.root.geometry('%dx%d+%d+%d' % (width, height, x, y))
         self.root.title("About SHG Simulation Tool")
         self.root.maxsize(670, 570)
-        # self.root.configure(bg='#F2F3F4')
         self.root.protocol("WM_DELETE_WINDOW", self.close)
         au_logo = Image.open("Image/vect.png")
         au_logo = au_logo.resize((400, 200))
@@ -262,7 +259,16 @@ class Win2:
                     '\n[2] Fiebig, Manfred et al. "Second-harmonic generation as a tool for studying electronic and magnetic structures of crystals: review."Journalof The Optical Societyof America B-optical Physics 22 (2005): 96-118.' \
                     '\n[3] http://symmetry.jacobs-university.de/group.html.' \
                     '\n[4] Gallego et al. "Automatic calculation of symmetry-adapted tensors in magnetic and non-magnetic materials: a new tool of the Bilbao Crystallographic Server" Acta Cryst. A (2019) 75, 438-447.' \
-                    '\n[5] Boyd, Robert W. Nonlinear optics. Academic press, 2020.'
+                    '\n[5] Boyd, Robert W. Nonlinear optics. Academic press, 2020.' \
+                    '\n[6] Torchinsky, D. H., et al. "Structural distortion-induced magnetoelastic locking in Sr 2 IrO 4 revealed through nonlinear optical harmonic generation." Physical review letters 114.9 (2015): 096404.' \
+                    '\n[7] Fichera, Bryan T., et al. "Second harmonic generation as a probe of broken mirror symmetry." Physical Review B 101.24 (2020): 241106.' \
+                    '\n[8] Fonseca, Jordan, et al. "Anomalous Second Harmonic Generation from Atomically Thin MnBi2Te4." Nano Letters (2022).' \
+                    '\n[9] Li, Yilei, et al. "Probing symmetry properties of few-layer MoS2 and h-BN by optical second-harmonic generation." Nano letters 13.7 (2013): 3329-3333.' \
+                    '\n[10] Germer, Thomas A., et al. "Depletion-electric-field-induced second-harmonic generation near oxidized GaAs (001) surfaces." Physical Review B 55.16 (1997): 10694.' \
+                    '\n[11] Luo, Xiangpeng, et al. "Ultrafast modulations and detection of a ferro-rotational charge density wave using time-resolved electric quadrupole second harmonic generation." Physical review letters 127.12 (2021): 126401.' \
+                    '\n[12] Jin, Wencan, et al. "Observation of a ferro-rotational order coupled with second-order nonlinear optical fields." Nature Physics 16.1 (2020): 42-46.' \
+                    '\n[13] Anisimov, A. N., N. A. Perekopaiko, and Aleksei Valerevich Petukhov. "Relationship between the anisotropy of reflected second harmonic radiation and the orientation of the crystal surface." -Soviet journal of quantum electronics 21.1 (1991): 82.'
+
         ref_box.insert(END, reference)
         ref_box.config(state='disabled')
 
@@ -313,7 +319,6 @@ class Win4:
         y = (screen_height / 2) - (height / 2)
 
         self.root.geometry('%dx%d+%d+%d' % (width, height, x, y))
-        # self.root.geometry("800x605+100+300")
         self.root.maxsize(800, 605)
         self.root.title("Caculation Model")
         self.root.protocol("WM_DELETE_WINDOW", self.close)
@@ -421,14 +426,6 @@ class polarplotGUI(Frame):
         self.IntroMenu.add_command(label="Quit", command=lambda: self.quit(), accelerator='⌘+Q')
         menu_bar.add_cascade(label='SHG', menu=self.IntroMenu)
 
-        # self.file_menu = Menu(menu_bar)
-        # self.file_menu.add_command(label="Export Polar Graph...", command=lambda: self.plot().export_graph())
-        # self.file_menu.add_command(label="Export Expression Latex...", command=lambda: self.export_expression_latex())
-        # self.file_menu.add_command(label="Export Expression Text...", command=lambda: self.export_expression())
-        # self.file_menu.add_command(label="Export Table...", command=lambda: self.quit())
-        #
-        # menu_bar.add_cascade(label='File', menu=self.file_menu)
-
         edit = Menu(menu_bar)
         edit.add_command(label="Calculation Model", command=lambda: self.Cal_Mod())
         menu_bar.add_cascade(label='Model', menu=edit)
@@ -438,13 +435,7 @@ class polarplotGUI(Frame):
         Help.add_separator()
         Help.add_command(label="About...", command=lambda: self.about_page_detail())
         menu_bar.add_cascade(label='Help', menu=Help)
-
-        # Beta_test = Menu(menu_bar)
-        # Beta_test.add_command(label='Sample Rotation (beta)', command=lambda: self._beta_init())
-        # menu_bar.add_cascade(label='Beta', menu=Beta_test)
-
         self.setupDict()
-        # self.charTable()
         self.master.rowconfigure(0, weight=1)
         self.master.columnconfigure(0, weight=1)
 
@@ -490,27 +481,20 @@ class polarplotGUI(Frame):
                 [[xxx, xyx, xzx], [xxy, xyy, xzy], [xxz, xyz, xzz], [yxx, yyx, yzx], [yxy, yyy, yzy], [yxz, yyz, yzz],
                  [zxx, zyx, zzx], [zxy, zyy, zzy], [zxz, zyz, zzz]]).subs([(xxy, xyx), (xxz, xzx), (xyz, xzy),
                                                                            (yxy, yyx), (yxz, yzx), (yyz, yzy),
-                                                                           (zxy, zyx), (zxz, zzx), (zyz, zzy)]),
-            'S2': Matrix([[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0],
-                          [0, 0, 0]])},
+                                                                           (zxy, zyx), (zxz, zzx), (zyz, zzy)])},
             'Monoclinic': {'C2': Matrix(
                 [[0, xyx, 0], [xxy, 0, xzy], [0, xyz, 0], [yxx, 0, yzx], [0, yyy, 0], [yxz, 0, yzz], [0, zyx, 0],
                  [zxy, 0, zzy], [0, zyz, 0]]).subs([(xxy, xyx), (xyz, xzy), (yxz, yzx), (zxy, zyx), (zyz, zzy)]),
                            'C1h': Matrix(
                                [[xxx, 0, xzx], [0, xyy, 0], [xxz, 0, xzz], [0, yyx, 0], [yxy, 0, yzy], [0, yyz, 0],
                                 [zxx, 0, zzx], [0, zyy, 0], [zxz, 0, zzz]]).subs([(xxz, xzx), (yxy, yyx), (yyz, yzy),
-                                                                                  (zxz, zzx)]),
-                           'C2h': Matrix(
-                               [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0],
-                                [0, 0, 0]])},
+                                                                                  (zxz, zzx)])},
             'Orthorhombic': {
                 'D2': Matrix([[0, 0, 0], [0, 0, xzy], [0, xyz, 0], [0, 0, yzx], [0, 0, 0], [yxz, 0, 0], [0, zyx, 0],
                               [zxy, 0, 0], [0, 0, 0]]).subs([(xyz, xzy), (yxz, yzx), (zxy, zyx)]),
                 'C2v': Matrix(
                     [[0, 0, xzx], [0, 0, 0], [xxz, 0, 0], [0, 0, 0], [0, 0, yzy], [0, yyz, 0], [zxx, 0, 0],
-                     [0, zyy, 0], [0, 0, zzz]]).subs([(xxz, xzx), (yyz, yzy)]),
-                'D2h': Matrix([[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0],
-                               [0, 0, 0]])},
+                     [0, zyy, 0], [0, 0, zzz]]).subs([(xxz, xzx), (yyz, yzy)])},
             'Tetragonal': {
                 'C4': Matrix([[0, 0, xzx], [0, 0, xzy], [xxz, xyz, 0], [0, 0, yzx], [0, 0, yzy], [yxz, yyz, 0],
                               [zxx, zyx, 0], [zxy, zyy, 0], [0, 0, zzz]]).subs([(xyz, -yxz), (xzy, -yzx), (xzx, yzy),
@@ -528,11 +512,7 @@ class polarplotGUI(Frame):
                                                                              (yyz, yzy)]),
                 'D2d': Matrix([[0, 0, 0], [0, 0, xzy], [0, xyz, 0], [0, 0, yzx], [0, 0, 0], [yxz, 0, 0],
                                [0, zyx, 0], [zxy, 0, 0], [0, 0, 0]]).subs([(xyz, yxz), (xzy, yzx), (zxy, zyx),
-                                                                           (yxz, yzx)]),
-                'C4h': Matrix([[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0],
-                               [0, 0, 0]]),
-                'D4h': Matrix([[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0],
-                               [0, 0, 0]])},
+                                                                           (yxz, yzx)])},
             'Cubic': {'O': Matrix([[0, 0, 0], [0, 0, xzy], [0, xyz, 0], [0, 0, yzx], [0, 0, 0], [yxz, 0, 0],
                                    [0, zyx, 0], [zxy, 0, 0], [0, 0, 0]]).subs([(xzy, -xyz), (yzx, xyz), (yxz, -xyz),
                                                                                (zxy, xyz), (zyx, -xyz)]),
@@ -541,13 +521,7 @@ class polarplotGUI(Frame):
                                                                                 (zxy, xyz), (zyx, xyz)]),
                       'T': Matrix([[0, 0, 0], [0, 0, xzy], [0, xyz, 0], [0, 0, yzx], [0, 0, 0], [yxz, 0, 0],
                                    [0, zyx, 0], [zxy, 0, 0], [0, 0, 0]]).subs([(yzx, xyz), (zxy, xyz), (yxz, xzy),
-                                                                               (zyx, xzy), (xyz, xzy)]),
-                      'Th': Matrix(
-                          [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0],
-                           [0, 0, 0]]),
-                      'Oh': Matrix(
-                          [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0],
-                           [0, 0, 0]])},
+                                                                               (zyx, xzy), (xyz, xzy)])},
             'Trigonal': {'C3': Matrix([[xxx, xyx, xzx],
                                        [xxy, xyy, xzy],
                                        [xxz, xyz, 0],
@@ -581,13 +555,7 @@ class polarplotGUI(Frame):
                      [zxx, 0, 0],
                      [0, zyy, 0], [0, 0, zzz]]).subs(
                     [(xzx, yzy), (xxz, yyz), (zxx, zyy), (yyz, yzy), (yxx, -yyy),
-                     (xxy, -yyy), (xyx, -yyy)]),
-                'S6': Matrix(
-                    [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0],
-                     [0, 0, 0]]),
-                'D3d': Matrix(
-                    [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0],
-                     [0, 0, 0]])},
+                     (xxy, -yyy), (xyx, -yyy)])},
             'Hexagonal': {
                 'C6': Matrix([[0, 0, xzx], [0, 0, xzy], [xxz, xyz, 0], [0, 0, yzx], [0, 0, yzy], [yxz, yyz, 0],
                               [zxx, zyx, 0], [zxy, zyy, 0], [0, 0, zzz]]).subs([(xyz, -yxz), (xzy, -yzx), (xzx, yzy),
@@ -610,11 +578,7 @@ class polarplotGUI(Frame):
                                                                              (yyz, yzy)]),
                 'D3h': Matrix(
                     [[0, xyx, 0], [xxy, 0, 0], [0, 0, 0], [yxx, 0, 0], [0, yyy, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0],
-                     [0, 0, 0]]).subs([(yxx, -yyy), (xxy, -yyy), (xyx, -yyy)]),
-                'C6h': Matrix([[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0],
-                               [0, 0, 0]]),
-                'D6h': Matrix([[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0],
-                               [0, 0, 0]])}
+                     [0, 0, 0]]).subs([(yxx, -yyy), (xxy, -yyy), (xyx, -yyy)])}
         }
 
         self.dic_qud = {'Isotropic': {'Iso': Matrix([[xxxx, 0, 0, 0, xyxy, 0, 0, 0, xzxz],
@@ -1759,14 +1723,12 @@ class polarplotGUI(Frame):
         self.sample_rot_label = ttk.Label(self.fr_input_up, text='Sample Rotation:', background='#F2F3F4',
                                  font=('Arial bold', 15))
         self.sample_rot_label.place(x=470, y=32)
-        # crystalClass.grid(column=2, row=0, sticky='news')
         self.sample_rot = Listbox(self.fr_input_up, width=16, justify="left", height=11, font=('Arial', 13),
                                        yscrollcommand='Vertical', selectmode=SINGLE, relief='sunken',
                                        exportselection=False)
         self.sample_rot.place(x=472, y=60)
 
         self.nex_bt.grid(row=0, column=0, padx=490, pady=260)
-        # self.nex_bt.grid(column=2, row=2, sticky='news')
         self.myBtn.place(y=260, x=447)
         self.beta_back_bt = ttk.Button(self.fr_input_up, text='Back', command=lambda: self.beta_back(),
                                     width=5,)
@@ -1809,30 +1771,22 @@ class polarplotGUI(Frame):
         self.option_var = []
         self.option_var_1 = []
         self.option_var_2 = []
-        # Laebl position/ bg='#283747'/bg='#f6f6f6'
         pointGroup = ttk.Label(self.fr_input_up, text='Radiation Source:', background='#F2F3F4',
                            font=('Arial bold', 15))
         pointGroup.place(x=34, y=32)
-        # pointGroup.grid(column=0, row=0, sticky='news')
-
         crystalSystem = ttk.Label(self.fr_input_up, text='Crystal System:', background='#F2F3F4',
                               font=('Arial bold', 15))
         crystalSystem.place(x=196, y=32)
-        # crystalSystem.grid(column=1, row=0, sticky='news')
-
         crystalClass = ttk.Label(self.fr_input_up, text='Point Group:', background='#F2F3F4',
                              font=('Arial bold', 15))
         crystalClass.place(x=332, y=32)
-        # crystalClass.grid(column=2, row=0, sticky='news')
         self.group_box_group = Listbox(self.fr_input_up, width=16, justify="left", height=11, font=('Arial', 13),
                                        yscrollcommand='Vertical', selectmode=SINGLE, relief='sunken', exportselection=False)
         self.group_box_group.place(x=335, y=60)
-        # self.group_box_group.grid(column=0, row=1, sticky='news')
 
         self.group_box = Listbox(self.fr_input_up, width=17, justify="left", height=11, yscrollcommand='Vertical',
                                  selectmode=SINGLE, relief='sunken', font=('Arial', 13), exportselection=False)
         self.group_box.place(x=38, y=60)
-        # self.group_box.grid(column=1, row=1, sticky='news')
         self.group_box.insert(1, 'Electric Dipole')
         self.group_box.insert(2, 'Electric Quadrupole')
         self.group_box.insert(3, 'Magnetic Dipole')
@@ -1843,19 +1797,15 @@ class polarplotGUI(Frame):
         self.crystal_system = Listbox(self.fr_input_up, width=16, justify="left", height=11, font=('Arial', 13),
                                       yscrollcommand='Vertical', selectmode=SINGLE, relief='sunken', exportselection=False)
         self.crystal_system.place(x=200, y=60)
-        # self.crystal_system.grid(column=2, row=1, sticky='news')
 
         self.nex_bt = ttk.Button(self.fr_input_up, text='Calculate', command=lambda: self.pop_up_warning(), width=10,
                                  style='Accent.TButton')
         self.nex_bt.bind('<Return>', lambda: self.show_crystal_system())
         self.nex_bt.grid(row=0, column=0, padx=355, pady=260)
-        # self.nex_bt.grid(column=2, row=2, sticky='news')
         self.myBtn = ttk.Button(self.fr_input_up, text='?')
         self.myBtn.place(y=260, x=312)
-        # myBtn.grid(column=1, row=2, sticky='news')
         myTip = Hovertip(self.myBtn, 'Please select all the elements to do the calculation. '
                                 '\nThe calculation model can be found at menu->Model->Calculation Model', hover_delay=1000)
-        # self.cal_bt['state'] = DISABLED
         self.nex_bt['state'] = DISABLED
 
     def list_init(self):
@@ -1880,14 +1830,9 @@ class polarplotGUI(Frame):
             return symbol
 
     def view_init(self):
-        # self.fr_input_up = Frame(master=root, bg='#f6f6f6')
-        # root.geometry(250,152)
         self.fr_input_up = Frame(master=root, bg='#F2F3F4')
         self.fr_input_up.grid(row=1, column=0, ipadx=250, ipady=152, sticky='NESW')
         self.fr_input_up.grid_propagate(False)
-        # self.fr_input_dw = Frame(master=root)
-        # self.fr_plot = Frame(master=root)
-
     def resetCanvas(self):
         self.ax[0].clear()
         self.ax[0].set_title("Polar Plot: SS", fontsize=15, pad=15)
@@ -1910,7 +1855,6 @@ class polarplotGUI(Frame):
             str = 'THIS IS BAD!'
         else:
             self.valueList_ss = [float(self.entryList_ss[i].get()) for i in range(len(self.entryList_ss))]
-            # print(self.valueList_ss)
             if chr(952) == self.showSymbol(self.symbolList_ss[0]):
                 self.valueList_ss[0] = math.radians(self.valueList_ss[0])
             self.substitute = [(self.symbolList_ss[i], self.valueList_ss[i]) for i in range(len(self.symbolList_ss))]
@@ -1919,7 +1863,6 @@ class polarplotGUI(Frame):
                 self.polarList_ss.append(self.exprss.subs(self.substitute))
                 self.substitute.remove((phi, phi_value[i]))
             self.ax[0].plot(phi_value, self.polarList_ss)
-            # self.toolbar.update()
             self.canvs.draw()
 
         self.polarList_sp = []
@@ -1928,17 +1871,14 @@ class polarplotGUI(Frame):
             str = 'THIS IS BAD!'
         else:
             self.valueList_sp = [float(self.entryList_sp[i].get()) for i in range(len(self.entryList_sp))]
-            # print(self.valueList_sp)
             if chr(952) == self.showSymbol(self.symbolList_sp[0]):
                 self.valueList_sp[0] = math.radians(self.valueList_sp[0])
             self.substitute = [(self.symbolList_sp[i], self.valueList_sp[i]) for i in range(len(self.symbolList_sp))]
-            # self.exprsp = simplify(self.exprsp, evaluate=False)
             for i in range(len(phi_value)):
                 self.substitute.append((phi, phi_value[i]))
                 self.polarList_sp.append(self.exprsp.subs(self.substitute))
                 self.substitute.remove((phi, phi_value[i]))
             self.ax[1].plot(phi_value, self.polarList_sp)
-            # self.toolbar.update()
             self.canvs.draw()
 
         self.polarList_ps = []
@@ -1951,14 +1891,12 @@ class polarplotGUI(Frame):
             if chr(952) == self.showSymbol(self.symbolList_ps[0]):
                 self.valueList_ps[0] = math.radians(self.valueList_ps[0])
             self.substitute = [(self.symbolList_ps[i], self.valueList_ps[i]) for i in range(len(self.symbolList_ps))]
-            # self.exprps = simplify(self.exprps, evaluate=False)
             for i in range(len(phi_value)):
                 self.substitute.append((phi, phi_value[i]))
                 self.polarList_ps.append(self.exprps.subs(self.substitute))
                 self.substitute.remove((phi, phi_value[i]))
 
             self.ax[2].plot(phi_value, self.polarList_ps)
-            # self.toolbar.update()
             self.canvs.draw()
 
         self.polarList_pp = []
@@ -1967,17 +1905,14 @@ class polarplotGUI(Frame):
             str = 'THIS IS BAD!'
         else:
             self.valueList_pp = [float(self.entryList_pp[i].get()) for i in range(len(self.entryList_pp))]
-            # print(self.valueList_pp)
             if chr(952) == self.showSymbol(self.symbolList_pp[0]):
                 self.valueList_pp[0] = math.radians(self.valueList_pp[0])
             self.substitute = [(self.symbolList_pp[i], self.valueList_pp[i]) for i in range(len(self.symbolList_pp))]
-            # self.exprpp = simplify(self.exprpp, evaluate=False)
             for i in range(len(phi_value)):
                 self.substitute.append((phi, phi_value[i]))
                 self.polarList_pp.append(self.exprpp.subs(self.substitute))
                 self.substitute.remove((phi, phi_value[i]))
             self.ax[3].plot(phi_value, self.polarList_pp)
-            # self.toolbar.update()
             self.canvs.draw()
 
         def save():
@@ -1993,10 +1928,6 @@ class polarplotGUI(Frame):
     def _back(self):
         self.newWindow.destroy()
         self.cal_bt['state'] = ACTIVE
-        # self.paned.destroy()
-        # self.fr_input_dw.destroy()
-        # self.fr_button_dw.destroy()
-        # self.fr_button_dw_message.destroy()
         self.createWidget()
 
     def trans(self, matrix):
@@ -2502,7 +2433,6 @@ class polarplotGUI(Frame):
         if self.opened == false:
             self.newWindow = Toplevel(root)
             self.newWindow.title("SHG Simulation Package")
-            # self.newWindow.eval('tk::PlaceWindow . center')
             self.newWindow.maxsize()
             self.opened = True
         else:
@@ -2538,17 +2468,10 @@ class polarplotGUI(Frame):
                 epin = Matrix([[-cos(theta), 0, sin(theta)]])
                 esin = Matrix([[0, 1, 0]])
                 rot = Matrix([[cos(phi), -sin(phi), 0], [sin(phi), cos(phi), 0], [0, 0, 1]])
-                #
-                # epin = se.Matrix([[-cos(theta), 0, sin(theta)]])
-                # esin = se.Matrix([[0, 1, 0]])
-                # rot = se.Matrix([[cos(phi), -sin(phi), 0], [sin(phi), cos(phi), 0], [0, 0, 1]])
                 input_matrix = self.dic[self.option_var_1[0]][self.option_var[0]]
 
                 # calculate the expression
                 rs_matrix = simplify(self.trans(self.sTB(rot, self.trans(self.sTB(rot, self.bTS(input_matrix, rot.T))))))
-
-                # rs_matrix = se.sympify(
-                #     self.trans(self.sTB(rot, self.trans(self.sTB(rot, self.bTS(input_matrix, rot.T))))))
 
                 # PP
                 rs_matrix = simplify(rs_matrix)
@@ -2559,23 +2482,18 @@ class polarplotGUI(Frame):
                 # pzp = se.sympify(pzp)
 
                 self.exprpp = simplify((pxp * cos(theta))** 2 + (pzp * sin(theta))** 2)[0]
-                # self.exprpp = se.sympify((pxp * cos(theta)) ** 2 + (pzp * sin(theta)) ** 2)[0]
 
                 # PS
                 pys = epin * rs_matrix[3:6, 0:3] * epin.T
                 self.exprps = simplify((pys ** 2)[0])
-                # self.exprps = se.sympify((pys ** 2)[0])
-
                 # SP
                 sxp = esin * rs_matrix[0:3, 0:3] * esin.T
                 szp = esin * rs_matrix[6:9, 0:3] * esin.T
                 self.exprsp = simplify((sxp * cos(theta)) ** 2 + (szp * sin(theta)) ** 2)[0]
-                # self.exprsp = se.sympify((sxp * cos(theta)) ** 2 + (szp * sin(theta)) ** 2)[0]
 
                 # SS
                 sys = esin * rs_matrix[3:6, 0:3] * esin.T
                 self.exprss = simplify((sys ** 2)[0])
-                # self.exprss = se.sympify((sys ** 2)[0])
 
                 self.exprss = str(self.exprss)
                 self.exprsp = str(self.exprsp)
@@ -2602,18 +2520,10 @@ class polarplotGUI(Frame):
                 self.exprps = parse_expr(dict_exp_extract[2]['PS'],evaluate=False)
                 self.exprpp = parse_expr(dict_exp_extract[3]['PP'],evaluate=False)
 
-                # self.exprss = se.sympify(dict_exp_extract[0]['SS'])
-                # self.exprsp = se.sympify(dict_exp_extract[1]['SP'])
-                # self.exprps = se.sympify(dict_exp_extract[2]['PS'])
-                # self.exprpp = se.sympify(dict_exp_extract[3]['PP'])
-
-            # every change should clear the symbolList at first
             self.symbolList_pp = self.getList_pp()
             self.symbolList_ps = self.getList_ps()
             self.symbolList_ss = self.getList_ss()
             self.symbolList_sp = self.getList_sp()
-            # self.symbolList = self.getList()
-            # Electric dipole
             if phi in self.symbolList_pp:
                 self.symbolList_pp.remove(phi)
             if phi in self.symbolList_ps:
@@ -2625,26 +2535,17 @@ class polarplotGUI(Frame):
         elif self.input_matrix_c == 'Electric Quadrupole':
             isExist = os.path.exists(self.path_exp)
             if isExist == False:  # Create a new directory because it does not exist
-                k = se.Matrix([[-sin(theta), 0, -cos(theta)]])
-                rot = se.Matrix([[cos(phi), -sin(phi), 0], [sin(phi), cos(phi), 0], [0, 0, 1]])
-                epin = se.Matrix([[-cos(theta), 0, sin(theta)]])
-                esin = se.Matrix([[0, 1, 0]])
-
                 # Using sympy
-                # k = Matrix([[-sin(theta), 0, -cos(theta)]])
-                # rot = Matrix([[cos(phi), -sin(phi), 0], [sin(phi), cos(phi), 0], [0, 0, 1]])
-                # epin = Matrix([[-cos(theta), 0, sin(theta)]])
-                # esin = Matrix([[0, 1, 0]])
+                k = Matrix([[-sin(theta), 0, -cos(theta)]])
+                rot = Matrix([[cos(phi), -sin(phi), 0], [sin(phi), cos(phi), 0], [0, 0, 1]])
+                epin = Matrix([[-cos(theta), 0, sin(theta)]])
+                esin = Matrix([[0, 1, 0]])
 
                 input_matrix_quad = self.dic_qud[self.option_var_1[0]][self.option_var[0]]
-                rs_matrix_quad = se.sympify(self.trans_quad_2Swap(self.trans_quad(self.bTS_quad(self.trans_quad_2Swap(
+
+                rs_matrix_quad = simplify(self.trans_quad_2Swap(self.trans_quad(self.bTS_quad(self.trans_quad_2Swap(
                     self.sTB_quad(rot, self.trans_quad(self.sTB_quad(rot, self.bTS_quad(input_matrix_quad, rot.T))))),
                     rot.T))))
-
-                # Using sympy
-                # rs_matrix_quad = simplify(self.trans_quad_2Swap(self.trans_quad(self.bTS_quad(self.trans_quad_2Swap(
-                #     self.sTB_quad(rot, self.trans_quad(self.sTB_quad(rot, self.bTS_quad(input_matrix_quad, rot.T))))),
-                #     rot.T))))
 
                 # PP
                 pxp = 0
@@ -2661,14 +2562,9 @@ class polarplotGUI(Frame):
                             pys = pys + pys_temp
                             pzp = pzp + pzp_temp
 
-                # PP
-                self.exprpp = se.sympify((pxp * cos(theta)) ** 2 + (pzp * sin(theta)) ** 2)
-                # # PS
-                self.exprps = se.sympify((pys ** 2))
-
                 # Sympy
-                # self.exprpp = simplify((pxp * cos(theta)) ** 2 + (pzp * sin(theta)) ** 2)
-                # self.exprps = simplify((pys ** 2))
+                self.exprpp = simplify((pxp * cos(theta)) ** 2 + (pzp * sin(theta)) ** 2)
+                self.exprps = simplify((pys ** 2))
 
                 sxp = 0
                 sys = 0
@@ -2683,20 +2579,13 @@ class polarplotGUI(Frame):
                             sxp = sxp + sxp_temp
                             sys = sys + sys_temp
                             szp = szp + szp_temp
-                # SP
-                self.exprsp = se.sympify((sxp * cos(theta)) ** 2 + (szp * sin(theta)) ** 2)
-                # # SS
-                self.exprss = se.sympify((sys ** 2))
-
                 # Sympy
-                # self.exprsp = simplify((sxp * cos(theta)) ** 2 + (szp * sin(theta)) ** 2)
-                # self.exprss = simplify((sys ** 2))
+                self.exprsp = simplify((sxp * cos(theta)) ** 2 + (szp * sin(theta)) ** 2)
+                self.exprss = simplify((sys ** 2))
                 self.exprss = str(self.exprss)
                 self.exprsp = str(self.exprsp)
                 self.exprps = str(self.exprps)
                 self.exprpp = str(self.exprpp)
-
-
                 self.exprss = parse_expr(self.exprss, evaluate=False)
                 self.exprsp = parse_expr(self.exprsp, evaluate=False)
                 self.exprps = parse_expr(self.exprps, evaluate=False)
@@ -2713,23 +2602,18 @@ class polarplotGUI(Frame):
                 express_txt.close()
                 ss_temp = dict_exp_extract[0]['SS']
                 # sympy
-                # self.exprss = parse_expr(ss_temp, evaluate=False)
-                self.exprss = se.sympify(ss_temp)
+                self.exprss = parse_expr(ss_temp, evaluate=False)
 
                 sp_temp = dict_exp_extract[1]['SP']
                 # sympy
-                # self.exprsp = parse_expr(sp_temp, evaluate=False)
-                self.exprsp = se.sympify(sp_temp)
+                self.exprsp = parse_expr(sp_temp, evaluate=False)
 
                 ps_temp = dict_exp_extract[2]['PS']
                 # sympy
-                # self.exprps = parse_expr(ps_temp, evaluate=False)
-                self.exprps = se.sympify(ps_temp)
-
+                self.exprps = parse_expr(ps_temp, evaluate=False)
                 pp_temp = dict_exp_extract[3]['PP']
                 # sympy
-                # self.exprpp = parse_expr(pp_temp, evaluate=False)
-                self.exprpp = se.sympify(pp_temp)
+                self.exprpp = parse_expr(pp_temp, evaluate=False)
 
             # every change should clear the symbolList at first
             self.symbolList_pp = self.getList_pp_eQ()
@@ -2753,18 +2637,10 @@ class polarplotGUI(Frame):
                 esin = Matrix([[0, 1, 0]])
                 rot = Matrix([[cos(phi), -sin(phi), 0], [sin(phi), cos(phi), 0], [0, 0, 1]])
                 k = Matrix([[-sin(theta), 0, -cos(theta)]])
-
-                # epin = se.Matrix([[-cos(theta), 0, sin(theta)]])
-                # esin = se.Matrix([[0, 1, 0]])
-                # rot = se.Matrix([[cos(phi), -sin(phi), 0], [sin(phi), cos(phi), 0], [0, 0, 1]])
-                # k = se.Matrix([[-sin(theta), 0, -cos(theta)]])
                 input_matrix = self.dic_mag_dip[self.option_var_1[0]][self.option_var[0]]
 
                 # calculate the expression
                 rs_matrix_md = simplify(self.trans(self.sTB(rot, self.trans(self.sTB(rot, self.bTS(input_matrix, rot.T))))))
-                # rs_matrix_md = se.sympify(
-                #     self.trans(self.sTB(rot, self.trans(self.sTB(rot, self.bTS(input_matrix, rot.T))))))
-
                 Mpx = 0
                 Mpy = 0
                 Mpz = 0
@@ -2784,17 +2660,8 @@ class polarplotGUI(Frame):
                 Spy = Sp[1]
                 Spz = Sp[2]
 
-                # PP
                 self.exprpp = simplify((Spx * cos(theta)) ** 2 + (Spz * sin(theta)) ** 2)
-                #
-                # # PS
                 self.exprps = simplify((Spy ** 2))
-                # self.exprpp = se.sympify((Spx * cos(theta)) ** 2 + (Spz * sin(theta)) ** 2)
-
-                # PS
-                # self.exprps = se.sympify((Spy ** 2))
-
-                # SP
                 Msx = 0
                 Msy = 0
                 Msz = 0
@@ -2817,16 +2684,10 @@ class polarplotGUI(Frame):
                 self.exprsp = simplify((Ssx * cos(theta)) ** 2 + (Ssz * sin(theta)) ** 2)
                 # # SS
                 self.exprss = simplify((Ssy ** 2))
-
-                # self.exprsp = se.sympify((Ssx * cos(theta)) ** 2 + (Ssz * sin(theta)) ** 2)
-                # SS
-                # self.exprss = se.sympify((Ssy ** 2))
-
                 self.exprss = str(self.exprss)
                 self.exprsp = str(self.exprsp)
                 self.exprps = str(self.exprps)
                 self.exprpp = str(self.exprpp)
-
                 self.exprss = parse_expr(self.exprss, evaluate=False)
                 self.exprsp = parse_expr(self.exprsp, evaluate=False)
                 self.exprps = parse_expr(self.exprps, evaluate=False)
@@ -2847,11 +2708,6 @@ class polarplotGUI(Frame):
                 self.exprsp = parse_expr(dict_exp_extract[1]['SP'],evaluate=False)
                 self.exprps = parse_expr(dict_exp_extract[2]['PS'],evaluate=False)
                 self.exprpp = parse_expr(dict_exp_extract[3]['PP'],evaluate=False)
-
-                # self.exprss = se.sympify(dict_exp_extract[0]['SS'])
-                # self.exprsp = se.sympify(dict_exp_extract[1]['SP'])
-                # self.exprps = se.sympify(dict_exp_extract[2]['PS'])
-                # self.exprpp = se.sympify(dict_exp_extract[3]['PP'])
 
             # every change should clear the symbolList at first
             self.symbolList_pp = self.getList_pp_Md()
@@ -2953,7 +2809,6 @@ class polarplotGUI(Frame):
 
         FileisExist = os.path.isfile(self.path_exp)
         if not FileisExist:
-        # if dict_extract.get(0, {}).get('SS') is None:
             self.wx[0].text(0.01, 0.8, "$" + latex(eval(str(self.exprss)), fold_frac_powers=False, fold_short_frac=False) + "$", fontsize=15, va='center', ha='left')
             dict_latex = {"SS": latex(eval(str(self.exprss)), fold_frac_powers=False, fold_short_frac=False)}
             latex_file = open(self.path + '/latexfile.txt', 'a')
@@ -2965,7 +2820,6 @@ class polarplotGUI(Frame):
             dict_file.write(str(dict))
             dict_file.write('\n')
             dict_file.close()
-        # if dict_extract.get(1, {}).get('SP') is None:
             self.wx[1].text(0.01, 0.8, "$" + latex(eval(str(self.exprsp)), fold_frac_powers=False, fold_short_frac=False) + "$", fontsize=15, va='center', ha='left')
             dict_latex = {"SP": latex(eval(str(self.exprsp)), fold_frac_powers=False, fold_short_frac=False)}
             latex_file = open(self.path + '/latexfile.txt', 'a')
@@ -2977,7 +2831,6 @@ class polarplotGUI(Frame):
             dict_file.write(str(dict))
             dict_file.write('\n')
             dict_file.close()
-        # if dict_extract.get(2, {}).get('PS') is None:
             self.wx[2].text(0.01, 0.8, "$" + latex(eval(str(self.exprps)), fold_frac_powers=False, fold_short_frac=False) + "$", fontsize=15, va='center', ha='left')
             dict_latex = {"PS": latex(eval(str(self.exprps)), fold_frac_powers=False, fold_short_frac=False)}
             latex_file = open(self.path + '/latexfile.txt', 'a')
@@ -2989,7 +2842,6 @@ class polarplotGUI(Frame):
             dict_file.write(str(dict))
             dict_file.write('\n')
             dict_file.close()
-        # if dict_extract.get(3, {}).get('PP') is None:
             self.wx[3].text(0.01, 0.8, "$" + latex(eval(str(self.exprpp)), fold_frac_powers=False, fold_short_frac=False) + "$", fontsize=15, va='center', ha='left')
             dict_latex = {"PP": latex(eval(str(self.exprpp)), fold_frac_powers=False, fold_short_frac=False)}
             latex_file = open(self.path + '/latexfile.txt', 'a')
@@ -3282,10 +3134,8 @@ class polarplotGUI(Frame):
         self.notebook.add(self.tab_3, text="Character Table")
 
         self.fr_input_dw = ScrolledFrame(self.newWindow)
-        # root.eval('tk::PlaceWindow . center')
         self.fr_input_dw.grid(column=0, row=1, ipadx=600, ipady=70)
         self.fr_button_dw = Frame(self.newWindow)
-        # root.eval('tk::PlaceWindow . center')
         self.fr_button_dw.grid(row=2, column=0, ipadx=760, ipady=20)
 
         self.fr_input_dw.bind_arrow_keys(root)
@@ -3313,13 +3163,6 @@ class polarplotGUI(Frame):
                        column=column,
                        padx=4,
                        pady=4)
-        # self.label_ss = ttk.LabelFrame(self.fr_input_dw, text='SS')
-        # self.label_ss.grid(row=1, column=0, ipadx=673, ipady=200)
-
-        # self.dw_canvas = Canvas(self.fr_input_dw, bg='coral')
-        # self.dw_canvas.grid(row=1, column=0)
-        # self.fr_input_dw.pack(expand=1)
-
         self.entryList_ss = []
         self.entryList_sp = []
         self.entryList_ps = []
@@ -3350,9 +3193,7 @@ class polarplotGUI(Frame):
                                         validate='key', validatecommand=range_validation,
                                         command=lambda: self.autoPlot())
                     self.Spin.bind('<Return>', lambda x: self.autoPlot())
-
                     self.entryList_ss.append(self.Spin)
-                    # self.Spin.pack()
                     self.Spin.place(x=241, y=34, width=100, height=40)
                 else:
                     self.Spin = Spinbox(self.fr_input_dw_inside, from_=-10, to=10, textvariable=SlideStr, relief='groove',
@@ -3360,27 +3201,16 @@ class polarplotGUI(Frame):
                                         command=lambda: self.autoPlot())
                     self.entryList_ss.append(self.Spin)
                     self.Spin.bind('<Return>', lambda x: self.autoPlot())
-                    # self.Spin.pack()
                     self.Spin.place(x=241, y=34 + i * 40, width=100, height=40)
             else:
                 self.Spin = Spinbox(self.fr_input_dw_inside, from_=-10, to=10, textvariable=SlideStr, relief='groove',
                                     validate='key', validatecommand=range_validation, command=lambda: self.autoPlot())
                 self.entryList_ss.append(self.Spin)
                 self.Spin.bind('<Return>', lambda x: self.autoPlot())
-                # self.entry = Entry(self.fr_input_dw, textvariable=inputStr, relief='raised', bg='white')
-                # self.Spin.pack()
                 self.Spin.place(x=241, y=34 + i * 40, width=100, height=40)
 
             count = count + 1
             value = self.Spin.get()
-            # assign values
-
-            # self.entryList_ss.append(self.Spin)
-            # self.plot()
-
-        # loop over the symbolList and create labels and entries for each symbol within it
-        # print(len(self.symbolList_sp))
-        # count = 0
         self.label = Label(self.fr_input_dw_inside, text="SP", borderwidth=2, justify="left", font=('Arial', 18))
         self.label.place(x=self.label_position, y=4)
         self.label_position += self.label_gap
@@ -3400,9 +3230,7 @@ class polarplotGUI(Frame):
                                         validate='key', validatecommand=range_validation,
                                         command=lambda: self.autoPlot())
                     self.Spin.bind('<Return>', lambda x: self.autoPlot())
-
                     self.entryList_sp.append(self.Spin)
-                    # self.Spin.pack()
                     self.Spin.place(x=559, y=34, width=100, height=40)
                 else:
                     self.Spin = Spinbox(self.fr_input_dw_inside, from_=-10, to=10, textvariable=SlideStr, relief='groove',
@@ -3410,23 +3238,16 @@ class polarplotGUI(Frame):
                                         command=lambda: self.autoPlot())
                     self.entryList_sp.append(self.Spin)
                     self.Spin.bind('<Return>', lambda x: self.autoPlot())
-                    # self.Spin.pack()
                     self.Spin.place(x=559, y=34 + j * 40, width=100, height=40)
             else:
                 self.Spin = Spinbox(self.fr_input_dw_inside, from_=-10, to=10, textvariable=SlideStr, relief='groove',
                                     validate='key', validatecommand=range_validation, command=lambda: self.autoPlot())
                 self.entryList_sp.append(self.Spin)
                 self.Spin.bind('<Return>', lambda x: self.autoPlot())
-                # self.entry = Entry(self.fr_input_dw, textvariable=inputStr, relief='raised', bg='white')
-                # self.Spin.pack()
                 self.Spin.place(x=559, y=34 + j * 40, width=100, height=40)
 
             count = count + 1
             value = self.Spin.get()
-            # self.entryList_sp.append(self.Spin)
-
-        # loop over the symbolList and create labels and entries for each symbol within it
-        # print(len(self.symbolList_ps))
         count = 0
         self.label = Label(self.fr_input_dw_inside, text="PS", borderwidth=2, justify="left", font=('Arial', 18))
         self.label.place(x=self.label_position, y=4)
@@ -3447,7 +3268,6 @@ class polarplotGUI(Frame):
                     self.Spin.bind('<Return>', lambda x: self.autoPlot())
 
                     self.entryList_ps.append(self.Spin)
-                    # self.Spin.pack()
                     self.Spin.place(x=885, y=34, width=100, height=40)
                 else:
                     self.Spin = Spinbox(self.fr_input_dw_inside, from_=-10, to=10, textvariable=SlideStr, relief='groove',
@@ -3455,33 +3275,24 @@ class polarplotGUI(Frame):
                                         command=lambda: self.autoPlot())
                     self.entryList_ps.append(self.Spin)
                     self.Spin.bind('<Return>', lambda x: self.autoPlot())
-                    # self.Spin.pack()
                     self.Spin.place(x=885, y=34 + k * 40, width=100, height=40)
             else:
                 self.Spin = Spinbox(self.fr_input_dw_inside, from_=-10, to=10, textvariable=SlideStr, relief='groove',
                                     validate='key', validatecommand=range_validation, command=lambda: self.autoPlot())
                 self.entryList_ps.append(self.Spin)
                 self.Spin.bind('<Return>', lambda x: self.autoPlot())
-                # self.entry = Entry(self.fr_input_dw, textvariable=inputStr, relief='raised', bg='white')
-                # self.Spin.pack()
                 self.Spin.place(x=885, y=34 + k * 40, width=100, height=40)
 
             count = count + 1
-            # self.entryList_ps.append(self.Spin)
-
-        # loop over the symbolList and create labels and entries for each symbol within it
-        # print(len(self.symbolList_pp))
         count = 0
         self.label = Label(self.fr_input_dw_inside, text="PP", borderwidth=2, justify="left", font=('Arial', 18))
         self.label.place(x=self.label_position, y=4)
         self.label_position += self.label_gap
         for h in range(len(self.symbolList_pp)):
             # create labels
-
             self.label = Label(self.fr_input_dw_inside, text=self.showSymbol(self.symbolList_pp[h]),
                                borderwidth=2, justify="left", font=('Arial', 18))
             self.label.place(x=1153, y=34 + h * 40, width=40, height=40)
-
             inputStr = StringVar()
             SlideStr = DoubleVar()
             if h == 0:
@@ -3499,7 +3310,6 @@ class polarplotGUI(Frame):
                                         command=lambda: self.autoPlot())
                     self.entryList_pp.append(self.Spin)
                     self.Spin.bind('<Return>', lambda x: self.autoPlot())
-                    # self.Spin.pack()
                     self.Spin.place(x=1203, y=34 + h * 40, width=100, height=40)
 
             else:
@@ -3507,18 +3317,14 @@ class polarplotGUI(Frame):
                                     validate='key', validatecommand=range_validation, command=lambda: self.autoPlot())
                 self.entryList_pp.append(self.Spin)
                 self.Spin.bind('<Return>', lambda x: self.autoPlot())
-                # self.entry = Entry(self.fr_input_dw, textvariable=inputStr, relief='raised', bg='white')
-                # self.Spin.pack()
                 self.Spin.place(x=1203, y=34 + h * 40, width=100, height=40)
 
             count = count + 1
             value = self.Spin.get()
 
         self.button3 = ttk.Checkbutton(self.fr_button_dw, text='Quit', command=lambda: self._quit(), style="Toggle.TButton")
-        # self.button3.pack()
         self.button3.place(x=1420, y=10)
         self.button4 = ttk.Button(self.fr_button_dw, text='Back', command=lambda: self._back())
-        # self.button4.pack()
         self.button4.place(x=1344, y=10)
         self.button5 = ttk.Button(self.fr_button_dw, text='?')
         self.button5.place(x=5, y=10)
@@ -3580,7 +3386,6 @@ class polarplotGUI(Frame):
         self.crystal_box.place(x=200, y=60)
         if self.input_matrix_c == 'Electric Dipole':
             for x in self.dic:
-            # for x in setupDict().dic:
                 self.crystal_box.insert(END, x)
         elif self.input_matrix_c == 'Electric Quadrupole':
             for x in self.dic_qud:
@@ -3588,14 +3393,10 @@ class polarplotGUI(Frame):
         elif self.input_matrix_c == 'Magnetic Dipole':
             for x in self.dic_mag_dip:
                 self.crystal_box.insert(END, x)
-        # elif self.input_matrix_c == 'Magnetic Monopole':
-        #     self.crystal_box.insert(1, 'Continue...')
         elif self.input_matrix_c == 'Coming Soon...':
             self.crystal_box.insert(1, 'EFISH/MFISH')
-
         self.cal_bt = ttk.Button(self.fr_input_up, text='Calculate', command=lambda: self.pop_up_warning(), width=10,
                                  style='Accent.TButton')
-
         self.crystal_box.bind('<Return>', lambda x: self.show_group())
         self.crystal_box.bind('<Double-Button-1>', lambda x: self.show_group())
         self.crystal_box.bind('<<ListboxSelect>>', lambda x: self.show_group())
@@ -3611,9 +3412,7 @@ class polarplotGUI(Frame):
                                        yscrollcommand='Vertical', selectmode=SINGLE, relief='sunken',
                                        exportselection=False)
         self.group_box_group.place(x=335, y=60)
-
         c_sys = list(self.dic.keys())
-
         if self.input_matrix_g in c_sys and self.input_matrix_c == 'Electric Dipole':
             ed_class = list(self.dic[self.input_matrix_g].keys())
             for x in range(len(ed_class)):
@@ -3626,17 +3425,9 @@ class polarplotGUI(Frame):
             md_class = list(self.dic_mag_dip[self.input_matrix_g].keys())
             for x in range(len(md_class)):
                 self.group_box_group.insert(END, md_class[x])
-        # elif self.input_matrix_c == 'Magnetic Monopole':
-        #     self.group_box_group.insert(1, 'Continue...')
-
         elif self.input_matrix_c == 'Coming Soon...':
             self.group_box_group.insert(1, 'Coming Soon...')
         self.opened = false
-
-        # if self.input_matrix_c == 'Magnetic Monopole':
-        #     self.cal_bt = ttk.Button(self.fr_input_up, text='Calculate', command=lambda: self.suprise(), width=12,
-        #                              style='Accent.TButton')
-
         if self.beta == False:
             self.cal_bt_dis = ttk.Button(self.fr_input_up, text='Calculate', command=lambda: self.calculate(), width=10,
                                          style='Accent.TButton')
@@ -3680,9 +3471,7 @@ if __name__ == '__main__':
     # construct the main window
     try:
         root = Tk()
-        # root.tk.call("source", "Theme/azure.tcl")
         sv_ttk.set_theme('light')
-        # root.tk.call("set_theme", "light")
         root.title("SHG Simulation Tool v1")
         root.maxsize(250, 152)
         window1 = polarplotGUI(master=root)
