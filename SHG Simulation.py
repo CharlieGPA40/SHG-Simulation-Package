@@ -2505,6 +2505,8 @@ class polarplotGUI(Frame):
             # self.newWindow.eval('tk::PlaceWindow . center')
             self.newWindow.maxsize()
             self.opened = True
+        else:
+            self.newWindow.destroy()
 
         if self.beta == True:
             itm_rot = self.sample_rot.get(self.sample_rot.curselection())
@@ -2623,26 +2625,26 @@ class polarplotGUI(Frame):
         elif self.input_matrix_c == 'Electric Quadrupole':
             isExist = os.path.exists(self.path_exp)
             if isExist == False:  # Create a new directory because it does not exist
-                # k = se.Matrix([[-sin(theta), 0, -cos(theta)]])
-                # rot = se.Matrix([[cos(phi), -sin(phi), 0], [sin(phi), cos(phi), 0], [0, 0, 1]])
-                # epin = se.Matrix([[-cos(theta), 0, sin(theta)]])
-                # esin = se.Matrix([[0, 1, 0]])
+                k = se.Matrix([[-sin(theta), 0, -cos(theta)]])
+                rot = se.Matrix([[cos(phi), -sin(phi), 0], [sin(phi), cos(phi), 0], [0, 0, 1]])
+                epin = se.Matrix([[-cos(theta), 0, sin(theta)]])
+                esin = se.Matrix([[0, 1, 0]])
 
                 # Using sympy
-                k = Matrix([[-sin(theta), 0, -cos(theta)]])
-                rot = Matrix([[cos(phi), -sin(phi), 0], [sin(phi), cos(phi), 0], [0, 0, 1]])
-                epin = Matrix([[-cos(theta), 0, sin(theta)]])
-                esin = Matrix([[0, 1, 0]])
+                # k = Matrix([[-sin(theta), 0, -cos(theta)]])
+                # rot = Matrix([[cos(phi), -sin(phi), 0], [sin(phi), cos(phi), 0], [0, 0, 1]])
+                # epin = Matrix([[-cos(theta), 0, sin(theta)]])
+                # esin = Matrix([[0, 1, 0]])
 
                 input_matrix_quad = self.dic_qud[self.option_var_1[0]][self.option_var[0]]
-                # rs_matrix_quad = se.sympify(self.trans_quad_2Swap(self.trans_quad(self.bTS_quad(self.trans_quad_2Swap(
-                #     self.sTB_quad(rot, self.trans_quad(self.sTB_quad(rot, self.bTS_quad(input_matrix_quad, rot.T))))),
-                #     rot.T))))
-
-                # Using sympy
-                rs_matrix_quad = simplify(self.trans_quad_2Swap(self.trans_quad(self.bTS_quad(self.trans_quad_2Swap(
+                rs_matrix_quad = se.sympify(self.trans_quad_2Swap(self.trans_quad(self.bTS_quad(self.trans_quad_2Swap(
                     self.sTB_quad(rot, self.trans_quad(self.sTB_quad(rot, self.bTS_quad(input_matrix_quad, rot.T))))),
                     rot.T))))
+
+                # Using sympy
+                # rs_matrix_quad = simplify(self.trans_quad_2Swap(self.trans_quad(self.bTS_quad(self.trans_quad_2Swap(
+                #     self.sTB_quad(rot, self.trans_quad(self.sTB_quad(rot, self.bTS_quad(input_matrix_quad, rot.T))))),
+                #     rot.T))))
 
                 # PP
                 pxp = 0
@@ -2660,13 +2662,13 @@ class polarplotGUI(Frame):
                             pzp = pzp + pzp_temp
 
                 # PP
-                # self.exprpp = se.sympify((pxp * cos(theta)) ** 2 + (pzp * sin(theta)) ** 2)
+                self.exprpp = se.sympify((pxp * cos(theta)) ** 2 + (pzp * sin(theta)) ** 2)
                 # # PS
-                # self.exprps = se.sympify((pys ** 2))
+                self.exprps = se.sympify((pys ** 2))
 
                 # Sympy
-                self.exprpp = simplify((pxp * cos(theta)) ** 2 + (pzp * sin(theta)) ** 2)
-                self.exprps = simplify((pys ** 2))
+                # self.exprpp = simplify((pxp * cos(theta)) ** 2 + (pzp * sin(theta)) ** 2)
+                # self.exprps = simplify((pys ** 2))
 
                 sxp = 0
                 sys = 0
@@ -2682,13 +2684,13 @@ class polarplotGUI(Frame):
                             sys = sys + sys_temp
                             szp = szp + szp_temp
                 # SP
-                # self.exprsp = se.sympify((sxp * cos(theta)) ** 2 + (szp * sin(theta)) ** 2)
+                self.exprsp = se.sympify((sxp * cos(theta)) ** 2 + (szp * sin(theta)) ** 2)
                 # # SS
-                # self.exprss = se.sympify((sys ** 2))
+                self.exprss = se.sympify((sys ** 2))
 
                 # Sympy
-                self.exprsp = simplify((sxp * cos(theta)) ** 2 + (szp * sin(theta)) ** 2)
-                self.exprss = simplify((sys ** 2))
+                # self.exprsp = simplify((sxp * cos(theta)) ** 2 + (szp * sin(theta)) ** 2)
+                # self.exprss = simplify((sys ** 2))
                 self.exprss = str(self.exprss)
                 self.exprsp = str(self.exprsp)
                 self.exprps = str(self.exprps)
@@ -2711,23 +2713,23 @@ class polarplotGUI(Frame):
                 express_txt.close()
                 ss_temp = dict_exp_extract[0]['SS']
                 # sympy
-                self.exprss = parse_expr(ss_temp, evaluate=False)
-                # self.exprss = se.sympify(ss_temp)
+                # self.exprss = parse_expr(ss_temp, evaluate=False)
+                self.exprss = se.sympify(ss_temp)
 
                 sp_temp = dict_exp_extract[1]['SP']
                 # sympy
-                self.exprsp = parse_expr(sp_temp, evaluate=False)
-                # self.exprsp = se.sympify(sp_temp)
+                # self.exprsp = parse_expr(sp_temp, evaluate=False)
+                self.exprsp = se.sympify(sp_temp)
 
                 ps_temp = dict_exp_extract[2]['PS']
                 # sympy
-                self.exprps = parse_expr(ps_temp, evaluate=False)
-                # self.exprps = se.sympify(ps_temp)
+                # self.exprps = parse_expr(ps_temp, evaluate=False)
+                self.exprps = se.sympify(ps_temp)
 
                 pp_temp = dict_exp_extract[3]['PP']
                 # sympy
-                self.exprpp = parse_expr(pp_temp, evaluate=False)
-                # self.exprpp = se.sympify(pp_temp)
+                # self.exprpp = parse_expr(pp_temp, evaluate=False)
+                self.exprpp = se.sympify(pp_temp)
 
             # every change should clear the symbolList at first
             self.symbolList_pp = self.getList_pp_eQ()
@@ -3522,6 +3524,13 @@ class polarplotGUI(Frame):
         self.button5.place(x=5, y=10)
         myTip = Hovertip(self.button5, 'Switch through different tabs to check plot, equations and character table. '
                                        '\nExport the graph, expression (latex), and character table through Menu->File.', hover_delay=1000)
+
+        def doSomething():
+            self.newWindow.destroy()
+            self.opened=false
+
+        self.newWindow.protocol('WM_DELETE_WINDOW', doSomething)  # root is your root window
+
 
     def validate(self, user_input, widget_name):
         def isfloat(num):
