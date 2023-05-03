@@ -49,7 +49,7 @@ sudo apt install dvipng
 ```
 
 ## Running
-1. Run from the python IDE using code `SHG Simulation (Windows/Mac/Linux) Version.py`. (faster)
+1. Run from the python IDE using code `SHG Simulation (Windows/Mac/Linux) Version.py`. (PyCharm Recommended)
 
 ## Expression and Latex
 1. All the expressions can be found under `SHG-Simulation/ExpressAndLatex/`.
