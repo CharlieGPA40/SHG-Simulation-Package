@@ -12,18 +12,10 @@ Note: This pacakge is for academic research and educational purposes.
 
 ## Requirements
 1. Latex is required. Install Latex on your computer before run the program.
-2. We tested the program on python version 3.9-3.11 on both M1 Mac and Intel Mac.
+2. We tested the program on python version 3.9-3.11 on both M1 Mac, Intel Mac, and Windows Machine.
 3. All the required packages are listed in `requirements.txt`.
 
 ## Setup
-### Setup Enviroment
-#### Use default virtual enviroment. Go to `SHG-Simulation/`:
-```bash
-source venv/bin/activate
-```
-
-Note: the venv packed with python 3.11
-
 #### Create new virtual enviroment based on your python version:
 First, create a python virtural enviroment:
 ```bash
@@ -57,8 +49,7 @@ sudo apt install dvipng
 ```
 
 ## Running
-1. Run from the python code `SHG Simulation.py`. (faster)
-2. Run from application in `dict/SHG Simulation/SHG Simlation.exec`.
+1. Run from the python IDE using code `SHG Simulation (Windows/Mac/Linux) Version.py`. (faster)
 
 ## Expression and Latex
 1. All the expressions can be found under `SHG-Simulation/ExpressAndLatex/`.
