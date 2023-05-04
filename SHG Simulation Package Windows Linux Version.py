@@ -31,7 +31,7 @@ from CharTable import characterTable
 class Win2:
     def __init__(self, _root):
         self.root = _root
-        width = 750  # Width (670)
+        width = 670  # Width (670)
         height = 630  # Height
         screen_width = root.winfo_screenwidth()  # Width of the screen
         screen_height = root.winfo_screenheight()  # Height of the screen
