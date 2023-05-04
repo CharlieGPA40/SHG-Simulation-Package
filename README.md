@@ -19,7 +19,8 @@ Note: This pacakge is for academic research and educational purposes.
 #### Create new virtual enviroment based on your python version:
 First, create a python virtural enviroment:
 ```bash
-python -m venv name
+sudo apt install python3.xx-venv
+python3 -m venv name
 ```
 Second, activate the enviroment:
 ```bash
