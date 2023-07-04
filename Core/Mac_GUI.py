@@ -22,8 +22,8 @@ from sympy.parsing.sympy_parser import parse_expr
 import sv_ttk
 from idlelib.tooltip import Hovertip
 from tkinter.filedialog import asksaveasfilename
-from Core.CharTable import characterTable
-from Core.Dict import SetUpDict
+from Core.Dict.CharTable import characterTable
+from Core.Dict.Dict import SetUpDict
 from Core.function import TensorMath as tm
 from Core.function import rotation as rt
 from timeit import default_timer as clock
@@ -407,11 +407,12 @@ def run():
             self.root.destroy()
 
     class polarplotGUI(Frame):
-        def __init__(self, master=None):
-            super().__init__(master)
+        def __init__(self, root):
+            super().__init__(root)
             # This line is for packaging
             # os.chdir(sys._MEIPASS)
-            self.master = master
+            self.master = root
+            self.app_size(self.master, 641, 306)
             self.win2_status = 0
             self.win3_status = 0
             self.win4_status = 0
@@ -423,6 +424,18 @@ def run():
             self.master.columnconfigure(0, weight=1)
             self.top2 = None
             self.createWidget()
+
+        def app_size(self, widget, width, height):
+            screen_width = widget.winfo_screenwidth()
+            screen_height = widget.winfo_screenheight()
+            window_width = width
+            window_height = height
+            x = (screen_width - window_width) // 2
+            y = (screen_height - window_height) // 2
+
+            widget.geometry(f"{window_width}x{window_height}+{x}+{y}")
+            widget.maxsize(width, height)
+            widget.minsize(width, height)
 
         def menu_bar(self):
             menu_bar = Menu(self.master)
@@ -480,6 +493,11 @@ def run():
             except:
                 self.win5 = Toplevel(root)  # create
                 Win5(self.win5)  # populate
+
+        def view_init(self):
+            self.fr_input_up = Frame(master=self.master, bg='#F2F3F4')
+            self.fr_input_up.grid(row=1, column=0, ipadx=320, ipady=152, sticky='NW')
+            self.fr_input_up.grid_propagate(False)
 
         def createWidget(self):
             self.list_init()
@@ -542,10 +560,7 @@ def run():
                                            width=5, )
             self.beta_back_bt.place(y=260, x=367)
 
-        def view_init(self):
-            self.fr_input_up = Frame(master=root, bg='#F2F3F4')
-            self.fr_input_up.grid(row=1, column=0, ipadx=320, ipady=152, sticky='NW')
-            self.fr_input_up.grid_propagate(False)
+
 
         def show_crystal_system(self):
             self.input_matrix_g = []
@@ -556,6 +571,7 @@ def run():
                                            yscrollcommand='Vertical', selectmode=SINGLE, relief='sunken', exportselection=False)
             self.group_box_group.place(x=335, y=60)
             self.group_box_group.delete(0, END)
+            self.sample_rot.delete(0, END)
             self.input_matrix_c = self.option_var_2[0]
 
             self.crystal_box = Listbox(self.fr_input_up, width=16, justify="left", height=11, font=('Arial', 13),
@@ -825,8 +841,9 @@ def run():
             if self.opened == false:
                 self.newWindow = Toplevel(root)
                 self.newWindow.title("SHG Simulation Package")
-                self.newWindow.maxsize()
+                # self.newWindow.maxsize()
                 self.opened = True
+                self.app_size(self.newWindow, 1520, 872)
             else:
                 self.newWindow.destroy()
 
@@ -1762,31 +1779,12 @@ def run():
         def buffer(self):
             self.cal_bt_dis['state'] = ACTIVE
 
-
-    # if __name__ == '__main__':
-
-        # initialize the global variables
-    theta, phi, xxx, xxy, xxz, xyx, xyy, xyz, xzx, xzy, xzz, yxx, yxy, yxz, yyx, yyy, yyz, yzx, yzy, yzz, zxx, zxy, zxz, zyx, zyy, zyz, zzx, zzy, zzz, \
-        xxxx, xxxy, xxxz, xyxx, xyxy, xyxz, xzxx, xzxy, xzxz, xxyx, xxyy, xxyz, xyyx, xyyy, xyyz, xzyx, xzyy, xzyz, xxzx, xxzy, xxzz, xyzx, xyzy, xyzz, \
-        xzzx, xzzy, xzzz, yxxx, yxxy, yxxz, yyxx, yyxy, yyxz, yzxx, yzxy, yzxz, yxyx, yxyy, yxyz, yyyx, yyyy, yyyz, yzyx, yzyy, yzyz, yxzx, yxzy, yxzz, \
-        yyzx, yyzy, yyzz, yzzx, yzzy, yzzz, zxxx, zxxy, zxxz, zyxx, zyxy, zyxz, zzxx, zzxy, zzxz, zxyx, zxyy, zxyz, zyyx, zyyy, zyyz, zzyx, zzyy, zzyz, \
-        zxzx, zxzy, zxzz, zyzx, zyzy, zyzz, zzzx, zzzy, zzzz = symbols(
-        'theta phi xxx xxy xxz xyx xyy xyz xzx xzy xzz yxx yxy yxz yyx yyy yyz yzx yzy yzz zxx zxy zxz zyx zyy zyz zzx '
-        'zzy zzz xxxx xxxy xxxz xyxx xyxy xyxz xzxx xzxy xzxz xxyx xxyy xxyz xyyx xyyy xyyz xzyx xzyy xzyz xxzx xxzy '
-        'xxzz xyzx xyzy xyzz xzzx xzzy xzzz yxxx yxxy yxxz yyxx yyxy yyxz yzxx yzxy yzxz yxyx yxyy yxyz yyyx yyyy yyyz '
-        'yzyx yzyy yzyz yxzx yxzy yxzz yyzx yyzy yyzz yzzx yzzy yzzz zxxx zxxy zxxz zyxx zyxy zyxz zzxx zzxy zzxz zxyx '
-        'zxyy zxyz zyyx zyyy zyyz zzyx zzyy zzyz zxzx zxzy zxzz zyzx zyzy zyzz zzzx zzzy zzzz')
-
-    phi_value = np.arange(0, 2 * np.pi, .01)[1:]
-
-    # construct the main window
     try:
         root = Tk()
         sv_ttk.set_theme('light')
         root.title("SHG Simulation Tool v1")
-        root.maxsize(250, 152)
-        window1 = polarplotGUI(master=root)
-        root.eval('tk::PlaceWindow . center')
+        window1 = polarplotGUI(root)
+        window1.grid(row=0, column=0)
         root.mainloop()
     except:
         import traceback
@@ -1803,4 +1801,6 @@ theta, phi, xxx, xxy, xxz, xyx, xyy, xyz, xzx, xzy, xzz, yxx, yxy, yxz, yyx, yyy
         'xxzz xyzx xyzy xyzz xzzx xzzy xzzz yxxx yxxy yxxz yyxx yyxy yyxz yzxx yzxy yzxz yxyx yxyy yxyz yyyx yyyy yyyz '
         'yzyx yzyy yzyz yxzx yxzy yxzz yyzx yyzy yyzz yzzx yzzy yzzz zxxx zxxy zxxz zyxx zyxy zyxz zzxx zzxy zzxz zxyx '
         'zxyy zxyz zyyx zyyy zyyz zzyx zzyy zzyz zxzx zxzy zxzz zyzx zyzy zyzz zzzx zzzy zzzz')
+
+phi_value = np.arange(0, 2 * np.pi, .01)[1:]
 run()

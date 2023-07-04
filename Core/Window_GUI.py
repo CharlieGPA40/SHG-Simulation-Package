@@ -23,7 +23,7 @@ import sv_ttk
 from idlelib.tooltip import Hovertip
 from tkinter.filedialog import asksaveasfilename
 # import symengine as se
-from Core.CharTable import characterTable
+from Core.Dict.Dict import characterTable
 
 # ************************************** #
 # construct a class used to generate the polar plot
