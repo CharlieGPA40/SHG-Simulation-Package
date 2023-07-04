@@ -624,8 +624,8 @@ def run():
                 self.sample_rot.insert(1, '(001)')
             elif self.input_matrix_g == 'Monoclinic':
                 self.sample_rot.delete(0, END)
-                self.sample_rot.insert(1, '[010]')
-                self.sample_rot.insert(2, '[001]')
+                self.sample_rot.insert(1, '{010}')
+                self.sample_rot.insert(2, '{001}')
             elif self.input_matrix_g == 'Orthorhombic':
                 self.sample_rot.delete(0, END)
                 self.sample_rot.insert(1, '(001)')

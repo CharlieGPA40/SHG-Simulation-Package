@@ -37,10 +37,9 @@ def rotationXSwap(matrix_input, general_tensor):
     return matrix_input
 
 def rotationCal(rank, option_var_3,input_matrix, rankMatrix):
-    print(option_var_3)
-    if option_var_3 == '(001)' or option_var_3 == '[010]' or option_var_3 == '[100]':
+    if option_var_3 == '(001)' or option_var_3 == '{010}' or option_var_3 == '[100]':
         input_matrix = input_matrix
-    elif option_var_3 == '[001]' or option_var_3 == '(010)':
+    elif option_var_3 == '{001}' or option_var_3 == '(010)':
         phi_angle = np.pi / 2
         rotx, roty, rotz = rotation(phi_angle)
         first_rot = tm.Intensity_Cal(rank, input_matrix, rotx)
