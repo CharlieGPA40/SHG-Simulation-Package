@@ -48,7 +48,7 @@ def run():
             self.root.title("About SHG Simulation Tool")
             self.root.maxsize(670, 570)
             self.root.protocol("WM_DELETE_WINDOW", self.close)
-            au_logo = Image.open("Image/vect.png")
+            au_logo = Image.open("Core/Image/vect.png")
             au_logo = au_logo.resize((400, 200))
             au_logo = ImageTk.PhotoImage(au_logo)
             label_au = Label(self.root, image=au_logo)
@@ -74,8 +74,8 @@ def run():
             def callback(url):
                 webbrowser.open_new_tab(url)
 
-            wb_label = Label(self.root, text="Website", font=40, fg="blue", cursor="hand2")
-            wb_label.bind("<Button-1>", lambda e: callback("http://wp.auburn.edu/JinLab/"))
+            wb_label = Label(self.root, text="Github", font=40, fg="blue", cursor="hand2")
+            wb_label.bind("<Button-1>", lambda e: callback("https://github.com/CharlieGPA40/SHG-Simulation-Package-Beta"))
             wb_label.grid(column=0, row=8)
 
             self.paned = Frame(master=self.root)
@@ -273,7 +273,11 @@ def run():
                         '\n[10] Germer, Thomas A., et al. "Depletion-electric-field-induced second-harmonic generation near oxidized GaAs (001) surfaces." Physical Review B 55.16 (1997): 10694.' \
                         '\n[11] Luo, Xiangpeng, et al. "Ultrafast modulations and detection of a ferro-rotational charge density wave using time-resolved electric quadrupole second harmonic generation." Physical review letters 127.12 (2021): 126401.' \
                         '\n[12] Jin, Wencan, et al. "Observation of a ferro-rotational order coupled with second-order nonlinear optical fields." Nature Physics 16.1 (2020): 42-46.' \
-                        '\n[13] Anisimov, A. N., N. A. Perekopaiko, and Aleksei Valerevich Petukhov. "Relationship between the anisotropy of reflected second harmonic radiation and the orientation of the crystal surface." -Soviet journal of quantum electronics 21.1 (1991): 82.'
+                        '\n[13] Anisimov, A. N., N. A. Perekopaiko, and Aleksei Valerevich Petukhov. "Relationship between the anisotropy of reflected second harmonic radiation and the orientation of the crystal surface." -Soviet journal of quantum electronics 21.1 (1991): 82.' \
+                        '\n[14] Newnham, Robert E.Properties of materials: anisotropy, symmetry, structure.Oxford university press, 2005.' \
+                        '\n[15] Boyd, Robert W., Alexander L.Gaeta, and Enno Giese. "Nonlinear optics." Springer Handbook of Atomic, Molecular, and Optical Physics.Cham: Springer International Publishing, 2008.1097 - 1110.'
+
+
 
             ref_box.insert(END, reference)
             ref_box.config(state='disabled')
@@ -302,7 +306,7 @@ def run():
             self.root.title("Group Website")
             # self.root.configure(bg='#F2F3F4')
             self.root.protocol("WM_DELETE_WINDOW", self.close)
-            qr_code = Image.open("Image/frame.png")
+            qr_code = Image.open("Core/Image/frame.png")
             qr_code = qr_code.resize((193, 250))
             qr_code = ImageTk.PhotoImage(qr_code)
             label_qr = Label(self.root, image=qr_code)
@@ -343,7 +347,7 @@ def run():
 
             self.click_loop = 0
             while 0 <= self.click_loop < 4:
-                image = Image.open('Image/Model{}.png'.format(self.click_loop+1))
+                image = Image.open('Core/Image/Model{}.png'.format(self.click_loop+1))
                 resize_image = image.resize((800, 550))
                 lst_img = ImageTk.PhotoImage(resize_image)
                 self.image_label_Model = Label(self.root, image=lst_img)
@@ -376,7 +380,7 @@ def run():
             self.root.title("About SHG Simulation Tool")
             # self.root.configure(bg='#F2F3F4')
             self.root.protocol("WM_DELETE_WINDOW", self.close)
-            au_logo = Image.open("Image/About.png")
+            au_logo = Image.open("Core/Image/About.png")
             au_logo = au_logo.resize((160, 80))
             au_logo = ImageTk.PhotoImage(au_logo)
             label_au = Label(self.root, image=au_logo)
@@ -395,9 +399,8 @@ def run():
             lbl.grid(column=0, row=4)
             def callback(url):
                 webbrowser.open_new_tab(url)
-
             wb_label = Label(self.root, text="Github", font=22, fg="blue", cursor="hand2")
-            wb_label.bind("<Button-1>", lambda e: callback("http://wp.auburn.edu/JinLab/"))
+            wb_label.bind("<Button-1>", lambda e: callback("https://github.com/CharlieGPA40/SHG-Simulation-Package-Beta"))
             wb_label.grid(column=0, row=5)
 
 
@@ -405,17 +408,10 @@ def run():
             self.root.destroy()
 
     class polarplotGUI(Frame):
-        """
-        polarplotGUI inherits the class Frame
-
-        Returns:
-            nothing, just do the ploting
-        """
         def __init__(self, master=None):
             super().__init__(master)
             # This line is for packaging
             # os.chdir(sys._MEIPASS)
-
             self.master = master
             self.win2_status = 0
             self.win3_status = 0
@@ -423,10 +419,15 @@ def run():
             self.win5_status = 0
             self.chr_data = characterTable.charTable(self)
             self.dic, self.dic_qud, self.dic_mag_dip = SetUpDict.setupdict(self)
-            # Only work for windows
+            self.menu_bar()
+            self.master.rowconfigure(0, weight=1)
+            self.master.columnconfigure(0, weight=1)
+            self.top2 = None
+            self.createWidget()
+
+        def menu_bar(self):
             menu_bar = Menu(self.master)
             self.master['menu'] = menu_bar
-
             self.IntroMenu = Menu(menu_bar)
             self.IntroMenu.add_command(label="About SHG Simulation Package", command=lambda: self.about_page_version())
             self.IntroMenu.add_separator()
@@ -441,11 +442,13 @@ def run():
             Help.add_command(label='Contact Us', command=lambda: self.contact())
             Help.add_separator()
             Help.add_command(label="About...", command=lambda: self.about_page_detail())
+            Help.add_separator()
+            Help.add_command(label="Feedback", command=lambda: self.feedback())
             menu_bar.add_cascade(label='Help', menu=Help)
-            self.master.rowconfigure(0, weight=1)
-            self.master.columnconfigure(0, weight=1)
-            self.top2 = None
-            self.createWidget()
+
+        def feedback(self):
+            url='https://docs.google.com/forms/d/e/1FAIpQLSeZaArKngIQY92mIbnvNzsSUnLj1lpbLrIfYdkwj-OzhzBg_w/viewform?usp=sf_link'
+            webbrowser.open(url)
 
         def contact(self):
             try:
@@ -478,11 +481,6 @@ def run():
             except:
                 self.win5 = Toplevel(root)  # create
                 Win5(self.win5)  # populate
-
-        def beta_back(self):
-            self.fr_input_up.destroy()
-            self.fr_input_up = Frame(master=root, bg='#F2F3F4')
-            self.createWidget()
 
         def createWidget(self):
             self.list_init()
@@ -682,6 +680,11 @@ def run():
                 return chr(952)
             else:
                 return symbol
+
+        def beta_back(self):
+            self.fr_input_up.destroy()
+            self.fr_input_up = Frame(master=root, bg='#F2F3F4')
+            self.createWidget()
 
         def resetCanvas(self):
             self.ax[0].clear()
