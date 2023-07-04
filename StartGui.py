@@ -2,6 +2,10 @@ import platform
 import os
 from Core import Mac_GUI, Window_GUI
 import sys
+from distutils.spawn import find_executable
+
+
+if find_executable('latex'): print('latex installed')
 
 if sys.version_info[:2] < (3, 7):
     print("Requires Python 3.7 or newer. "
