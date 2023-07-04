@@ -1,4 +1,0 @@
-{'SS': '0'}
-{'SP': 'xzy^{2} \\sin^{2}{\\left(2 \\phi \\right)} \\sin^{2}{\\left(\\theta \\right)}'}
-{'PS': '4 xzy^{2} \\sin^{2}{\\left(\\theta \\right)} \\cos^{2}{\\left(2 \\phi \\right)} \\cos^{2}{\\left(\\theta \\right)}'}
-{'PP': '5 xzy^{2} \\sin^{2}{\\left(2 \\phi \\right)} \\sin^{2}{\\left(\\theta \\right)} \\cos^{4}{\\left(\\theta \\right)}'}

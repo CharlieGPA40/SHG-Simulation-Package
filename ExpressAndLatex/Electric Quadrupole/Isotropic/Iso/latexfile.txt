@@ -1,4 +1,0 @@
-{'SS': '0'}
-{'SP': '\\frac{yzyz^{2} \\cdot \\left(1 - \\cos{\\left(4 \\theta \\right)}\\right)}{4}'}
-{'PS': '0'}
-{'PP': '\\frac{yzyz^{2} \\cdot \\left(1 - \\cos{\\left(4 \\theta \\right)}\\right)}{4}'}
