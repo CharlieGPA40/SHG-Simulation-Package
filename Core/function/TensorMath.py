@@ -1,4 +1,5 @@
 from sympy import *
+
 def trans(matrix):
     matrix[0:3, 1], matrix[3:6, 0] = matrix[3:6, 0], matrix[0:3, 1]
     matrix[0:3, 2], matrix[6:9, 0] = matrix[6:9, 0], matrix[0:3, 2]
@@ -356,3 +357,18 @@ def bTS_quad(bm, sm):
     nm[7, 8] = c * G8 + f * H8 + k * I8
     nm[8, 8] = c * G9 + f * H9 + k * I9
     return nm
+
+def Intensity_Cal(rank, matrix_input, rotation_tensor):
+    if rank == 3:
+        matrix_input = trigsimp(
+            trans(sTB(rotation_tensor, trans(sTB(rotation_tensor, bTS(matrix_input, rotation_tensor.T))))))
+    elif rank == 4:
+        matrix_input = trigsimp(trans_quad_2Swap(trans_quad(bTS_quad(trans_quad_2Swap(
+            sTB_quad(rotation_tensor,
+                     trans_quad(sTB_quad(rotation_tensor, bTS_quad(matrix_input, rotation_tensor.T))))),
+            rotation_tensor.T))))
+    return matrix_input
+
+def roundMatrix(matrix_input):
+    matrix_input = matrix_input.evalf(3)
+    return matrix_input

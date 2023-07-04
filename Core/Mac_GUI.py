@@ -25,6 +25,8 @@ from tkinter.filedialog import asksaveasfilename
 from Core.CharTable import characterTable
 from Core.Dict import SetUpDict
 from Core.function import TensorMath as tm
+from Core.function import rotation as rt
+from timeit import default_timer as clock
 
 
 # ************************************** #
@@ -440,7 +442,6 @@ def run():
             Help.add_separator()
             Help.add_command(label="About...", command=lambda: self.about_page_detail())
             menu_bar.add_cascade(label='Help', menu=Help)
-            # self.setupDict()
             self.master.rowconfigure(0, weight=1)
             self.master.columnconfigure(0, weight=1)
             self.top2 = None
@@ -622,40 +623,33 @@ def run():
         def SampleRotation(self):
             if self.input_matrix_g == 'Triclinic':
                 self.sample_rot.delete(0, END)
-                self.sample_rot.insert(1, '(0,0,1)')
+                self.sample_rot.insert(1, '(001)')
             elif self.input_matrix_g == 'Monoclinic':
                 self.sample_rot.delete(0, END)
-                self.sample_rot.insert(1, '(0,0,1)')
-                self.sample_rot.insert(2, '90-xRot')
+                self.sample_rot.insert(1, '[010]')
+                self.sample_rot.insert(2, '[001]')
             elif self.input_matrix_g == 'Orthorhombic':
                 self.sample_rot.delete(0, END)
-                self.sample_rot.insert(1, '(0,0,1)')
-                self.sample_rot.insert(2, '(0,1,0)')
-                self.sample_rot.insert(3, '(1,0,0)')
+                self.sample_rot.insert(1, '(001)')
+                self.sample_rot.insert(2, '(010)')
+                self.sample_rot.insert(3, '(100)')
             elif self.input_matrix_g == 'Tetragonal':
                 self.sample_rot.delete(0, END)
-                self.sample_rot.insert(1, '(0,0,1)')
-                self.sample_rot.insert(2, '(0,1,0)')
+                self.sample_rot.insert(1, '(001)')
+                self.sample_rot.insert(2, '(010)')
             elif self.input_matrix_g == 'Cubic':
                 self.sample_rot.delete(0, END)
-                self.sample_rot.insert(1, '(0,0,1)')
-                self.sample_rot.insert(2, '(0,1,1)')
-                self.sample_rot.insert(3, '(1,1,1)')
+                self.sample_rot.insert(1, '(001)')
+                self.sample_rot.insert(2, '(011)')
+                self.sample_rot.insert(3, '(111)')
             elif self.input_matrix_g == 'Trigonal':
                 self.sample_rot.delete(0, END)
-                self.sample_rot.insert(1, '(0,0,1)')
-                self.sample_rot.insert(2, '90-zRot')
-                # self.sample_rot.insert(3, '(0,1,1)')
-                # self.sample_rot.insert(4, '(1,0,0)')
-                # self.sample_rot.insert(5, '(1,0,1)')
-                # self.sample_rot.insert(6, '(1,1,0)')
-                # self.sample_rot.insert(7, '(1,1,1)')
+                self.sample_rot.insert(1, '[100]')
+                self.sample_rot.insert(2, '[010]')
             elif self.input_matrix_g == 'Hexagonal':
                 self.sample_rot.delete(0, END)
-                self.sample_rot.insert(1, '(0,0,1)')
-                self.sample_rot.insert(2, '90-zRot')
-
-
+                self.sample_rot.insert(1, '[100]')
+                self.sample_rot.insert(2, '[010]')
 
             self.cal_bt_dis = ttk.Button(self.fr_input_up, text='Calculate', command=lambda: self.calculate(),
                                          width=10,
@@ -807,6 +801,24 @@ def run():
                     new_lst.append(e)
             return new_lst
 
+        def Rank3Matrix(self):
+            rank3Matrix = Matrix(
+                [[xxx, xyx, xzx], [xxy, xyy, xzy], [xxz, xyz, xzz], [yxx, yyx, yzx], [yxy, yyy, yzy], [yxz, yyz, yzz],
+                 [zxx, zyx, zzx], [zxy, zyy, zzy], [zxz, zyz, zzz]])
+            return rank3Matrix
+
+        def Rank4Matrix(self):
+            rank4Matrix = Matrix([[xxxx, xxxy, xxxz, xyxx, xyxy, xyxz, xzxx, xzxy, xzxz],
+                                  [xxyx, xxyy, xxyz, xyyx, xyyy, xyyz, xzyx, xzyy, xzyz],
+                                  [xxzx, xxzy, xxzz, xyzx, xyzy, xyzz, xzzx, xzzy, xzzz],
+                                  [yxxx, yxxy, yxxz, yyxx, yyxy, yyxz, yzxx, yzxy, yzxz],
+                                  [yxyx, yxyy, yxyz, yyyx, yyyy, yyyz, yzyx, yzyy, yzyz],
+                                  [yxzx, yxzy, yxzz, yyzx, yyzy, yyzz, yzzx, yzzy, yzzz],
+                                  [zxxx, zxxy, zxxz, zyxx, zyxy, zyxz, zzxx, zzxy, zzxz],
+                                  [zxyx, zxyy, zxyz, zyyx, zyyy, zyyz, zzyx, zzyy, zzyz],
+                                  [zxzx, zxzy, zxzz, zyzx, zyzy, zyzz, zzzx, zzzy, zzzz]])
+            return rank4Matrix
+
         def calculate(self):
             self.cal_bt_dis['state'] = DISABLED
             if self.opened == false:
@@ -836,47 +848,24 @@ def run():
 
             # self.fr_input_up.destroy()
             self.path_exp = 'Core/ExpressAndLatex/' + str(self.input_matrix_c) + '/' + str(self.option_var_1[0]) + '/' + str(
-                self.option_var[0]) + '/Expfile.txt'
-
-            print(self.path_exp)
+                self.option_var[0]) + '/' + str(
+                self.option_var_3[0]) + '/Expfile.txt'
 
             self.path = 'Core/ExpressAndLatex/' + str(self.input_matrix_c) + '/' + str(self.option_var_1[0]) + '/' + str(
-                self.option_var[0])
+                self.option_var[0]) + '/' + str(
+                self.option_var_3[0])
 
             epin = Matrix([[-cos(theta), 0, sin(theta)]])
             esin = Matrix([[0, 1, 0]])
             rot = Matrix([[cos(phi), -sin(phi), 0], [sin(phi), cos(phi), 0], [0, 0, 1]])
-            rotz = Matrix([[cos(phi), -sin(phi), 0], [sin(phi), cos(phi), 0], [0, 0, 1]])
             k = Matrix([[-sin(theta), 0, -cos(theta)]])
             if self.input_matrix_c == 'Electric Dipole':
+                rank = 3
                 isExist = os.path.exists(self.path_exp)
-                print(isExist)
                 if not isExist:  # Create a new directory because it does not exist
                     input_matrix = self.dic[self.option_var_1[0]][self.option_var[0]]
-                    # if self.option_var_3 == '(0,0,1)':
-                    #     input_matrix = input_matrix
-                    # elif self.option_var_3 == '(0,1,0)':
-                    #     phi_angle = np.pi / 2
-                    #     rotx = Matrix([[1, 0, 0], [0, cos(phi_angle), -sin(phi_angle)], [0, sin(phi_angle), cos(phi_angle)]])
-                    #     input_matrix = simplify(self.trans(self.sTB(rotx, self.trans(self.sTB(rotx, self.bTS(input_matrix, rotx.T))))))
-                    # elif self.option_var_3 == '(0,1,1)':
-                    #     phi_angle = np.pi / 4
-                    #     rotx = Matrix([[1, 0, 0], [0, cos(phi_angle), -sin(phi_angle)], [0, sin(phi_angle), cos(phi_angle)]])
-                    #     input_matrix = simplify(self.trans(self.sTB(rotx, self.trans(self.sTB(rotx, self.bTS(input_matrix, rotx.T))))))
-                    # elif self.option_var_3 == '(1,0,0)':
-                    #     phi_angle = np.pi / 2
-                    #     roty = Matrix([[cos(phi_angle), 0, -sin(phi_angle)], [0, 1, 0], [-sin(phi_angle), 0, cos(phi_angle)]])
-                    #     input_matrix = simplify(self.trans(self.sTB(roty, self.trans(self.sTB(roty, self.bTS(input_matrix, roty.T))))))
-                    # elif self.option_var_3 == '(1,1,1)':
-                    #     phi_angle = np.pi / 2
-                    #     input_matrix = simplify(self.trans(self.sTB(rot, self.trans(self.sTB(rot, self.bTS(input_matrix, rot.T))))))
-                    # elif self.option_var_3 == '90-xRot':
-                    #     phi_angle = np.pi / 4
-                    #     rotx = Matrix(
-                    #         [[1, 0, 0], [0, cos(phi_angle), -sin(phi_angle)], [0, sin(phi_angle), cos(phi_angle)]])
-                    #     input_matrix = simplify(self.trans(self.sTB(rotx, self.trans(self.sTB(rotx, self.bTS(input_matrix, rotx.T))))))
-                    # elif self.option_var_3 == '90-zRot':
-                    #     input_matrix = simplify(self.trans(self.sTB(rot, self.trans(self.sTB(rot, self.bTS(input_matrix, rot.T))))))
+
+                    input_matrix = rt.rotationCal(rank, self.option_var_3[0], input_matrix, self.Rank3Matrix())
 
                     rs_matrix = simplify(tm.trans(tm.sTB(rot, tm.trans(tm.sTB(rot, tm.bTS(input_matrix, rot.T))))))
                     # PP
@@ -893,7 +882,6 @@ def run():
                     sxp = esin * rs_matrix[0:3, 0:3] * esin.T
                     szp = esin * rs_matrix[6:9, 0:3] * esin.T
                     self.exprsp = simplify((sxp * cos(theta)) ** 2 + (szp * sin(theta)) ** 2)[0]
-                    print(self.exprsp)
                     # SS
                     sys = esin * rs_matrix[3:6, 0:3] * esin.T
                     self.exprss = simplify((sys ** 2)[0])
@@ -936,10 +924,12 @@ def run():
             elif self.input_matrix_c == 'Electric Quadrupole':
                 isExist = os.path.exists(self.path_exp)
                 if isExist == False:  # Create a new directory because it does not exist
+                    rank = 4
                     # Using sympy
                     # k = Matrix([[-sin(theta), 0, -cos(theta)]])
                     input_matrix_quad = self.dic_qud[self.option_var_1[0]][self.option_var[0]]
 
+                    input_matrix_quad = rt.rotationCal(rank, self.option_var_3[0], input_matrix_quad, self.Rank4Matrix())
                     rs_matrix_quad = simplify(tm.trans_quad_2Swap(tm.trans_quad(tm.bTS_quad(tm.trans_quad_2Swap(
                         tm.sTB_quad(rot, tm.trans_quad(tm.sTB_quad(rot, tm.bTS_quad(input_matrix_quad, rot.T))))),
                         rot.T))))
@@ -960,6 +950,7 @@ def run():
                                 pzp = pzp + pzp_temp
 
                     # Sympy
+                    t1 = clock()
                     self.exprpp = simplify((pxp * cos(theta)) ** 2 + (pzp * sin(theta)) ** 2)
                     self.exprps = simplify((pys ** 2))
                     sxp = 0
@@ -978,6 +969,8 @@ def run():
                     # Sympy
                     self.exprsp = simplify((sxp * cos(theta)) ** 2 + (szp * sin(theta)) ** 2)
                     self.exprss = simplify((sys ** 2))
+                    t2 = clock()
+                    print("%s s" % ((t2 - t1)))
                     self.exprss = str(self.exprss)
                     self.exprsp = str(self.exprsp)
                     self.exprps = str(self.exprps)
@@ -1028,9 +1021,10 @@ def run():
                     self.symbolList_sp.remove(phi)
             elif self.input_matrix_c == 'Magnetic Dipole':
                 isExist = os.path.exists(self.path_exp)
+                rank = 3
                 if not isExist:  # Create a new directory because it does not exist
-                    # k = Matrix([[-sin(theta), 0, -cos(theta)]])
                     input_matrix = self.dic_mag_dip[self.option_var_1[0]][self.option_var[0]]
+                    input_matrix = rt.rotationCal(rank, self.option_var_3[0], input_matrix, self.Rank3Matrix())
                     # calculate the expression
                     rs_matrix_md = simplify(tm.trans(tm.sTB(rot, tm.trans(tm.sTB(rot, tm.bTS(input_matrix, rot.T))))))
 
@@ -1195,7 +1189,7 @@ def run():
                 "font.family": "Helvetica"
             })
 
-            self.path = 'Core/ExpressAndLatex/' + str(self.input_matrix_c) + '/' + str(self.option_var_1[0]) + '/' + str(self.option_var[0]) + '/'
+            self.path = 'Core/ExpressAndLatex/' + str(self.input_matrix_c) + '/' + str(self.option_var_1[0]) + '/' + str(self.option_var[0]) + '/' + str(self.option_var_3[0]) + '/'
             isExist = os.path.exists(self.path)
             if not isExist:  # Create a new directory because it does not exist
                 os.makedirs(self.path)

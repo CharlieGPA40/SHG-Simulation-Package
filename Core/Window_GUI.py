@@ -2648,8 +2648,6 @@ class polarplotGUI(Frame):
                 self.exprsp = str(self.exprsp)
                 self.exprps = str(self.exprps)
                 self.exprpp = str(self.exprpp)
-
-
                 self.exprss = parse_expr(self.exprss, evaluate=False)
                 self.exprsp = parse_expr(self.exprsp, evaluate=False)
                 self.exprps = parse_expr(self.exprps, evaluate=False)
