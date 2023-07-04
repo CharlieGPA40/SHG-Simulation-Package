@@ -4,14 +4,14 @@ from Core import Mac_GUI, Window_GUI
 import sys
 
 if sys.version_info[:2] < (3, 7):
-    print("SymEngine requires Python 3.7 or newer. "
+    print("Requires Python 3.7 or newer. "
           "Python %d.%d detected" % sys.version_info[:2])
     sys.exit(-1)
 
 
 if platform.system() == 'Windows':
     OS = 'Windows'
-if platform.system() == 'Linux':
+elif platform.system() == 'Linux':
     OS = 'Linux'
 elif platform.system() == 'Darwin':
     OS = 'Darwin'
