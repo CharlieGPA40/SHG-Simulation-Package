@@ -875,9 +875,13 @@ def run():
                 self.option_var_3[0])
 
             epin = Matrix([[-cos(theta), 0, sin(theta)]])
+            # epin = se.sympify(epin)
             esin = Matrix([[0, 1, 0]])
+            # esin = se.sympify(esin)
             rot = Matrix([[cos(phi), -sin(phi), 0], [sin(phi), cos(phi), 0], [0, 0, 1]])
+            # rot = se.sympify(rot)
             k = Matrix([[-sin(theta), 0, -cos(theta)]])
+            # k = se.sympify(k)
             if self.input_matrix_c == 'Electric Dipole':
                 rank = 3
                 isExist = os.path.exists(self.path_exp)
