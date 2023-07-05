@@ -16,7 +16,7 @@ elif platform.system() == 'Darwin':
     OS = 'Darwin'
 
 os.system('pip install -r requirements.txt')
-
+os.system('pip install latex')
 
 from Core import Mac_GUI, Window_GUI
 
