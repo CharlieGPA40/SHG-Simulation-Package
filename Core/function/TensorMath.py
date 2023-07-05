@@ -1,4 +1,5 @@
 from sympy import *
+import symengine as se
 
 def trans(matrix):
     matrix[0:3, 1], matrix[3:6, 0] = matrix[3:6, 0], matrix[0:3, 1]

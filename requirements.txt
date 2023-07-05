@@ -4,3 +4,4 @@ sympy
 tkscrolledframe
 Pillow
 sv-ttk
+symengine

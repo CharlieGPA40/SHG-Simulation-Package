@@ -27,6 +27,7 @@ from Core.Dict.Dict import SetUpDict
 from Core.function import TensorMath as tm
 from Core.function import rotation as rt
 from timeit import default_timer as clock
+import symengine as se
 
 
 # ************************************** #
@@ -543,8 +544,13 @@ def run():
             self.myBtn = ttk.Button(self.fr_input_up, text='?')
             self.myBtn.place(y=260, x=312)
             myTip = Hovertip(self.myBtn, 'Please select all the elements to do the calculation. '
-                                         '\nThe calculation model can be found at menu->Model->Calculation Model',
-                             hover_delay=1000)
+                                         '\nThe calculation model can be found at menu->Model->Calculation Model'
+                                         '\n(001), (010), (100), (011), and (111) refer to the plane perpendicular to the incident '
+                                         'light using Miller indices.\n(001) is the initial measurement axis based on the '
+                                         'IEEE standard settings. \nFor the Trigonal and Hexagonal crystal systems, [100]'
+                                         ' and [010] refer to the mirror plane in the x or y direction, respectively. '
+                                         '\nFor the Monoclinic crystal system, {010} and {001} refer to the twofold axis '
+                                         'parallel to the y or z axis, respectively', hover_delay=1000)
             self.nex_bt['state'] = DISABLED
             self.sample_rot_label = ttk.Label(self.fr_input_up, text='Sample Rotation:', background='#F2F3F4',
                                               font=('Arial bold', 15))
@@ -559,8 +565,6 @@ def run():
             self.beta_back_bt = ttk.Button(self.fr_input_up, text='Back', command=lambda: self.beta_back(),
                                            width=5, )
             self.beta_back_bt.place(y=260, x=367)
-
-
 
         def show_crystal_system(self):
             self.input_matrix_g = []
@@ -600,7 +604,6 @@ def run():
         def show_group(self):
             itm_g = self.crystal_box.get(self.crystal_box.curselection())
             self.option_var_1 = [itm_g]
-            # print('Opt #1 {}'.format(self.option_var_1))
             self.input_matrix_g = self.option_var_1[0]
             self.group_box_group = Listbox(self.fr_input_up, width=16, justify="left", height=11, font=('Arial', 13),
                                            yscrollcommand='Vertical', selectmode=SINGLE, relief='sunken',
@@ -754,7 +757,6 @@ def run():
                 str = 'THIS IS BAD!'
             else:
                 self.valueList_ps = [float(self.entryList_ps[i].get()) for i in range(len(self.entryList_ps))]
-                # print(self.valueList_ps)
                 if chr(952) == self.showSymbol(self.symbolList_ps[0]):
                     self.valueList_ps[0] = math.radians(self.valueList_ps[0])
                 self.substitute = [(self.symbolList_ps[i], self.valueList_ps[i]) for i in range(len(self.symbolList_ps))]
@@ -841,7 +843,6 @@ def run():
             if self.opened == false:
                 self.newWindow = Toplevel(root)
                 self.newWindow.title("SHG Simulation Package")
-                # self.newWindow.maxsize()
                 self.opened = True
                 self.app_size(self.newWindow, 1520, 872)
             else:
@@ -943,12 +944,10 @@ def run():
                 isExist = os.path.exists(self.path_exp)
                 if isExist == False:  # Create a new directory because it does not exist
                     rank = 4
-                    # Using sympy
-                    # k = Matrix([[-sin(theta), 0, -cos(theta)]])
                     input_matrix_quad = self.dic_qud[self.option_var_1[0]][self.option_var[0]]
 
                     input_matrix_quad = rt.rotationCal(rank, self.option_var_3[0], input_matrix_quad, self.Rank4Matrix())
-                    rs_matrix_quad = simplify(tm.trans_quad_2Swap(tm.trans_quad(tm.bTS_quad(tm.trans_quad_2Swap(
+                    rs_matrix_quad = se.sympify(tm.trans_quad_2Swap(tm.trans_quad(tm.bTS_quad(tm.trans_quad_2Swap(
                         tm.sTB_quad(rot, tm.trans_quad(tm.sTB_quad(rot, tm.bTS_quad(input_matrix_quad, rot.T))))),
                         rot.T))))
 
@@ -969,8 +968,8 @@ def run():
 
                     # Sympy
                     t1 = clock()
-                    self.exprpp = simplify((pxp * cos(theta)) ** 2 + (pzp * sin(theta)) ** 2)
-                    self.exprps = simplify((pys ** 2))
+                    self.exprpp = se.sympify((pxp * cos(theta)) ** 2 + (pzp * sin(theta)) ** 2)
+                    self.exprps = se.sympify((pys ** 2))
                     sxp = 0
                     sys = 0
                     szp = 0
@@ -985,8 +984,8 @@ def run():
                                 sys = sys + sys_temp
                                 szp = szp + szp_temp
                     # Sympy
-                    self.exprsp = simplify((sxp * cos(theta)) ** 2 + (szp * sin(theta)) ** 2)
-                    self.exprss = simplify((sys ** 2))
+                    self.exprsp = se.sympify((sxp * cos(theta)) ** 2 + (szp * sin(theta)) ** 2)
+                    self.exprss = se.sympify((sys ** 2))
                     t2 = clock()
                     print("%s s" % ((t2 - t1)))
                     self.exprss = str(self.exprss)
@@ -1268,8 +1267,6 @@ def run():
                         dict_extract[i] = parse(l)
                         i += 1
                 latex_txt.close()
-
-                print('THis is {}'.format(dict_extract))
                 dict_SS = dict_extract[0]['SS'].replace('\\\\','\\')
                 self.wx[0].text(0.01, 0.8, "$" + dict_SS + "$", fontsize=15, va='center', ha='left')
                 dict_SP = dict_extract[1]['SP'].replace('\\\\', '\\')
