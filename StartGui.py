@@ -15,23 +15,40 @@ elif platform.system() == 'Linux':
 elif platform.system() == 'Darwin':
     OS = 'Darwin'
 
-os.system('pip install -r requirements.txt')
-os.system('pip install latex')
+path = os.getcwd()
+if OS == 'Windows':
+    cache = path + '\Core\Cache'
+elif OS == 'Darwin':
+    cache = path + '/Core/Cache'
+else:  # Linux
+    cache = path + '\Core\Cache'
+
+
+isExist = os.path.exists(cache)
+if not isExist:  # Create a new directory because it does not exist
+    os.makedirs(cache)
+    os.system('pip install -r requirements.txt')
+    os.system('pip install latex')
+    if OS == 'Windows':
+        os.system('pip install latex')
+    elif OS == 'Darwin':
+        if find_executable('latex'):
+            print('latex installed')
+        else:
+            os.system(
+                '/bin / bash - c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"')
+            os.system('brew install mactex')
+    else:  # Linux
+        os.system('sudo apt install idle3')
+        os.system('sudo apt install texlive-latex-extra')
+        os.system('sudo apt install cm-super')
+        os.system('sudo apt install dvipng')
 
 from Core import Mac_GUI, Window_GUI
 
 if OS == 'Windows':
     Window_GUI.run()
 elif OS == 'Darwin':
-    if find_executable('latex'):
-        print('latex installed')
-    else:
-        os.system('/bin / bash - c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"')
-        os.system('brew install mactex')
     Mac_GUI.run()
 else:  # Linux
     Window_GUI.run()
-    os.system('sudo apt install idle3')
-    os.system('sudo apt install texlive-latex-extra')
-    os.system('sudo apt install cm-super')
-    os.system('sudo apt install dvipng')

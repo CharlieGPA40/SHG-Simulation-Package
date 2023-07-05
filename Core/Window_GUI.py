@@ -203,7 +203,7 @@ def run():
             self.root.maxsize(312,232)
             self.root.title("About SHG Simulation Tool")
             self.root.protocol("WM_DELETE_WINDOW", self.close)
-            au_logo = Image.open("Image/About.png")
+            au_logo = Image.open("Core/Image/About.png")
             au_logo = au_logo.resize((160, 80))
             au_logo = ImageTk.PhotoImage(au_logo)
             label_au = Label(self.root, image=au_logo)
