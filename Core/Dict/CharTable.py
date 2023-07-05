@@ -342,3 +342,141 @@ class characterTable:
             [['Iso', '1'],
              ['1', '1']]
         return self.chr_data
+
+def charTableInit(option):
+    if option == 'C1' or option == 'C1 – I':
+        title_text = 'Character table for point group C$_1$'
+        charSelect = 0
+
+    elif option == 'S2':
+        title_text = 'Character table for point group S$_2$'
+        charSelect = 1
+
+    elif option == 'C2':
+        title_text = 'Character table for point group C$_2$'
+        charSelect = 2
+
+    elif option == 'C1h':
+        title_text = 'Character table for point group C$_{1h}$'
+        charSelect = 3
+
+    elif option == 'C2h':
+        title_text = 'Character table for point group C$_{2h}$'
+        charSelect = 4
+
+    elif option == 'D2':
+        title_text = 'Character table for point group D$_2$'
+        charSelect = 5
+
+    elif option == 'C2v':
+        title_text = 'Character table for point group C$_{2v}$'
+        charSelect = 6
+
+    elif option == 'D2h':
+        title_text = 'Character table for point group D$_{2h}$'
+        charSelect = 7
+
+    elif option == 'C4':
+        title_text = 'Character table for point group C$_4$'
+        charSelect = 8
+
+    elif option == 'S4':
+        title_text = 'Character table for point group S$_4$'
+        charSelect = 9
+
+    elif option == 'C4h':
+        title_text = 'Character table for point group D$_{4h}$'
+        charSelect = 10
+
+    elif option == 'D4':
+        title_text = 'Character table for point group D$_4$'
+        charSelect = 11
+
+    elif option == 'C4v':
+        title_text = 'Character table for point group C$_{4v}$'
+        charSelect = 12
+
+    elif option == 'D2d':
+        title_text = 'Character table for point group D$_{2d}$'
+        charSelect = 13
+
+    elif option == 'D4h':
+        title_text = 'Character table for point group D$_{4h}$'
+        charSelect = 14
+
+    elif option == 'C3':
+        title_text = 'Character table for point group C$_3$'
+        charSelect = 15
+
+    elif option == 'S6':
+        title_text = 'Character table for point group S$_6$'
+        charSelect = 16
+
+    elif option == 'D3':
+        title_text = 'Character table for point group D$_3$'
+        charSelect = 17
+
+    elif option == 'C3v':
+        title_text = 'Character table for point group C$_{3v}$'
+        charSelect = 18
+
+    elif option == 'D3d':
+        title_text = 'Character table for point group D$_{3d}$'
+        charSelect = 19
+
+    elif option == 'C6':
+        title_text = 'Character table for point group C$_{6}$'
+        charSelect = 20
+
+    elif option == 'C3h':
+        title_text = 'Character table for point group C$_{3h}$'
+        charSelect = 21
+
+    elif option == 'C6h':
+        title_text = 'Character table for point group C$_{6h}$'
+        charSelect = 22
+
+    elif option == 'D6':
+        title_text = 'Character table for point group D$_6$'
+        charSelect = 23
+
+    elif option == 'C6v':
+        title_text = 'Character table for point group C$_{6v}$'
+        charSelect = 24
+
+    elif option == 'D3h':
+        title_text = 'Character table for point group D$_{3h}$'
+        charSelect = 25
+
+    elif option == 'D6h':
+        title_text = 'Character table for point group D$_{6h}$'
+        charSelect = 26
+
+    elif option == 'T':
+        title_text = 'Character table for point group T'
+        charSelect = 27
+
+    elif option == 'Th':
+        title_text = 'Character table for point group T$_h$'
+        charSelect = 28
+
+    elif option == 'O':
+        title_text = 'Character table for point group O'
+        charSelect = 29
+
+    elif option == 'Td':
+        title_text = 'Character table for point group T$_d$'
+        charSelect = 30
+
+    elif option == 'Oh':
+        title_text = 'Character table for point group O$_h$'
+        charSelect = 31
+
+    elif option == 'Iso':
+        title_text = 'Character table for point group Iso'
+        charSelect = 32
+    else:
+        title_text = 'NONE'
+        charSelect = -1
+
+    return title_text, charSelect

@@ -23,7 +23,9 @@ import sv_ttk
 from idlelib.tooltip import Hovertip
 from tkinter.filedialog import asksaveasfilename
 from Core.Dict.CharTable import characterTable
+import Core.Dict.CharTable as ct
 from Core.Dict.Dict import SetUpDict
+import Core.Dict.Misc as Misc
 from Core.function import TensorMath as tm
 from Core.function import rotation as rt
 from timeit import default_timer as clock
@@ -88,197 +90,20 @@ def run():
 
             license_box = Text(self.tab_1, height=10, width=80, relief='sunken')
             license_box.grid(column=0, row=10)
-            disclaimer = 'Apache License' \
-                         '\nVersion 2.0, January 2004' \
-                         '\nhttp://www.apache.org/licenses/' \
-                         '\n\nTERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION' \
-                         '\n1. Definitions.' \
-                         '\n"License" shall mean the terms and conditions for use, reproduction,' \
-                         'and distribution as defined by Sections 1 through 9 of this document.' \
-                         '\n\n"Licensor" shall mean the copyright owner or entity authorized by' \
-                         'the copyright owner that is granting the License.' \
-                         '\n\n"Legal Entity" shall mean the union of the acting entity and all' \
-                         'other entities that control, are controlled by, or are under common' \
-                         'control with that entity. For the purposes of this definition,' \
-                         '\n\n"control" means (i) the power, direct or indirect, to cause the ' \
-                         'direction or management of such entity, whether by contract or ' \
-                         'otherwise, or (ii) ownership of fifty percent (50%) or more of the' \
-                         'outstanding shares, or (iii) beneficial ownership of such entity.' \
-                         '\n\n"You" (or "Your") shall mean an individual or Legal Entity ' \
-                         'exercising permissions granted by this License.' \
-                         '\n\n"Source" form shall mean the preferred form for making modifications, ' \
-                         'including but not limited to software source code, documentation ' \
-                         'source, and configuration files. ' \
-                         '\n\n"Object" form shall mean any form resulting from mechanical ' \
-                         'transformation or translation of a Source form, including but' \
-                         ' not limited to compiled object code, generated documentation,' \
-                         ' and conversions to other media types.' \
-                         '\n\n"Work" shall mean the work of authorship, whether in Source or' \
-                         ' Object form, made available under the License, as indicated by a ' \
-                         'copyright notice that is included in or attached to the work' \
-                         ' (an example is provided in the Appendix below). ' \
-                         '\n\n"Derivative Works" shall mean any work, whether in Source or Object' \
-                         ' form, that is based on (or derived from) the Work and for which the' \
-                         ' editorial revisions, annotations, elaborations, or other modifications ' \
-                         'represent, as a whole, an original work of authorship. For the purposes ' \
-                         'of this License, Derivative Works shall not include works that remain ' \
-                         'separable from, or merely link (or bind by name) to the interfaces of, ' \
-                         'the Work and Derivative Works thereof.' \
-                         '\n\n"Contribution" shall mean any work of authorship, including ' \
-                         'the original version of the Work and any modifications or additions ' \
-                         'to that Work or Derivative Works thereof, that is intentionally ' \
-                         'submitted to Licensor for inclusion in the Work by the copyright owner ' \
-                         'or by an individual or Legal Entity authorized to submit on behalf of ' \
-                         'the copyright owner. For the purposes of this definition, "submitted" ' \
-                         'means any form of electronic, verbal, or written communication sent ' \
-                         'to the Licensor or its representatives, including but not limited to ' \
-                         'communication on electronic mailing lists, source code control systems ,' \
-                         'and issue tracking systems that are managed by, or on behalf of, the ' \
-                         'Licensor for the purpose of discussing and improving the Work, but ' \
-                         'excluding communication that is conspicuously marked or otherwise ' \
-                         'designated in writing by the copyright owner as "Not a Contribution."' \
-                         '\n\n"Contributor" shall mean Licensor and any individual or Legal Entity on ' \
-                         'behalf of whom a Contribution has been received by Licensor and ' \
-                         'subsequently incorporated within the Work.' \
-                         '\n\n2. Grant of Copyright License. Subject to the terms and conditions of' \
-                         ' this License, each Contributor hereby grants to You a perpetual, ' \
-                         'worldwide, non-exclusive, no-charge, royalty-free, irrevocable ' \
-                         'copyright license to reproduce, prepare Derivative Works of, ' \
-                         'publicly display, publicly perform, sublicense, and distribute the ' \
-                         'Work and such Derivative Works in Source or Object form. ' \
-                         '\n\n3. Grant of Patent License. Subject to the terms and conditions of ' \
-                         'this License, each Contributor hereby grants to You a perpetual, ' \
-                         'worldwide, non-exclusive, no-charge, royalty-free, irrevocable ' \
-                         '(except as stated in this section) patent license to make, have made, ' \
-                         'use, offer to sell, sell, import, and otherwise transfer the Work, ' \
-                         'where such license applies only to those patent claims licensable ' \
-                         'by such Contributor that are necessarily infringed by their ' \
-                         'Contribution(s) alone or by combination of their Contribution(s) ' \
-                         'with the Work to which such Contribution(s) was submitted. If You ' \
-                         'institute patent litigation against any entity (including a ' \
-                         'cross-claim or counterclaim in a lawsuit) alleging that the Work ' \
-                         'or a Contribution incorporated within the Work constitutes direct ' \
-                         'or contributory patent infringement, then any patent licenses ' \
-                         'granted to You under this License for that Work shall terminate ' \
-                         'as of the date such litigation is filed. ' \
-                         '\n\n4. Redistribution. You may reproduce and distribute copies of the ' \
-                         'Work or Derivative Works thereof in any medium, with or without ' \
-                         'modifications, and in Source or Object form, provided that You' \
-                         ' meet the following conditions: ' \
-                         '\n(a) You must give any other recipients of the Work or' \
-                         'Derivative Works a copy of this License; and' \
-                         '\n\n(b) You must cause any modified files to carry prominent notices ' \
-                         'stating that You changed the files; and ' \
-                         '\n\n(c) You must retain, in the Source form of any Derivative Works' \
-                         ' that You distribute, all copyright, patent, trademark, and ' \
-                         'attribution notices from the Source form of the Work,' \
-                         'excluding those notices that do not pertain to any part of ' \
-                         'the Derivative Works; and ' \
-                         '\n\n(d) If the Work includes a "NOTICE" text file as part of its ' \
-                         'distribution, then any Derivative Works that You distribute must ' \
-                         'include a readable copy of the attribution notices contained ' \
-                         'within such NOTICE file, excluding those notices that do not ' \
-                         'pertain to any part of the Derivative Works, in at least one ' \
-                         'of the following places: within a NOTICE text file distributed ' \
-                         'as part of the Derivative Works; within the Source form or ' \
-                         'documentation, if provided along with the Derivative Works; or, ' \
-                         'within a display generated by the Derivative Works, if and ' \
-                         'wherever such third-party notices normally appear. The contents ' \
-                         'of the NOTICE file are for informational purposes only and ' \
-                         'do not modify the License. You may add Your own attribution ' \
-                         'notices within Derivative Works that You distribute, alongside' \
-                         ' or as an addendum to the NOTICE text from the Work, provided ' \
-                         'that such additional attribution notices cannot be construed ' \
-                         'as modifying the License.' \
-                         '\n\nYou may add Your own copyright statement to Your modifications and ' \
-                         'may provide additional or different license terms and conditions ' \
-                         'for use, reproduction, or distribution of Your modifications, or ' \
-                         'for any such Derivative Works as a whole, provided Your use, ' \
-                         'reproduction, and distribution of the Work otherwise complies with' \
-                         ' the conditions stated in this License.' \
-                         '\n\n5. Submission of Contributions. Unless You explicitly state otherwise, ' \
-                         'any Contribution intentionally submitted for inclusion in the Work ' \
-                         'by You to the Licensor shall be under the terms and conditions of ' \
-                         'this License, without any additional terms or conditions. ' \
-                         'Notwithstanding the above, nothing herein shall supersede or modify ' \
-                         'the terms of any separate license agreement you may have executed ' \
-                         'with Licensor regarding such Contributions. ' \
-                         '\n\n6. Trademarks. This License does not grant permission to use the trade ' \
-                         'names, trademarks, service marks, or product names of the Licensor, ' \
-                         'except as required for reasonable and customary use in describing the ' \
-                         'origin of the Work and reproducing the content of the NOTICE file.' \
-                         '\n\n7. Disclaimer of Warranty. Unless required by applicable law or ' \
-                         'agreed to in writing, Licensor provides the Work (and each ' \
-                         'Contributor provides its Contributions) on an "AS IS" BASIS, ' \
-                         ' WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or ' \
-                         'implied, including, without limitation, any warranties or conditions ' \
-                         'of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A ' \
-                         'PARTICULAR PURPOSE. You are solely responsible for determining the ' \
-                         'appropriateness of using or redistributing the Work and assume any ' \
-                         'risks associated with Your exercise of permissions under this License.' \
-                         '\n\n8. Limitation of Liability. In no event and under no legal theory, ' \
-                         'whether in tort (including negligence), contract, or otherwise, ' \
-                         'unless required by applicable law (such as deliberate and grossly ' \
-                         'negligent acts) or agreed to in writing, shall any Contributor be ' \
-                         'liable to You for damages, including any direct, indirect, special, ' \
-                         'incidental, or consequential damages of any character arising as a ' \
-                         'result of this License or out of the use or inability to use the ' \
-                         'Work (including but not limited to damages for loss of goodwill, ' \
-                         'work stoppage, computer failure or malfunction, or any and all ' \
-                         'other commercial damages or losses), even if such Contributor ' \
-                         'has been advised of the possibility of such damages. ' \
-                         '\n\n9. Accepting Warranty or Additional Liability. While redistributing ' \
-                         'the Work or Derivative Works thereof, You may choose to offer, ' \
-                         'and charge a fee for, acceptance of support, warranty, indemnity, ' \
-                         'or other liability obligations and/or rights consistent with this ' \
-                         'License. However, in accepting such obligations, You may act only ' \
-                         'on Your own behalf and on Your sole responsibility, not on behalf ' \
-                         'of any other Contributor, and only if You agree to indemnify, ' \
-                         'defend, and hold each Contributor harmless for any liability ' \
-                         'incurred by, or claims asserted against, such Contributor by reason ' \
-                         'of your accepting any such warranty or additional liability.' \
-                         '\n\nEND OF TERMS AND CONDITIONS' \
-                         '\n\nCopyright 2023 Chunli Tang' \
-                         '\n\nLicensed under the Apache License, Version 2.0 (the "License");' \
-                         '\nyou may not use this file except in compliance with the License.' \
-                         '\nYou may obtain a copy of the License at' \
-                         '\n\n\thttp://www.apache.org/licenses/LICENSE-2.0' \
-                         '\n\nUnless required by applicable law or agreed to in writing, software' \
-                         ' distributed under the License is distributed on an "AS IS" BASIS, ' \
-                         'WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. ' \
-                         'See the License for the specific language governing permissions and ' \
-                         'limitations under the License.'
+            disclaimer = Misc.disclaimer()
             license_box.insert(END, disclaimer)
             license_box.config(state='disabled')
 
             Ack_box = Text(self.tab_2, height=10, width=80, relief='sunken')
             Ack_box.grid(column=0, row=10)
-            acknowledge = 'This work was supported by NSF EPM Grant No. DMR-2129879 ' \
-                          '\n\nWe would like to give a special thanks to: \nBrian Opatosky, Matt Galinger, J Isaac Garcia'
+            acknowledge = Misc.ack()
             Ack_box.insert(END, acknowledge)
             Ack_box.config(state='disabled')
 
 
             ref_box = Text(self.tab_3, height=10, width=80, relief='sunken')
             ref_box.grid(column=0, row=10)
-            reference = '[1] Li, Yilei et al. "Probing symmetry properties of few-layer MoS2 and h-BN by optical second-harmonic generation." Nano letters vol. 13,7 (2013): 3329-33. doi: 10.1021/n/401561г.' \
-                        '\n[2] Fiebig, Manfred et al. "Second-harmonic generation as a tool for studying electronic and magnetic structures of crystals: review."Journalof The Optical Societyof America B-optical Physics 22 (2005): 96-118.' \
-                        '\n[3] http://symmetry.jacobs-university.de/group.html.' \
-                        '\n[4] Gallego et al. "Automatic calculation of symmetry-adapted tensors in magnetic and non-magnetic materials: a new tool of the Bilbao Crystallographic Server" Acta Cryst. A (2019) 75, 438-447.' \
-                        '\n[5] Boyd, Robert W., Alexander L.Gaeta, and Enno Giese. "Nonlinear optics." Springer Handbook of Atomic, Molecular, and Optical Physics.Cham: Springer International Publishing, 2008.1097 - 1110.' \
-                        '\n[6] Torchinsky, D. H., et al. "Structural distortion-induced magnetoelastic locking in Sr 2 IrO 4 revealed through nonlinear optical harmonic generation." Physical review letters 114.9 (2015): 096404.' \
-                        '\n[7] Fichera, Bryan T., et al. "Second harmonic generation as a probe of broken mirror symmetry." Physical Review B 101.24 (2020): 241106.' \
-                        '\n[8] Fonseca, Jordan, et al. "Anomalous Second Harmonic Generation from Atomically Thin MnBi2Te4." Nano Letters (2022).' \
-                        '\n[9] Li, Yilei, et al. "Probing symmetry properties of few-layer MoS2 and h-BN by optical second-harmonic generation." Nano letters 13.7 (2013): 3329-3333.' \
-                        '\n[10] Germer, Thomas A., et al. "Depletion-electric-field-induced second-harmonic generation near oxidized GaAs (001) surfaces." Physical Review B 55.16 (1997): 10694.' \
-                        '\n[11] Luo, Xiangpeng, et al. "Ultrafast modulations and detection of a ferro-rotational charge density wave using time-resolved electric quadrupole second harmonic generation." Physical review letters 127.12 (2021): 126401.' \
-                        '\n[12] Jin, Wencan, et al. "Observation of a ferro-rotational order coupled with second-order nonlinear optical fields." Nature Physics 16.1 (2020): 42-46.' \
-                        '\n[13] Anisimov, A. N., N. A. Perekopaiko, and Aleksei Valerevich Petukhov. "Relationship between the anisotropy of reflected second harmonic radiation and the orientation of the crystal surface." -Soviet journal of quantum electronics 21.1 (1991): 82.' \
-                        '\n[14] Newnham, Robert E.Properties of materials: anisotropy, symmetry, structure.Oxford university press, 2005.' \
-
-
-
-
+            reference = Misc.reference()
             ref_box.insert(END, reference)
             ref_box.config(state='disabled')
 
@@ -380,7 +205,7 @@ def run():
             self.root.title("About SHG Simulation Tool")
             # self.root.configure(bg='#F2F3F4')
             self.root.protocol("WM_DELETE_WINDOW", self.close)
-            au_logo = Image.open("Core/Image/About.png")
+            au_logo = Image.open("Core/Image/Startup.png")
             au_logo = au_logo.resize((160, 80))
             au_logo = ImageTk.PhotoImage(au_logo)
             label_au = Label(self.root, image=au_logo)
@@ -389,7 +214,7 @@ def run():
             lbl = Label(self.root, text="SHG Simulation Package",font='Helvetica 14 bold')
             lbl.grid(column=0, row=1, padx=10)
             lbl = Label(self.root,
-                        text="Version 1.0", font='Helvetica 11', fg='#5b5b5b')
+                        text="Version 0.0.5", font='Helvetica 11', fg='#5b5b5b')
             lbl.grid(column=0, row=2)
             lbl = Label(self.root,
                         text="Auburn University Ultrafast Nonlinear Optics Lab 2023", font='Helvetica 11', fg='#5b5b5b')
@@ -692,11 +517,6 @@ def run():
             self.polarList_ps = []
             self.polarList_pp = []
 
-        def showSymbol(self, symbol):
-            if str(symbol) == 'theta':
-                return chr(952)
-            else:
-                return symbol
 
         def beta_back(self):
             self.fr_input_up.destroy()
@@ -725,7 +545,7 @@ def run():
                 str = 'THIS IS BAD!'
             else:
                 self.valueList_ss = [float(self.entryList_ss[i].get()) for i in range(len(self.entryList_ss))]
-                if chr(952) == self.showSymbol(self.symbolList_ss[0]):
+                if chr(952) == Misc.showSymbol(self.symbolList_ss[0]):
                     self.valueList_ss[0] = math.radians(self.valueList_ss[0])
                 self.substitute = [(self.symbolList_ss[i], self.valueList_ss[i]) for i in range(len(self.symbolList_ss))]
                 for i in range(len(phi_value)):
@@ -741,7 +561,7 @@ def run():
                 str = 'THIS IS BAD!'
             else:
                 self.valueList_sp = [float(self.entryList_sp[i].get()) for i in range(len(self.entryList_sp))]
-                if chr(952) == self.showSymbol(self.symbolList_sp[0]):
+                if chr(952) == Misc.showSymbol(self.symbolList_sp[0]):
                     self.valueList_sp[0] = math.radians(self.valueList_sp[0])
                 self.substitute = [(self.symbolList_sp[i], self.valueList_sp[i]) for i in range(len(self.symbolList_sp))]
                 for i in range(len(phi_value)):
@@ -757,7 +577,7 @@ def run():
                 str = 'THIS IS BAD!'
             else:
                 self.valueList_ps = [float(self.entryList_ps[i].get()) for i in range(len(self.entryList_ps))]
-                if chr(952) == self.showSymbol(self.symbolList_ps[0]):
+                if chr(952) == Misc.showSymbol(self.symbolList_ps[0]):
                     self.valueList_ps[0] = math.radians(self.valueList_ps[0])
                 self.substitute = [(self.symbolList_ps[i], self.valueList_ps[i]) for i in range(len(self.symbolList_ps))]
                 for i in range(len(phi_value)):
@@ -774,7 +594,7 @@ def run():
                 str = 'THIS IS BAD!'
             else:
                 self.valueList_pp = [float(self.entryList_pp[i].get()) for i in range(len(self.entryList_pp))]
-                if chr(952) == self.showSymbol(self.symbolList_pp[0]):
+                if chr(952) == Misc.showSymbol(self.symbolList_pp[0]):
                     self.valueList_pp[0] = math.radians(self.valueList_pp[0])
                 self.substitute = [(self.symbolList_pp[i], self.valueList_pp[i]) for i in range(len(self.symbolList_pp))]
                 for i in range(len(phi_value)):
@@ -821,6 +641,23 @@ def run():
                     new_lst.append(e)
             return new_lst
 
+        def symbolList(self, exprpp, exprps, exprss, exprsp):
+            symbolList_pp = self.getList(exprpp)
+            symbolList_ps = self.getList(exprps)
+            symbolList_ss = self.getList(exprss)
+            symbolList_sp = self.getList(exprsp)
+
+            # remove variable phi since no need of it
+            if phi in symbolList_pp:
+                symbolList_pp.remove(phi)
+            if phi in symbolList_ps:
+                symbolList_ps.remove(phi)
+            if phi in symbolList_ss:
+                symbolList_ss.remove(phi)
+            if phi in symbolList_sp:
+                symbolList_sp.remove(phi)
+            return symbolList_pp,symbolList_ps,symbolList_ss,symbolList_sp
+
         def Rank3Matrix(self):
             rank3Matrix = Matrix(
                 [[xxx, xyx, xzx], [xxy, xyy, xzy], [xxz, xyz, xzz], [yxx, yyx, yzx], [yxy, yyy, yzy], [yxz, yyz, yzz],
@@ -856,15 +693,6 @@ def run():
             self.fr_button_dw_message = Frame(self.newWindow)
             self.fr_button_dw_message.grid(row=4, column=0,)
             self.text_box = Text(self.fr_button_dw_message, height=1, width=214, bg='#D3D3D3')
-            def parse(d):
-                dictionary = {}
-                # Removes curly braces and splits the pairs into a list
-                pairs = d.strip('{}').split(', ')
-                for i in pairs:
-                    pair = i.split(': ')
-                    # Other symbols from the key-value pair should be stripped.
-                    dictionary[pair[0].strip('\'\'\"\"')] = pair[1].strip('\'\'\"\"')
-                return dictionary
 
             # self.fr_input_up.destroy()
             self.path_exp = 'Core/ExpressAndLatex/' + str(self.input_matrix_c) + '/' + str(self.option_var_1[0]) + '/' + str(
@@ -876,13 +704,9 @@ def run():
                 self.option_var_3[0])
 
             epin = Matrix([[-cos(theta), 0, sin(theta)]])
-            # epin = se.sympify(epin)
             esin = Matrix([[0, 1, 0]])
-            # esin = se.sympify(esin)
             rot = Matrix([[cos(phi), -sin(phi), 0], [sin(phi), cos(phi), 0], [0, 0, 1]])
-            # rot = se.sympify(rot)
             k = Matrix([[-sin(theta), 0, -cos(theta)]])
-            # k = se.sympify(k)
             if self.input_matrix_c == 'Electric Dipole':
                 rank = 3
                 isExist = os.path.exists(self.path_exp)
@@ -922,7 +746,7 @@ def run():
                     i = 0
                     for l in lines:
                         if l != '':
-                            dict_exp_extract[i] = parse(l)
+                            dict_exp_extract[i] = Misc.parse(l)
                             i += 1
                     express_txt.close()
                     # sympy
@@ -931,18 +755,7 @@ def run():
                     self.exprps = parse_expr(dict_exp_extract[2]['PS'],evaluate=False)
                     self.exprpp = parse_expr(dict_exp_extract[3]['PP'],evaluate=False)
 
-                self.symbolList_pp = self.getList(self.exprpp)
-                self.symbolList_ps = self.getList(self.exprps)
-                self.symbolList_ss = self.getList(self.exprss)
-                self.symbolList_sp = self.getList(self.exprsp)
-                if phi in self.symbolList_pp:
-                    self.symbolList_pp.remove(phi)
-                if phi in self.symbolList_ps:
-                    self.symbolList_ps.remove(phi)
-                if phi in self.symbolList_ss:
-                    self.symbolList_ss.remove(phi)
-                if phi in self.symbolList_sp:
-                    self.symbolList_sp.remove(phi)
+                self.symbolList_pp, self.symbolList_ps, self.symbolList_ss, self.symbolList_sp = self.symbolList(self.exprpp, self.exprps, self.exprss, self.exprsp)
             elif self.input_matrix_c == 'Electric Quadrupole':
                 isExist = os.path.exists(self.path_exp)
                 if isExist == False:  # Create a new directory because it does not exist
@@ -1006,39 +819,18 @@ def run():
                     i = 0
                     for l in lines:
                         if l != '':
-                            dict_exp_extract[i] = parse(l)
+                            dict_exp_extract[i] = Misc.parse(l)
                             i += 1
                     express_txt.close()
                     ss_temp = dict_exp_extract[0]['SS']
-                    # sympy
                     self.exprss = parse_expr(ss_temp, evaluate=False)
-
                     sp_temp = dict_exp_extract[1]['SP']
-                    # sympy
                     self.exprsp = parse_expr(sp_temp, evaluate=False)
-
                     ps_temp = dict_exp_extract[2]['PS']
-                    # sympy
                     self.exprps = parse_expr(ps_temp, evaluate=False)
                     pp_temp = dict_exp_extract[3]['PP']
-                    # sympy
                     self.exprpp = parse_expr(pp_temp, evaluate=False)
-
-                # every change should clear the symbolList at first
-                self.symbolList_pp = self.getList(self.exprpp)
-                self.symbolList_ps = self.getList(self.exprps)
-                self.symbolList_ss = self.getList(self.exprss)
-                self.symbolList_sp = self.getList(self.exprsp)
-
-                # remove variable phi since no need of it
-                if phi in self.symbolList_pp:
-                    self.symbolList_pp.remove(phi)
-                if phi in self.symbolList_ps:
-                    self.symbolList_ps.remove(phi)
-                if phi in self.symbolList_ss:
-                    self.symbolList_ss.remove(phi)
-                if phi in self.symbolList_sp:
-                    self.symbolList_sp.remove(phi)
+                self.symbolList_pp, self.symbolList_ps, self.symbolList_ss, self.symbolList_sp = self.symbolList(self.exprpp, self.exprps, self.exprss, self.exprsp)
             elif self.input_matrix_c == 'Magnetic Dipole':
                 isExist = os.path.exists(self.path_exp)
                 rank = 3
@@ -1106,7 +898,7 @@ def run():
                     i = 0
                     for l in lines:
                         if l != '':
-                            dict_exp_extract[i] = parse(l)
+                            dict_exp_extract[i] = Misc.parse(l)
                             i += 1
                     express_txt.close()
 
@@ -1116,21 +908,10 @@ def run():
                     self.exprps = parse_expr(dict_exp_extract[2]['PS'],evaluate=False)
                     self.exprpp = parse_expr(dict_exp_extract[3]['PP'],evaluate=False)
 
-                # every change should clear the symbolList at first
-                self.symbolList_pp = self.getList(self.exprpp)
-                self.symbolList_ps = self.getList(self.exprps)
-                self.symbolList_ss = self.getList(self.exprss)
-                self.symbolList_sp = self.getList(self.exprsp)
+                self.symbolList_pp, self.symbolList_ps, self.symbolList_ss, self.symbolList_sp = self.symbolList(self.exprpp, self.exprps, self.exprss, self.exprsp)
+            self.display_GUI()
 
-                if phi in self.symbolList_pp:
-                    self.symbolList_pp.remove(phi)
-                if phi in self.symbolList_ps:
-                    self.symbolList_ps.remove(phi)
-                if phi in self.symbolList_ss:
-                    self.symbolList_ss.remove(phi)
-                if phi in self.symbolList_sp:
-                    self.symbolList_sp.remove(phi)
-
+        def display_GUI(self):
             self.text_box.delete('1.0', 'end')
             message = str(self.input_matrix_c) + '  :  ' + str(self.option_var_1[0]) + ' - ' + str(self.option_var[0])
             self.text_box.insert('end', message)
@@ -1143,6 +924,7 @@ def run():
             self.tab_1 = Frame(self.notebook)
             self.tab_2 = Frame(self.notebook)
             self.tab_3 = Frame(self.notebook)
+            self.tab_4 = Frame(self.notebook)
             self.tab_1.pack()
 
             self.f, self.ax = plt.subplots(1, 4, subplot_kw={'projection': 'polar'}, figsize=(15, 4))
@@ -1267,7 +1049,7 @@ def run():
                 i = 0
                 for l in lines:
                     if l != '':
-                        dict_extract[i] = parse(l)
+                        dict_extract[i] = Misc.parse(l)
                         i += 1
                 latex_txt.close()
                 dict_SS = dict_extract[0]['SS'].replace('\\\\','\\')
@@ -1283,137 +1065,7 @@ def run():
 
             # Tab #3
             footer_text = 'Data acquired from http://symmetry.jacobs-university.de'
-            if self.option_var[0] == 'C1' or self.option_var[0] == 'C1 – I':
-                title_text = 'Character table for point group C$_1$'
-                self.charSelect = 0
-
-            if self.option_var[0] == 'S2' or self.option_var[0] == 'S2 – I(Bar)':
-                title_text = 'Character table for point group S$_2$'
-                self.charSelect = 1
-
-            if self.option_var[0] == 'C2' or self.option_var[0] == 'C2 – 2':
-                title_text = 'Character table for point group C$_2$'
-                self.charSelect = 2
-
-            if self.option_var[0] == 'C1h' or self.option_var[0] == 'C1h – m':
-                title_text = 'Character table for point group C$_{1h}$'
-                self.charSelect = 3
-
-            if self.option_var[0] == 'C2h' or self.option_var[0] == 'C2h – 2|m':
-                title_text = 'Character table for point group C$_{2h}$'
-                self.charSelect = 4
-
-            if self.option_var[0] == 'D2' or self.option_var[0] == 'D2 – 222':
-                title_text = 'Character table for point group D$_2$'
-                self.charSelect = 5
-
-            if self.option_var[0] == 'C2v' or self.option_var[0] == 'C2v – mm2':
-                title_text = 'Character table for point group C$_{2v}$'
-                self.charSelect = 6
-
-            if self.option_var[0] == 'D2h' or self.option_var[0] == 'D2h – mmm':
-                title_text = 'Character table for point group D$_{2h}$'
-                self.charSelect = 7
-
-            if self.option_var[0] == 'C4' or self.option_var[0] == 'C4 – 4':
-                title_text = 'Character table for point group C$_4$'
-                self.charSelect = 8
-
-            if self.option_var[0] == 'S4' or self.option_var[0] == 'S4 – 4(Bar)':
-                title_text = 'Character table for point group S$_4$'
-                self.charSelect = 9
-
-            if self.option_var[0] == 'C4h' or self.option_var[0] == 'C4h – 4|m':
-                title_text = 'Character table for point group D$_{4h}$'
-                self.charSelect = 10
-
-            if self.option_var[0] == 'D4' or self.option_var[0] == 'D4 – 422':
-                title_text = 'Character table for point group D$_4$'
-                self.charSelect = 11
-
-            if self.option_var[0] == 'C4v' or self.option_var[0] == 'C4v – 4mm':
-                title_text = 'Character table for point group C$_{4v}$'
-                self.charSelect = 12
-
-            if self.option_var[0] == 'D2d' or self.option_var[0] == 'D2d – 4(Bar)2m':
-                title_text = 'Character table for point group D$_{2d}$'
-                self.charSelect = 13
-
-            if self.option_var[0] == 'D4h' or self.option_var[0] == 'D4h – 4|mmm':
-                title_text = 'Character table for point group D$_{4h}$'
-                self.charSelect = 14
-
-            if self.option_var[0] == 'C3' or self.option_var[0] == 'C3 – 3':
-                title_text = 'Character table for point group C$_3$'
-                self.charSelect = 15
-
-            if self.option_var[0] == 'S6' or self.option_var[0] == 'S6 – 3(Bar)':
-                title_text = 'Character table for point group S$_6$'
-                self.charSelect = 16
-
-            if self.option_var[0] == 'D3' or self.option_var[0] == 'D3 – 32':
-                title_text = 'Character table for point group D$_3$'
-                self.charSelect = 17
-
-            if self.option_var[0] == 'C3v' or self.option_var[0] == 'C3v – 3m':
-                title_text = 'Character table for point group C$_{3v}$'
-                self.charSelect = 18
-
-            if self.option_var[0] == 'D3d' or self.option_var[0] == 'D3d – 3(Bar)m':
-                title_text = 'Character table for point group D$_{3d}$'
-                self.charSelect = 19
-
-            if self.option_var[0] == 'C6' or self.option_var[0] == 'C6 – 6':
-                title_text = 'Character table for point group C$_{6}$'
-                self.charSelect = 20
-
-            if self.option_var[0] == 'C3h' or self.option_var[0] == 'C3h – 6(Bar)':
-                title_text = 'Character table for point group C$_{3h}$'
-                self.charSelect = 21
-
-            if self.option_var[0] == 'C6h' or self.option_var[0] == 'C6h – 6|m':
-                title_text = 'Character table for point group C$_{6h}$'
-                self.charSelect = 22
-
-            if self.option_var[0] == 'D6' or self.option_var[0] == 'D6 – 622':
-                title_text = 'Character table for point group D$_6$'
-                self.charSelect = 23
-
-            if self.option_var[0] == 'C6v' or self.option_var[0] == 'C6v – 6mm':
-                title_text = 'Character table for point group C$_{6v}$'
-                self.charSelect = 24
-
-            if self.option_var[0] == 'D3h' or self.option_var[0] == 'D3h – 6(Bar)m2':
-                title_text = 'Character table for point group D$_{3h}$'
-                self.charSelect = 25
-
-            if self.option_var[0] == 'D6h' or self.option_var[0] == 'D6h – 6|mmm':
-                title_text = 'Character table for point group D$_{6h}$'
-                self.charSelect = 26
-
-            if self.option_var[0] == 'T' or self.option_var[0] == 'T – 23':
-                title_text = 'Character table for point group T'
-                self.charSelect = 27
-
-            if self.option_var[0] == 'Th' or self.option_var[0] == 'Th – m3':
-                title_text = 'Character table for point group T$_h$'
-                self.charSelect = 28
-
-            if self.option_var[0] == 'O' or self.option_var[0] == 'O – 432':
-                title_text = 'Character table for point group O'
-                self.charSelect = 29
-
-            if self.option_var[0] == 'Td' or self.option_var[0] == 'Td – 4(Bar)3m':
-                title_text = 'Character table for point group T$_d$'
-                self.charSelect = 30
-
-            if self.option_var[0] == 'Oh' or self.option_var[0] == 'Oh – m3m':
-                title_text = 'Character table for point group O$_h$'
-                self.charSelect = 31
-
-            if self.option_var[0] == 'Iso':
-                title_text = 'Character table for point group Iso'
-                self.charSelect = 32
+            title_text, self.charSelect = ct.charTableInit(self.option_var[0])
 
             cell_text = []
             for row in self.chr_data[self.charSelect]:
@@ -1425,100 +1077,100 @@ def run():
                                   rowLoc='center',
                                   loc='center')
 
-            if self.option_var[0] == 'C1' or self.option_var[0] == 'C1 – I':
+            if self.option_var[0] == 'C1':
                 the_table.scale(2, 2)
 
-            if self.option_var[0] == 'S2' or self.option_var[0] == 'S2 – I(Bar)':
+            if self.option_var[0] == 'S2':
                 the_table.scale(2, 2.5)
 
-            if self.option_var[0] == 'C2' or self.option_var[0] == 'C2 – 2':
+            if self.option_var[0] == 'C2':
                 the_table.scale(2, 2.5)
 
-            if self.option_var[0] == 'C1h' or self.option_var[0] == 'C1h – m':
+            if self.option_var[0] == 'C1h':
                 the_table.scale(2.5, 2.5)
 
-            if self.option_var[0] == 'C2h' or self.option_var[0] == 'C2h – 2|m':
+            if self.option_var[0] == 'C2h':
                 the_table.scale(2.5, 2.5)
 
-            if self.option_var[0] == 'D2' or self.option_var[0] == 'D2 – 222':
+            if self.option_var[0] == 'D2':
                 the_table.scale(2.5, 2.5)
 
-            if self.option_var[0] == 'C2v' or self.option_var[0] == 'C2v – mm2':
+            if self.option_var[0] == 'C2v':
                 the_table.scale(2.5, 2.5)
 
-            if self.option_var[0] == 'D2h' or self.option_var[0] == 'D2h – mmm':
+            if self.option_var[0] == 'D2h':
                 the_table.scale(2.5, 2)
 
-            if self.option_var[0] == 'C4' or self.option_var[0] == 'C4 – 4':
+            if self.option_var[0] == 'C4':
                 the_table.scale(2.5, 2.5)
 
-            if self.option_var[0] == 'S4' or self.option_var[0] == 'S4 – 4(Bar)':
+            if self.option_var[0] == 'S4':
                 the_table.scale(2.5, 2.5)
 
-            if self.option_var[0] == 'C4h' or self.option_var[0] == 'C4h – 4|m':
+            if self.option_var[0] == 'C4h':
                 the_table.scale(2.5, 2.5)
 
-            if self.option_var[0] == 'D4' or self.option_var[0] == 'D4 – 422':
+            if self.option_var[0] == 'D4':
                 the_table.scale(3, 1.6)
 
-            if self.option_var[0] == 'C4v' or self.option_var[0] == 'C4v – 4mm':
+            if self.option_var[0] == 'C4v':
                 the_table.scale(2.5, 2.5)
 
-            if self.option_var[0] == 'D2d' or self.option_var[0] == 'D2d – 4(Bar)2m':
+            if self.option_var[0] == 'D2d':
                 the_table.scale(2.5, 2.5)
 
-            if self.option_var[0] == 'D4h' or self.option_var[0] == 'D4h – 4|mmm':
+            if self.option_var[0] == 'D4h':
                 the_table.scale(2.5, 1.25)
 
-            if self.option_var[0] == 'C3' or self.option_var[0] == 'C3 – 3':
+            if self.option_var[0] == 'C3':
                 the_table.scale(2.5, 2.3)
 
-            if self.option_var[0] == 'S6' or self.option_var[0] == 'S6 – 3(Bar)':
+            if self.option_var[0] == 'S6':
                 the_table.scale(2.9, 2.25)
 
-            if self.option_var[0] == 'D3' or self.option_var[0] == 'D3 – 32':
+            if self.option_var[0] == 'D3':
                 the_table.scale(2.5, 2.5)
 
-            if self.option_var[0] == 'C3v' or self.option_var[0] == 'C3v – 3m':
+            if self.option_var[0] == 'C3v':
                 the_table.scale(2.5, 2.5)
 
-            if self.option_var[0] == 'D3d' or self.option_var[0] == 'D3d – 3(Bar)m':
+            if self.option_var[0] == 'D3d':
                 the_table.scale(3, 2.5)
 
-            if self.option_var[0] == 'C6' or self.option_var[0] == 'C6 – 6':
+            if self.option_var[0] == 'C6':
                 the_table.scale(2.5, 2.5)
 
-            if self.option_var[0] == 'C3h' or self.option_var[0] == 'C3h – 6(Bar)':
+            if self.option_var[0] == 'C3h':
                 the_table.scale(2.5, 2.5)
 
-            if self.option_var[0] == 'C6h' or self.option_var[0] == 'C6h – 6|m':
+            if self.option_var[0] == 'C6h':
                 the_table.scale(2.8, 1.6)
 
-            if self.option_var[0] == 'D6' or self.option_var[0] == 'D6 – 622':
+            if self.option_var[0] == 'D6':
                 the_table.scale(2.5, 2.5)
 
-            if self.option_var[0] == 'C6v' or self.option_var[0] == 'C6v – 6mm':
+            if self.option_var[0] == 'C6v':
                 the_table.scale(2.5, 2.5)
 
-            if self.option_var[0] == 'D3h' or self.option_var[0] == 'D3h – 6(Bar)m2':
+            if self.option_var[0] == 'D3h':
                 the_table.scale(2.5, 2.5)
 
-            if self.option_var[0] == 'D6h' or self.option_var[0] == 'D6h – 6|mmm':
+            if self.option_var[0] == 'D6h':
                 the_table.scale(3.5, 1.4)
 
-            if self.option_var[0] == 'T' or self.option_var[0] == 'T – 23':
+            if self.option_var[0] == 'T':
                 the_table.scale(2.5, 2.5)
 
-            if self.option_var[0] == 'Th' or self.option_var[0] == 'Th – m3':
+            if self.option_var[0] == 'Th':
                 the_table.scale(3.5, 2)
 
-            if self.option_var[0] == 'O' or self.option_var[0] == 'O – 432':
+            if self.option_var[0] == 'O':
                 the_table.scale(2.5, 2.5)
 
-            if self.option_var[0] == 'Td' or self.option_var[0] == 'Td – 4(Bar)3m':
+            if self.option_var[0] == 'Td':
                 the_table.scale(2.5, 2.5)
 
-            if self.option_var[0] == 'Oh' or self.option_var[0] == 'Oh – m3m':
+            if self.option_var[0] == 'Oh':
                 the_table.scale(4, 1.6)
 
             the_table.set_fontsize(16)
@@ -1539,6 +1191,7 @@ def run():
             self.notebook.add(self.tab_1, text="Graph")
             self.notebook.add(self.tab_2, text="Expression")
             self.notebook.add(self.tab_3, text="Character Table")
+            self.notebook.add(self.tab_4, text="General Tensor (Coming Soon...)")
 
             self.fr_input_dw = ScrolledFrame(self.newWindow)
             self.fr_input_dw.grid(column=0, row=1, ipadx=600, ipady=70)
@@ -1588,14 +1241,14 @@ def run():
 
             for i in range(len(self.symbolList_ss)):
                 # create labels
-                self.label = Label(self.fr_input_dw_inside, text=self.showSymbol(self.symbolList_ss[i]),
+                self.label = Label(self.fr_input_dw_inside, text=Misc.showSymbol(self.symbolList_ss[i]),
                                    borderwidth=2, justify="left", font=('Arial', 18))
                 self.label.place(x=191, y=34 + i * 40, width=40, height=40)
 
                 inputStr = StringVar()
                 SlideStr = IntVar()
                 if i == 0:
-                    if chr(952) == self.showSymbol(self.symbolList_ss[0]):
+                    if chr(952) == Misc.showSymbol(self.symbolList_ss[0]):
                         self.Spin = Spinbox(self.fr_input_dw_inside, from_=-360, to=360, textvariable=SlideStr_theta, relief='groove',
                                             validate='key', validatecommand=range_validation,
                                             command=lambda: self.autoPlot())
@@ -1624,7 +1277,7 @@ def run():
             for j in range(len(self.symbolList_sp)):
 
                 # create labels
-                self.label = Label(self.fr_input_dw_inside, text=self.showSymbol(self.symbolList_sp[j]),
+                self.label = Label(self.fr_input_dw_inside, text=Misc.showSymbol(self.symbolList_sp[j]),
                                    borderwidth=2, justify="left", font=('Arial', 18))
                 self.label.place(x=509, y=34 + j * 40, width=40, height=40)
 
@@ -1632,7 +1285,7 @@ def run():
                 SlideStr = DoubleVar()
 
                 if j == 0:
-                    if chr(952) == self.showSymbol(self.symbolList_sp[0]):
+                    if chr(952) == Misc.showSymbol(self.symbolList_sp[0]):
                         self.Spin = Spinbox(self.fr_input_dw_inside, from_=-360, to=360, textvariable=SlideStr_theta, relief='groove',
                                             validate='key', validatecommand=range_validation,
                                             command=lambda: self.autoPlot())
@@ -1661,14 +1314,14 @@ def run():
             self.label_position += self.label_gap
             for k in range(len(self.symbolList_ps)):
                 # create labels
-                self.label = Label(self.fr_input_dw_inside, text=self.showSymbol(self.symbolList_ps[k]),
+                self.label = Label(self.fr_input_dw_inside, text=Misc.showSymbol(self.symbolList_ps[k]),
                                    borderwidth=2, justify="left", font=('Arial', 18))
                 self.label.place(x=835, y=34 + k * 40, width=40, height=40)
 
                 SlideStr = DoubleVar()
 
                 if k == 0:
-                    if chr(952) == self.showSymbol(self.symbolList_ps[0]):
+                    if chr(952) == Misc.showSymbol(self.symbolList_ps[0]):
                         self.Spin = Spinbox(self.fr_input_dw_inside, from_=-360, to=360, textvariable=SlideStr_theta, relief='groove',
                                             validate='key', validatecommand=range_validation,
                                             command=lambda: self.autoPlot())
@@ -1697,13 +1350,13 @@ def run():
             self.label_position += self.label_gap
             for h in range(len(self.symbolList_pp)):
                 # create labels
-                self.label = Label(self.fr_input_dw_inside, text=self.showSymbol(self.symbolList_pp[h]),
+                self.label = Label(self.fr_input_dw_inside, text=Misc.showSymbol(self.symbolList_pp[h]),
                                    borderwidth=2, justify="left", font=('Arial', 18))
                 self.label.place(x=1153, y=34 + h * 40, width=40, height=40)
                 inputStr = StringVar()
                 SlideStr = DoubleVar()
                 if h == 0:
-                    if chr(952) == self.showSymbol(self.symbolList_pp[0]):
+                    if chr(952) == Misc.showSymbol(self.symbolList_pp[0]):
                         self.Spin = Spinbox(self.fr_input_dw_inside, from_=-360, to=360, textvariable=SlideStr_theta, relief='groove',
                                             validate='key', validatecommand=range_validation,
                                             command=lambda: self.autoPlot())
