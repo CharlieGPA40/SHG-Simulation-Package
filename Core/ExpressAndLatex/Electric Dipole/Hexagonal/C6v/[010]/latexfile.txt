@@ -1,0 +1,4 @@
+{'SS': '0'}
+{'SP': 'zxx^{2} \\sin^{2}{\\left(\\theta \\right)}'}
+{'PS': '0'}
+{'PP': '4 xzx^{2} \\sin^{2}{\\left(\\theta \\right)} \\cos^{4}{\\left(\\theta \\right)} + \\left(zxx \\cos^{2}{\\left(\\theta \\right)} + zzz \\sin^{2}{\\left(\\theta \\right)}\\right)^{2} \\sin^{2}{\\left(\\theta \\right)}'}

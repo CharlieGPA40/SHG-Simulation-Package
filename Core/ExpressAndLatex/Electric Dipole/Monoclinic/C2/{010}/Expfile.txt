@@ -1,0 +1,4 @@
+{'SS': '(-2*xyx*cos(phi)**2 + 2*xyx - yxx*cos(phi)**2 + yxx + yyy*cos(phi)**2)**2*cos(phi)**2'}
+{'SP': 'zyx**2*sin(2*phi)**2*sin(theta)**2 + (-2*xyx*sin(phi)**2 + 2*xyx - yxx*sin(phi)**2 + yyy*sin(phi)**2 - yyy)**2*sin(phi)**2*cos(theta)**2'}
+{'PS': '(-(((-xzy)*sin(phi)**2 + yzx*cos(phi)**2)*sin(theta) - (2*xyx*cos(phi)**2 - 2*xyx + yxx*cos(phi)**2 - yyy*cos(phi)**2 + yyy)*cos(phi)*cos(theta))*cos(theta) + (yzz*sin(theta)*cos(phi) + (-(-xzy)*sin(phi)**2 - yzx*cos(phi)**2)*cos(theta))*sin(theta))**2'}
+{'PP': '(((-yzz)*sin(phi)*sin(theta) + 1*(xzy + yzx)*sin(2*phi)*cos(theta)/2)*sin(theta) - (-1*(xzy + yzx)*sin(2*phi)*sin(theta)/2 - (2*xyx*sin(phi)**2 - 2*xyx + yxx*sin(phi)**2 - yxx - yyy*sin(phi)**2)*sin(phi)*cos(theta))*cos(theta))**2*cos(theta)**2 + (zzy*sin(phi)*sin(theta)*cos(theta) + (zyx*sin(2*phi)*cos(theta) - zzy*sin(phi)*sin(theta))*(-cos(theta)))**2*sin(theta)**2'}

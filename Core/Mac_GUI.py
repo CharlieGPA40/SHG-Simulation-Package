@@ -886,24 +886,22 @@ def run():
 
                     input_matrix = rt.rotationCal(rank, self.option_var_3[0], input_matrix, self.Rank3Matrix())
 
-                    rs_matrix = simplify(tm.trans(tm.sTB(rot, tm.trans(tm.sTB(rot, tm.bTS(input_matrix, rot.T))))))
+                    rs_matrix = trigsimp(tm.trans(tm.sTB(rot, tm.trans(tm.sTB(rot, tm.bTS(input_matrix, rot.T))))))
                     # PP
-                    rs_matrix = simplify(rs_matrix)
+                    # rs_matrix = se.sympify(rs_matrix)
                     pxp = epin * rs_matrix[0:3, 0:3] * epin.T
                     pzp = epin * rs_matrix[6:9, 0:3] * epin.T
-                    # pxp = se.sympify(pxp)
-                    # pzp = se.sympify(pzp)
-                    self.exprpp = simplify((pxp * cos(theta))** 2 + (pzp * sin(theta))** 2)[0]
+                    self.exprpp = se.sympify((pxp * cos(theta))** 2 + (pzp * sin(theta))** 2)[0]
                     # PS
                     pys = epin * rs_matrix[3:6, 0:3] * epin.T
-                    self.exprps = simplify((pys ** 2)[0])
+                    self.exprps = se.sympify((pys ** 2)[0])
                     # SP
                     sxp = esin * rs_matrix[0:3, 0:3] * esin.T
                     szp = esin * rs_matrix[6:9, 0:3] * esin.T
-                    self.exprsp = simplify((sxp * cos(theta)) ** 2 + (szp * sin(theta)) ** 2)[0]
+                    self.exprsp = se.sympify((sxp * cos(theta)) ** 2 + (szp * sin(theta)) ** 2)[0]
                     # SS
                     sys = esin * rs_matrix[3:6, 0:3] * esin.T
-                    self.exprss = simplify((sys ** 2)[0])
+                    self.exprss = se.sympify((sys ** 2)[0])
                     self.exprss = str(self.exprss)
                     self.exprsp = str(self.exprsp)
                     self.exprps = str(self.exprps)
@@ -983,7 +981,7 @@ def run():
                                 sxp = sxp + sxp_temp
                                 sys = sys + sys_temp
                                 szp = szp + szp_temp
-                    # Sympy
+
                     self.exprsp = se.sympify((sxp * cos(theta)) ** 2 + (szp * sin(theta)) ** 2)
                     self.exprss = se.sympify((sys ** 2))
                     t2 = clock()
@@ -1043,7 +1041,7 @@ def run():
                     input_matrix = self.dic_mag_dip[self.option_var_1[0]][self.option_var[0]]
                     input_matrix = rt.rotationCal(rank, self.option_var_3[0], input_matrix, self.Rank3Matrix())
                     # calculate the expression
-                    rs_matrix_md = simplify(tm.trans(tm.sTB(rot, tm.trans(tm.sTB(rot, tm.bTS(input_matrix, rot.T))))))
+                    rs_matrix_md = se.sympify(tm.trans(tm.sTB(rot, tm.trans(tm.sTB(rot, tm.bTS(input_matrix, rot.T))))))
 
                     Mpx = 0
                     Mpy = 0
@@ -1064,8 +1062,8 @@ def run():
                     Spy = Sp[1]
                     Spz = Sp[2]
 
-                    self.exprpp = simplify((Spx * cos(theta)) ** 2 + (Spz * sin(theta)) ** 2)
-                    self.exprps = simplify((Spy ** 2))
+                    self.exprpp = se.sympify((Spx * cos(theta)) ** 2 + (Spz * sin(theta)) ** 2)
+                    self.exprps = se.sympify((Spy ** 2))
                     Msx = 0
                     Msy = 0
                     Msz = 0
@@ -1085,9 +1083,9 @@ def run():
                     Ssy = Ss[1]
                     Ssz = Ss[2]
 
-                    self.exprsp = simplify((Ssx * cos(theta)) ** 2 + (Ssz * sin(theta)) ** 2)
+                    self.exprsp = se.sympify((Ssx * cos(theta)) ** 2 + (Ssz * sin(theta)) ** 2)
                     # # SS
-                    self.exprss = simplify((Ssy ** 2))
+                    self.exprss = se.sympify((Ssy ** 2))
                     self.exprss = str(self.exprss)
                     self.exprsp = str(self.exprsp)
                     self.exprps = str(self.exprps)

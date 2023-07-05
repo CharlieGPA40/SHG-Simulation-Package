@@ -1,6 +1,5 @@
 import platform
 import os
-from Core import Mac_GUI, Window_GUI
 import sys
 from distutils.spawn import find_executable
 
@@ -8,7 +7,6 @@ if sys.version_info[:2] < (3, 7):
     print("Requires Python 3.7 or newer. "
           "Python %d.%d detected" % sys.version_info[:2])
     sys.exit(-1)
-
 
 if platform.system() == 'Windows':
     OS = 'Windows'
@@ -18,6 +16,9 @@ elif platform.system() == 'Darwin':
     OS = 'Darwin'
 
 os.system('pip install -r requirements.txt')
+
+
+from Core import Mac_GUI, Window_GUI
 
 if OS == 'Windows':
     Window_GUI.run()

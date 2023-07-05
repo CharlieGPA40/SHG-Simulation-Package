@@ -1,0 +1,4 @@
+{'SS': '0'}
+{'SP': '(-1*zxx*cos(2*phi)/2 + 1*zxx/2 + zyx*sin(2*phi) + 1*zyy*cos(2*phi)/2 + 1*zyy/2)**2*sin(theta)**2'}
+{'PS': '4*(1*xzx*sin(2*phi)/2 + 1*xzy*cos(2*phi)/2 - 1*xzy/2 + 1*yzx*cos(2*phi)/2 + 1*yzx/2 - 1*yzy*sin(2*phi)/2)**2*sin(theta)**2*cos(theta)**2'}
+{'PP': '(zzz*sin(theta)**2 + (1*zxx*cos(2*phi)/2 + 1*zxx/2 - zyx*sin(2*phi) - 1*zyy*cos(2*phi)/2 + 1*zyy/2)*cos(theta)**2)**2*sin(theta)**2 + 4*(1*xzx*cos(2*phi)/2 + 1*xzx/2 - 1*xzy*sin(2*phi)/2 - 1*yzx*sin(2*phi)/2 - 1*yzy*cos(2*phi)/2 + 1*yzy/2)**2*sin(theta)**2*cos(theta)**4'}

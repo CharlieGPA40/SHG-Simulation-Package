@@ -1,0 +1,4 @@
+{'SS': '4 zyx^{2} \\sin^{2}{\\left(\\phi \\right)} \\sin^{2}{\\left(\\theta \\right)} \\cos^{2}{\\left(\\phi \\right)}'}
+{'SP': '0'}
+{'PS': '\\left(- 2 zyx \\sin{\\left(\\phi \\right)} \\sin{\\left(\\theta \\right)} \\cos{\\left(\\phi \\right)} \\cos^{2}{\\left(\\theta \\right)} + \\left(- 2 xzy \\sin{\\left(\\phi \\right)} \\cos{\\left(\\phi \\right)} - 2 yzx \\sin{\\left(\\phi \\right)} \\cos{\\left(\\phi \\right)}\\right) \\sin{\\left(\\theta \\right)} \\cos^{2}{\\left(\\theta \\right)}\\right)^{2}'}
+{'PP': '4 \\left(- xzy \\sin^{2}{\\left(\\phi \\right)} + yzx \\cos^{2}{\\left(\\phi \\right)}\\right)^{2} \\sin^{6}{\\left(\\theta \\right)} \\cos^{2}{\\left(\\theta \\right)} + 4 \\left(- xzy \\sin^{2}{\\left(\\phi \\right)} + yzx \\cos^{2}{\\left(\\phi \\right)}\\right)^{2} \\sin^{2}{\\left(\\theta \\right)} \\cos^{6}{\\left(\\theta \\right)}'}
