@@ -3,6 +3,7 @@ import os
 import sys
 from distutils.spawn import find_executable
 
+
 if sys.version_info[:2] < (3, 7):
     print("Requires Python 3.7 or newer. "
           "Python %d.%d detected" % sys.version_info[:2])
@@ -14,7 +15,6 @@ elif platform.system() == 'Linux':
     OS = 'Linux'
 elif platform.system() == 'Darwin':
     OS = 'Darwin'
-
 path = os.getcwd()
 if OS == 'Windows':
     cache = path + '\Core\Cache'
@@ -23,10 +23,9 @@ elif OS == 'Darwin':
 else:  # Linux
     cache = path + '\Core\Cache'
 
-
 isExist = os.path.exists(cache)
 if not isExist:  # Create a new directory because it does not exist
-    os.makedirs(cache)
+
     os.system('pip install -r requirements.txt')
     os.system('pip install latex')
     if OS == 'Windows':
@@ -43,12 +42,12 @@ if not isExist:  # Create a new directory because it does not exist
         os.system('sudo apt install texlive-latex-extra')
         os.system('sudo apt install cm-super')
         os.system('sudo apt install dvipng')
+    os.makedirs(cache)
 
-from Core import Mac_GUI, Window_GUI
 
 if OS == 'Windows':
-    Window_GUI.run()
+    import Core.Mac_GUI
 elif OS == 'Darwin':
-    Mac_GUI.run()
+    import Core.Mac_GUI
 else:  # Linux
-    Window_GUI.run()
+    import Core.Mac_GUI
