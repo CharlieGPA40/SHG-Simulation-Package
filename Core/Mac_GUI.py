@@ -796,6 +796,7 @@ def run():
 
         def _back(self):
             self.newWindow.destroy()
+            plt.close()
             self.cal_bt['state'] = ACTIVE
             self.createWidget()
 
