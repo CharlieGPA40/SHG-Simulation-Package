@@ -28,7 +28,6 @@ else:  # Linux
     cache = path + '/Core/Cache'
 
 isExist = os.path.exists(cache)
-OS = 'Linux'
 if not isExist:  # Create a new directory because it does not exist
     os.system('pip install -r requirements.txt')
     os.system('pip install latex')

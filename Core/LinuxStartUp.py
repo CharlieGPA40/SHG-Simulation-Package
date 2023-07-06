@@ -6,14 +6,14 @@ def Linux():
     win.title('Password')
     screen_width = win.winfo_screenwidth()
     screen_height = win.winfo_screenheight()
-    window_width = 350
-    window_height = 70
+    window_width = 380
+    window_height = 80
     x = (screen_width - window_width) // 2
     y = (screen_height - window_height) // 2
 
     win.geometry(f"{window_width}x{window_height}+{x}+{y}")
-    win.maxsize(350, 70)
-    win.minsize(350, 70)
+    win.maxsize(380, 80)
+    win.minsize(380, 80)
 
     def printInput():
         global pwd
