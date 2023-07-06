@@ -991,7 +991,7 @@ def run():
                 "font.family": "Helvetica"
             })
 
-            self.path = 'Core/ExpressAndLatex/' + str(self.input_matrix_c) + '/' + str(self.option_var_1[0]) + '/' + str(self.option_var[0]) + '/' + str(self.option_var_3[0]) + '/'
+            self.path = 'Core/ExpressAndLatex/' + str(self.input_matrix_c) + '/' + str(self.option_var_1[0]) + '/' + str(self.option_var[0]) + '/' + str(self.option_var_3[0])
             isExist = os.path.exists(self.path)
             if not isExist:  # Create a new directory because it does not exist
                 os.makedirs(self.path)

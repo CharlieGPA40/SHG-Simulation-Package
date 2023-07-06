@@ -29,7 +29,7 @@ if not isExist:  # Create a new directory because it does not exist
     os.system('pip install -r requirements.txt')
     os.system('pip install latex')
     if OS == 'Windows':
-        os.system('pip install latex')
+        os.system("pip install latex")
     elif OS == 'Darwin':
         if find_executable('latex'):
             print('latex installed')

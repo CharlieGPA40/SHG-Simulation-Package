@@ -929,7 +929,7 @@ def run():
 
                 # every change should clear the symbolList at first
                 self.symbolList_pp, self.symbolList_ps, self.symbolList_ss, self.symbolList_sp = self.symbolList(self.exprpp, self.exprps, self.exprss, self.exprsp)
-                self.display_GUI()
+            self.display_GUI()
         def display_GUI(self):
             self.text_box.delete('1.0', 'end')
             message = str(self.input_matrix_c) + '  :  ' + str(self.option_var_1[0]) + ' - ' + str(self.option_var[0])
@@ -1010,7 +1010,10 @@ def run():
                 "font.family": "Helvetica"
             })
 
-            self.path = 'ExpressAndLatex/' + str(self.input_matrix_c) + '/' + str(self.option_var_1[0]) + '/' + str(self.option_var[0]) + '/'
+            self.path = 'Core/ExpressAndLatex/' + str(self.input_matrix_c) + '/' + str(
+                self.option_var_1[0]) + '/' + str(self.option_var[0]) + '/' + str(self.option_var_3[0])
+
+
             isExist = os.path.exists(self.path)
             if not isExist:  # Create a new directory because it does not exist
                 os.makedirs(self.path)
