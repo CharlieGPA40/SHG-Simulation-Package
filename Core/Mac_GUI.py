@@ -377,7 +377,7 @@ def run():
                                          '\nFor the Monoclinic crystal system, {010} and {001} refer to the twofold axis '
                                          'parallel to the y or z axis, respectively', hover_delay=1000)
             self.nex_bt['state'] = DISABLED
-            self.sample_rot_label = ttk.Label(self.fr_input_up, text='Sample Rotation:', background='#F2F3F4',
+            self.sample_rot_label = ttk.Label(self.fr_input_up, text='Orientation:', background='#F2F3F4',
                                               font=('Arial bold', 15))
             self.sample_rot_label.place(x=470, y=32)
             self.sample_rot = Listbox(self.fr_input_up, width=16, justify="left", height=11, font=('Arial', 13),

@@ -179,7 +179,7 @@ def run():
             self.click_loop = 0
             while 0 <= self.click_loop < 4:
                 image = Image.open('Core/Image/Model{}.png'.format(self.click_loop+1))
-                self.slide_counter = Label(self.root, text="(" + str(self.click_loop + 1) + "/3)", font='Helvetica 15')
+                self.slide_counter = Label(self.root, text=str(self.click_loop + 1) + "/3", font='Helvetica 15')
                 self.slide_counter.grid(row=1, column=1, pady=10)
                 resize_image = image.resize((800, 550))
                 lst_img = ImageTk.PhotoImage(resize_image)
