@@ -2,6 +2,7 @@ import platform
 import os
 import sys
 from distutils.spawn import find_executable
+from shutil import which
 
 
 if sys.version_info[:2] < (3, 7):
@@ -28,13 +29,13 @@ if not isExist:  # Create a new directory because it does not exist
     os.system('pip install -r requirements.txt')
     os.system('pip install latex')
     if OS == 'Windows':
-        if find_executable('latex'):
+        if which('latex'):
             print('latex installed')
         else:
             print('Please install Latex before using the software')
             sys.exit(-1)
     elif OS == 'Darwin':
-        if find_executable('latex'):
+        if which('latex'):
             print('latex installed')
         else:
             os.system(
