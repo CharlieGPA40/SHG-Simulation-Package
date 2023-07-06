@@ -37,8 +37,8 @@ def run():
     class Win2:
         def __init__(self, _root):
             self.root = _root
-            width = 670  # Width (670)
-            height = 630  # Height
+            width = 760  # Width (670)
+            height = 650  # Height
             screen_width = root.winfo_screenwidth()  # Width of the screen
             screen_height = root.winfo_screenheight()  # Height of the screen
 
@@ -47,21 +47,16 @@ def run():
             y = (screen_height / 2) - (height / 2)
 
             self.root.geometry('%dx%d+%d+%d' % (width, height, x, y))
-            self.root.title("About SHG Simulation Tool")
+            self.root.title("About...")
             self.root.maxsize(width, height)
             # self.root.configure(bg='#F2F3F4')
             self.root.protocol("WM_DELETE_WINDOW", self.close)
-            au_logo = Image.open("Core/Image/vect.png")
-            au_logo = au_logo.resize((400, 200))
-            au_logo = ImageTk.PhotoImage(au_logo)
-            label_au = Label(self.root, image=au_logo)
-            label_au.image = au_logo
-            label_au.grid(column=0, row=0)
-            lbl = Label(self.root, text="This Package is developed by Chunli Tang (Code, Design & Build) & Hussam Mustafa (Term Verification)",
-                        font=40)
-            lbl.grid(column=0, row=1, padx=10)
+
+            lbl = Label(self.root, text="\n\n\n\n\n\nThis Package is developed by: Chunli Tang & Hussam Mustafa",
+                        font=40, padx=160)
+            lbl.grid(column=0, row=1)
             lbl = Label(self.root,
-                        text="Advisor: Dr. Wencan Jin & Dr.Masoud Mahjouri-Samani", font=40)
+                        text="Advisor: Dr. Wencan Jin & Dr. Masoud Mahjouri-Samani", font=40)
             lbl.grid(column=0, row=2)
             lbl = Label(self.root,
                         text="Affiliation: Auburn University", font=40)
@@ -73,6 +68,19 @@ def run():
             lbl = Label(self.root, text="wjin@auburn.edu & mzm0185@auburn.edu", font=40)
             lbl.grid(column=0, row=6)
 
+            au_logo = Image.open("Core/Image/vect 2.png")
+            au_logo = au_logo.resize((350, 60))
+            au_logo = ImageTk.PhotoImage(au_logo)
+            label_au = Label(self.root, image=au_logo)
+            label_au.image = au_logo
+            label_au.place(x=10, y=16)
+
+            au_logo1 = Image.open("Core/Image/vect 3.png")
+            au_logo1 = au_logo1.resize((370, 80))
+            au_logo1 = ImageTk.PhotoImage(au_logo1)
+            label_au1 = Label(self.root, image=au_logo1)
+            label_au1.image = au_logo1
+            label_au1.place(x=375, y=13)
 
             def callback(url):
                 webbrowser.open_new_tab(url)
@@ -89,20 +97,19 @@ def run():
             self.tab_2 = Frame(self.notebook)
             self.tab_3 = Frame(self.notebook)
 
-            license_box = Text(self.tab_1, height=10, width=80, relief='sunken')
+            license_box = Text(self.tab_1, height=17, width=80, relief='sunken')
             license_box.grid(column=0, row=10)
             disclaimer = Misc.disclaimer()
             license_box.insert(END, disclaimer)
             license_box.config(state='disabled')
 
-            Ack_box = Text(self.tab_2, height=10, width=80, relief='sunken')
+            Ack_box = Text(self.tab_2, height=17, width=80, relief='sunken')
             Ack_box.grid(column=0, row=10)
             acknowledge = Misc.ack()
             Ack_box.insert(END, acknowledge)
             Ack_box.config(state='disabled')
 
-
-            ref_box = Text(self.tab_3, height=10, width=80, relief='sunken')
+            ref_box = Text(self.tab_3, height=17, width=80, relief='sunken')
             ref_box.grid(column=0, row=10)
             reference = Misc.reference()
             ref_box.insert(END, reference)
@@ -172,6 +179,8 @@ def run():
             self.click_loop = 0
             while 0 <= self.click_loop < 4:
                 image = Image.open('Core/Image/Model{}.png'.format(self.click_loop+1))
+                self.slide_counter = Label(self.root, text="(" + str(self.click_loop + 1) + "/3)", font='Helvetica 15')
+                self.slide_counter.grid(row=1, column=1, pady=10)
                 resize_image = image.resize((800, 550))
                 lst_img = ImageTk.PhotoImage(resize_image)
                 self.image_label_Model = Label(self.root, image=lst_img)
@@ -240,7 +249,7 @@ def run():
             # This line is for packaging
             # os.chdir(sys._MEIPASS)
             self.master = root
-            self.app_size(self.master, 641, 306)
+            self.app_size(self.master, 673, 295)
             self.win2_status = 0
             self.win3_status = 0
             self.win4_status = 0
@@ -324,33 +333,44 @@ def run():
 
         def view_init(self):
             self.fr_input_up = Frame(master=self.master, bg='#F2F3F4')
-            self.fr_input_up.grid(row=1, column=0, ipadx=320, ipady=162, sticky='NW')
+            self.fr_input_up.grid(row=1, column=0, ipadx=360, ipady=162, sticky='NW')
             self.fr_input_up.grid_propagate(False)
 
         def createWidget(self):
+            self.Title_Text_Font = 12
+            self.Title_Text_y_pos = 15
+            self.Box_y_pos_top = 40
+            self.Box_Height = 10
+            self.Button_y_pos = 250
+            self.Point_Group_x_pos = 340
+            self.Orientation_x_pos = 499
+
             self.list_init()
             self.view_init()
             self.option_var = []
             self.option_var_1 = []
             self.option_var_2 = []
             pointGroup = ttk.Label(self.fr_input_up, text='Radiation Source:', background='#F2F3F4',
-                               font=('Arial bold', 12))
-            pointGroup.place(x=19, y=40)
+                                   font=('Arial bold', self.Title_Text_Font))
+            pointGroup.place(x=19, y=self.Title_Text_y_pos)
 
             crystalSystem = ttk.Label(self.fr_input_up, text='Crystal System:', background='#F2F3F4',
-                                  font=('Arial bold', 12))
-            crystalSystem.place(x=181, y=40)
+                                      font=('Arial bold', self.Title_Text_Font))
+            crystalSystem.place(x=181, y=self.Title_Text_y_pos)
 
             crystalClass = ttk.Label(self.fr_input_up, text='Point Group:', background='#F2F3F4',
-                                 font=('Arial bold', 12))
-            crystalClass.place(x=335, y=40)
-            self.group_box_group = Listbox(self.fr_input_up, width=16, justify="left", height=11, font=('Arial', 13),
-                                           yscrollcommand='Vertical', selectmode=SINGLE, relief='sunken', exportselection=False)
-            self.group_box_group.place(x=335, y=60)
+                                     font=('Arial bold', self.Title_Text_Font))
+            crystalClass.place(x=self.Point_Group_x_pos, y=self.Title_Text_y_pos)
+            self.group_box_group = Listbox(self.fr_input_up, width=17, justify="left", height=self.Box_Height,
+                                           font=('Arial', 13),
+                                           yscrollcommand='Vertical', selectmode=SINGLE, relief='sunken',
+                                           exportselection=False)
+            self.group_box_group.place(x=self.Point_Group_x_pos, y=self.Box_y_pos_top)
 
-            self.group_box = Listbox(self.fr_input_up, width=16, justify="left", height=11, yscrollcommand='Vertical',
+            self.group_box = Listbox(self.fr_input_up, width=17, justify="left", height=self.Box_Height,
+                                     yscrollcommand='Vertical',
                                      selectmode=SINGLE, relief='sunken', font=('Arial', 13), exportselection=False)
-            self.group_box.place(x=19, y=60)
+            self.group_box.place(x=19, y=self.Box_y_pos_top)
             self.group_box.insert(1, 'Electric Dipole')
             self.group_box.insert(2, 'Electric Quadrupole')
             self.group_box.insert(3, 'Magnetic Dipole')
@@ -358,54 +378,61 @@ def run():
             self.group_box.bind('<Return>', lambda x: self.show_crystal_system())
             self.group_box.bind('<Double-Button-1>', lambda x: self.show_crystal_system())
             self.group_box.bind('<<ListboxSelect>>', lambda x: self.show_crystal_system())
-            self.crystal_system = Listbox(self.fr_input_up, width=16, justify="left", height=11, font=('Arial', 13),
-                                          yscrollcommand='Vertical', selectmode=SINGLE, relief='sunken', exportselection=False)
-            self.crystal_system.place(x=181, y=60)
-            self.nex_bt = ttk.Button(self.fr_input_up, text='Calculate', command=lambda: self.pop_up_warning(), width=10,
+            self.crystal_system = Listbox(self.fr_input_up, width=17, justify="left", height=self.Box_Height,
+                                          font=('Arial', 13),
+                                          yscrollcommand='Vertical', selectmode=SINGLE, relief='sunken',
+                                          exportselection=False)
+            self.crystal_system.place(x=181, y=self.Box_y_pos_top)
+            self.nex_bt = ttk.Button(self.fr_input_up, text='Calculate', command=lambda: self.pop_up_warning(),
+                                     width=10,
                                      style='Accent.TButton')
             self.nex_bt.bind('<Return>', lambda: self.show_crystal_system())
             self.nex_bt.grid(row=0, column=0, padx=377, pady=288)
             self.myBtn = ttk.Button(self.fr_input_up, text='?')
-            self.myBtn.place(x=335, y=288)
+            self.myBtn.place(x=self.Point_Group_x_pos, y=288)
             myTip = Hovertip(self.myBtn, 'Please select all the elements to do the calculation. '
-                                    '\nThe calculation model can be found at menu->Model->Calculation Model'
+                                         '\nThe calculation model can be found at menu->Model->Calculation Model'
                                          '\n(001), (010), (100), (011), and (111) refer to the plane perpendicular to the incident '
                                          'light using Miller indices.\n(001) is the initial measurement axis based on the '
                                          'IEEE standard settings. \nFor the Trigonal and Hexagonal crystal systems, [100]'
                                          ' and [010] refer to the mirror plane in the x or y direction, respectively. '
                                          '\nFor the Monoclinic crystal system, {010} and {001} refer to the twofold axis '
-                                         'parallel to the y or z axis, respectively', hover_delay=1000)
+                                         'parallel to the y or z axis, respectively', hover_delay=500)
             self.nex_bt['state'] = DISABLED
 
-            self.sample_rot_label = ttk.Label(self.fr_input_up, text='Sample Rotation:', background='#F2F3F4',
-                                              font=('Arial bold', 12))
-            self.sample_rot_label.place(x=470, y=40)
-            self.sample_rot = Listbox(self.fr_input_up, width=16, justify="left", height=11, font=('Arial', 13),
+            self.sample_rot_label = ttk.Label(self.fr_input_up, text='Orientation:', background='#F2F3F4',
+                                              font=('Arial bold', self.Title_Text_Font))
+            self.sample_rot_label.place(x=self.Orientation_x_pos, y=self.Title_Text_y_pos)
+            self.sample_rot = Listbox(self.fr_input_up, width=17, justify="left", height=self.Box_Height,
+                                      font=('Arial', 13),
                                       yscrollcommand='Vertical', selectmode=SINGLE, relief='sunken',
                                       exportselection=False)
-            self.sample_rot.place(x=470, y=60)
+            self.sample_rot.place(x=self.Orientation_x_pos, y=self.Box_y_pos_top)
 
-            self.nex_bt.grid(row=0, column=0, padx=490, pady=260)
-            self.myBtn.place(y=260, x=447)
+            self.nex_bt.grid(row=0, column=0, padx=550, pady=self.Button_y_pos)
+            self.myBtn.place(y=self.Button_y_pos, x=507)
             self.beta_back_bt = ttk.Button(self.fr_input_up, text='Back', command=lambda: self.beta_back(),
                                            width=5, )
-            self.beta_back_bt.place(y=260, x=367)
+            self.beta_back_bt.place(y=self.Button_y_pos, x=430)
 
         def show_crystal_system(self):
             self.input_matrix_g = []
             itm_c = self.group_box.get(self.group_box.curselection())
             self.option_var_2 = [itm_c]
 
-            self.group_box_group = Listbox(self.fr_input_up, width=16, justify="left", height=11, font=('Arial', 13),
+            self.group_box_group = Listbox(self.fr_input_up, width=17, justify="left", height=self.Box_Height,
+                                           font=('Arial', 13),
                                            yscrollcommand='Vertical', selectmode=SINGLE, relief='sunken',
                                            exportselection=False)
-            self.group_box_group.place(x=335, y=60)
+            self.group_box_group.place(x=self.Point_Group_x_pos, y=self.Box_y_pos_top)
             self.group_box_group.delete(0, END)
             self.input_matrix_c = self.option_var_2[0]
 
-            self.crystal_box = Listbox(self.fr_input_up, width=16, justify="left", height=11, font=('Arial', 13),
-                                       yscrollcommand='Vertical', selectmode=SINGLE, relief='sunken', exportselection=False)
-            self.crystal_box.place(x=181, y=60)
+            self.crystal_box = Listbox(self.fr_input_up, width=17, justify="left", height=self.Box_Height,
+                                       font=('Arial', 13),
+                                       yscrollcommand='Vertical', selectmode=SINGLE, relief='sunken',
+                                       exportselection=False)
+            self.crystal_box.place(x=181, y=self.Box_y_pos_top)
             if self.input_matrix_c == 'Electric Dipole':
                 for x in self.dic:
                     self.crystal_box.insert(END, x)
@@ -418,24 +445,26 @@ def run():
             elif self.input_matrix_c == 'Coming Soon...':
                 self.crystal_box.insert(1, 'EFISH/MFISH')
 
-            self.cal_bt = ttk.Button(self.fr_input_up, text='Calculate', command=lambda: self.pop_up_warning(), width=10,
+            self.cal_bt = ttk.Button(self.fr_input_up, text='Calculate', command=lambda: self.pop_up_warning(),
+                                     width=10,
                                      style='Accent.TButton')
 
             self.crystal_box.bind('<Return>', lambda x: self.show_group())
             self.crystal_box.bind('<Double-Button-1>', lambda x: self.show_group())
             self.crystal_box.bind('<<ListboxSelect>>', lambda x: self.show_group())
             self.cal_bt.bind('<Double-1>', lambda: self.calculate())
-            self.cal_bt.grid(row=0, column=0, padx=350, pady=260)
+            self.cal_bt.grid(row=0, column=0, padx=350, pady=self.Button_y_pos)
             self.cal_bt['state'] = DISABLED
 
         def show_group(self):
             itm_g = self.crystal_box.get(self.crystal_box.curselection())
             self.option_var_1 = [itm_g]
             self.input_matrix_g = self.option_var_1[0]
-            self.group_box_group = Listbox(self.fr_input_up, width=16, justify="left", height=11, font=('Arial', 13),
+            self.group_box_group = Listbox(self.fr_input_up, width=17, justify="left", height=self.Box_Height,
+                                           font=('Arial', 13),
                                            yscrollcommand='Vertical', selectmode=SINGLE, relief='sunken',
                                            exportselection=False)
-            self.group_box_group.place(x=335, y=60)
+            self.group_box_group.place(x=self.Point_Group_x_pos, y=self.Box_y_pos_top)
 
             c_sys = list(self.dic.keys())
 
@@ -462,7 +491,7 @@ def run():
             self.group_box_group.bind('<Double-Button-1>', lambda x: self.SampleRotation())
             self.group_box_group.bind('<<ListboxSelect>>', lambda x: self.SampleRotation())
             self.cal_bt_dis.bind('<Double-1>', lambda: self.SampleRotation())
-            self.cal_bt_dis.grid(row=0, column=0, padx=350, pady=260)
+            self.cal_bt_dis.grid(row=0, column=0, padx=350, pady=self.Button_y_pos)
             self.cal_bt_dis['state'] = DISABLED
 
         def SampleRotation(self):
@@ -503,7 +532,7 @@ def run():
             self.sample_rot.bind('<Double-Button-1>', lambda x: self.calculate())
             self.sample_rot.bind('<<ListboxSelect>>', lambda x: self.buffer())
             self.cal_bt_dis.bind('<Double-1>', lambda: self.calculate())
-            self.cal_bt_dis.grid(row=0, column=0, padx=350, pady=260)
+            self.cal_bt_dis.grid(row=0, column=0, padx=350, pady=self.Button_y_pos)
             self.cal_bt_dis['state'] = DISABLED
 
         def list_init(self):
@@ -536,9 +565,6 @@ def run():
             self.ax[3].clear()
             self.ax[3].set_title("Polar Plot: PP", fontsize=15, pad=15)
             self.canvs.draw()
-
-
-
 
         def autoPlot(self):
             self.resetCanvas()

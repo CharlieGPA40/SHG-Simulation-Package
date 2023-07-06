@@ -385,7 +385,7 @@ def charTableInit(option):
         charSelect = 9
 
     elif option == 'C4h':
-        title_text = 'Character table for point group D$_{4h}$'
+        title_text = 'Character table for point group C$_{4h}$'
         charSelect = 10
 
     elif option == 'D4':
