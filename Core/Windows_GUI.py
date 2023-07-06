@@ -714,7 +714,7 @@ def run():
                 self.newWindow = Toplevel(root)
                 self.newWindow.title("SHG Simulation Package")
                 self.opened = True
-                self.app_size(self.newWindow, 1520, 872)
+                self.app_size(self.newWindow, 1603, 928)
             else:
                 self.newWindow.destroy()
 
