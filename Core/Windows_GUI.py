@@ -171,7 +171,7 @@ def run():
 
             self.click_loop = 0
             while 0 <= self.click_loop < 4:
-                image = Image.open('Image/Model{}.png'.format(self.click_loop+1))
+                image = Image.open('Core/Image/Model{}.png'.format(self.click_loop+1))
                 resize_image = image.resize((800, 550))
                 lst_img = ImageTk.PhotoImage(resize_image)
                 self.image_label_Model = Label(self.root, image=lst_img)

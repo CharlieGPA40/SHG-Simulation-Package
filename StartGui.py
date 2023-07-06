@@ -46,8 +46,8 @@ if not isExist:  # Create a new directory because it does not exist
 
 
 if OS == 'Windows':
-    import Core.Mac_GUI
+    import Core.Windows_GUI
 elif OS == 'Darwin':
     import Core.Mac_GUI
 else:  # Linux
-    import Core.Mac_GUI
+    import Core.Windows_GUI
