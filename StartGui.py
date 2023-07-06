@@ -1,7 +1,6 @@
 import platform
 import os
 import sys
-from distutils.spawn import find_executable
 from shutil import which
 
 
