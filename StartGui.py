@@ -25,11 +25,14 @@ else:  # Linux
 
 isExist = os.path.exists(cache)
 if not isExist:  # Create a new directory because it does not exist
-
     os.system('pip install -r requirements.txt')
     os.system('pip install latex')
     if OS == 'Windows':
-        os.system("pip install latex")
+        if find_executable('latex'):
+            print('latex installed')
+        else:
+            print('Please install Latex before using the software')
+            sys.exit(-1)
     elif OS == 'Darwin':
         if find_executable('latex'):
             print('latex installed')

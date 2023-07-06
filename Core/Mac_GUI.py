@@ -1108,7 +1108,7 @@ def run():
                 the_table.scale(2.5, 2.5)
 
             if self.option_var[0] == 'C4h':
-                the_table.scale(2.5, 2.5)
+                the_table.scale(2.5, 2)
 
             if self.option_var[0] == 'D4':
                 the_table.scale(3, 1.6)
@@ -1120,7 +1120,7 @@ def run():
                 the_table.scale(2.5, 2.5)
 
             if self.option_var[0] == 'D4h':
-                the_table.scale(2.5, 1.25)
+                the_table.scale(2.5, 1.18)
 
             if self.option_var[0] == 'C3':
                 the_table.scale(2.5, 2.3)
