@@ -214,7 +214,7 @@ def run():
             lbl = Label(self.root, text="SHG Simulation Package",font='Helvetica 14 bold')
             lbl.grid(column=0, row=1, padx=10)
             lbl = Label(self.root,
-                        text="Version 0.0.5", font='Helvetica 11', fg='#5b5b5b')
+                        text=Misc.current_version(), font='Helvetica 11', fg='#5b5b5b')
             lbl.grid(column=0, row=2)
             lbl = Label(self.root,
                         text="Auburn University Ultrafast Nonlinear Optics Lab 2023", font='Helvetica 11', fg='#5b5b5b')

@@ -32,3 +32,8 @@ def parse(d):
         # Other symbols from the key-value pair should be stripped.
         dictionary[pair[0].strip('\'\'\"\"')] = pair[1].strip('\'\'\"\"')
     return dictionary
+
+def current_version():
+    version = open('Current Version.txt', 'rt')
+    version = version.read()
+    return version
