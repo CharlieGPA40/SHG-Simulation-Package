@@ -2,6 +2,7 @@ import platform
 import os
 import sys
 from shutil import which
+from subprocess import call
 
 
 if sys.version_info[:2] < (3, 7):
@@ -21,7 +22,7 @@ if OS == 'Windows':
 elif OS == 'Darwin':
     cache = path + '/Core/Cache'
 else:  # Linux
-    cache = path + '\Core\Cache'
+    cache = path + '/Core/Cache'
 
 isExist = os.path.exists(cache)
 if not isExist:  # Create a new directory because it does not exist
@@ -41,10 +42,11 @@ if not isExist:  # Create a new directory because it does not exist
                 '/bin / bash - c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"')
             os.system('brew install mactex')
     else:  # Linux
-        os.system('sudo apt install idle3')
-        os.system('sudo apt install texlive-latex-extra')
-        os.system('sudo apt install cm-super')
-        os.system('sudo apt install dvipng')
+        pwd = 'password'
+        cmd = 'sudo apt install -y idle3 texlive-latex-extra cm-super dvipng'
+        call('echo {} | sudo -S {}'.format(pwd, cmd), shell=True)
+
+        # os.system('sudo apt install idle3')
     os.makedirs(cache)
 
 
