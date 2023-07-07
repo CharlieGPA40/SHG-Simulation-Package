@@ -3,8 +3,6 @@ import os
 import sys
 from shutil import which
 from subprocess import call
-import subprocess
-from tkinter import *
 import Core.LinuxStartUp as Start
 
 
@@ -19,6 +17,7 @@ elif platform.system() == 'Linux':
     OS = 'Linux'
 elif platform.system() == 'Darwin':
     OS = 'Darwin'
+
 path = os.getcwd()
 if OS == 'Windows':
     cache = path + '\Core\Cache'
@@ -56,8 +55,8 @@ if not isExist:  # Create a new directory because it does not exist
 
 
 if OS == 'Windows':
-    import Core.Windows_GUI
+    import Core.GUI
 elif OS == 'Darwin':
-    import Core.Mac_GUI
+    import Core.GUI
 else:  # Linux
-    import Core.Windows_GUI
+    import Core.GUI

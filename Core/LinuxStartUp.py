@@ -20,11 +20,11 @@ def Linux():
         pwd = password.get()
         win.destroy()
 
-    Label(win, text="Enter the Password:", font=('Helvetica', 12)).grid(row=0,column=0, padx=10)
+    Label(win, text="sudo Password:", font=('Helvetica', 12)).grid(row=0,column=0, padx=10)
     password = Entry(win, show="*", width=20)
     password.grid(row=0,column=1, padx=20, pady=5)
 
-    Button(win, text="Submit", font=('Helvetica bold',
+    Button(win, text="Enter", font=('Helvetica bold',
                                    10), command = printInput).grid(row=1,column=1)
     win.mainloop()
 

@@ -134,7 +134,7 @@ def run():
             y = (screen_height / 2) - (height / 2)
 
             self.root.geometry('%dx%d+%d+%d' % (width, height, x, y))
-            self.root.maxsize(197, 255)
+            self.root.maxsize(width, height)
             self.root.title("Group Website")
             self.root.protocol("WM_DELETE_WINDOW", self.close)
             qr_code = Image.open("Core/Image/frame.png")
@@ -160,7 +160,7 @@ def run():
             y = (screen_height / 2) - (height / 2)
 
             self.root.geometry('%dx%d+%d+%d' % (width, height, x, y))
-            self.root.maxsize(800, 605)
+            self.root.maxsize(width, height)
             self.root.title("Calculation Model")
             self.root.protocol("WM_DELETE_WINDOW", self.close)
 
