@@ -55,7 +55,24 @@ Note: Linux users can run `StartGui.py` to install all the required packages.
 ## Expression and Latex
 1. All the expressions can be found under `SHG-Simulation/ExpressAndLatex/`.
 
-## About us 
+## Update Notes
+New Features in Version 0.0.5 include:
+
+    *   New feature of Orientation selection
+    *   An initialization file to install all the required packages 
+    *   Combining the running files into one file
+    *   Improving the calculation model and updating Logo
+    *   Relocating all the calculation functions into separate folders
+    *   Improving the symbolic format calculation by using Cython package symengine
+    *   Small modifications to improve user interface and enhance user experience
+
+Version 0.0.1
+
+    *   Thanks for supporting us and we released our first beta for users to test
+    *   General Rotational Anisotropy - Second Harmonic Generation simulation on four different channels
+
+    
+## About us
 Our group focuses on studying novel phases of matter in low-dimensional quantum systems. We exploit a variety of experimental techniques, such as femtosecond laser-based nonlinear optical spectroscopy and synchrotron-based photoemission spectroscopy/microscopy, to investigate the electronic and magnetic structure at the surface and interface.
 
 ## Contact
@@ -66,3 +83,5 @@ This project is contributed by:
 Advisor:
 * [Dr. Masoud Mahjouri-Samani](http://wp.auburn.edu/Mahjouri/) (Auburn University – Electrical and Computer Engineering: mzm0185@auburn.edu)
 * [Dr. Wencan Jin](http://wp.auburn.edu/JinLab/) (Auburn University – Physics Department: wjin@auburn.edu)
+
+Join our SHG Simulation Software Google group: shg-simulation-package@googlegroup.com
