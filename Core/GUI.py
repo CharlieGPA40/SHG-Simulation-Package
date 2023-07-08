@@ -1422,28 +1422,49 @@ def run():
 
             SlideStr_theta = DoubleVar()
             if self.OS == 'Windows':
-                label_x_init = 191
+                label_x_ss = 191
+                label_x_sp = 509
+                label_x_ps = 835
+                label_x_pp = 1153
                 label_y_init = 34
                 laebl_y_gap = 40
                 label_width = 40
                 label_height = 40
+                spinbox_x_ss = 241
+                spinbox_x_sp = 509
+                spinbox_x_ps = 885
+                spinbox_x_pp = 1203
             elif self.OS == 'Darwin':
-                label_x_init = 191
+                label_x_ss = 191
+                label_x_sp = 509
+                label_x_ps = 835
+                label_x_pp = 1153
                 label_y_init = 34
                 laebl_y_gap = 40
                 label_width = 40
                 label_height = 40
+                spinbox_x_ss = 241
+                spinbox_x_sp = 559
+                spinbox_x_ps = 885
+                spinbox_x_pp = 1203
             else:
-                label_x_init = 191
+                label_x_ss = 191
+                label_x_sp = 509
+                label_x_ps = 835
+                label_x_pp = 1153
                 label_y_init = 34
                 laebl_y_gap = 40
                 label_width = 40
                 label_height = 40
+                spinbox_x_ss = 241
+                spinbox_x_sp = 509
+                spinbox_x_ps = 885
+                spinbox_x_pp = 1203
             for i in range(len(self.symbolList_ss)):
                 # create labels
                 self.label = Label(self.fr_input_dw_inside, text=Misc.showSymbol(self.symbolList_ss[i]),
                                    borderwidth=2, justify="left", font=('Arial', 18))
-                self.label.place(x=label_x_init, y=label_y_init + i * laebl_y_gap, width=label_width, height=label_height)
+                self.label.place(x=label_x_ss, y=label_y_init + i * laebl_y_gap, width=label_width, height=label_height)
 
                 inputStr = StringVar()
                 SlideStr = IntVar()
@@ -1454,32 +1475,34 @@ def run():
                                             command=lambda: self.autoPlot())
                         self.Spin.bind('<Return>', lambda x: self.autoPlot())
                         self.entryList_ss.append(self.Spin)
-                        self.Spin.place(x=241, y=34, width=100, height=40)
+                        self.Spin.place(x=spinbox_x_ss, y=label_y_init, width=100, height=label_height)
                     else:
                         self.Spin = Spinbox(self.fr_input_dw_inside, from_=-10, to=10, textvariable=SlideStr, relief='groove',
                                             validate='key', validatecommand=range_validation,
                                             command=lambda: self.autoPlot())
                         self.entryList_ss.append(self.Spin)
                         self.Spin.bind('<Return>', lambda x: self.autoPlot())
-                        self.Spin.place(x=241, y=34 + i * 40, width=100, height=40)
+                        self.Spin.place(x=spinbox_x_ss, y=label_y_init + i * laebl_y_gap, width=100, height=label_height)
                 else:
                     self.Spin = Spinbox(self.fr_input_dw_inside, from_=-10, to=10, textvariable=SlideStr, relief='groove',
                                         validate='key', validatecommand=range_validation, command=lambda: self.autoPlot())
                     self.entryList_ss.append(self.Spin)
                     self.Spin.bind('<Return>', lambda x: self.autoPlot())
-                    self.Spin.place(x=241, y=34 + i * 40, width=100, height=40)
+                    self.Spin.place(x=spinbox_x_ss, y=label_y_init + i * laebl_y_gap, width=100, height=label_height)
 
                 count = count + 1
                 value = self.Spin.get()
             self.label = Label(self.fr_input_dw_inside, text="SP", borderwidth=2, justify="left", font=('Arial', 18))
             self.label.place(x=self.label_position, y=4)
             self.label_position += self.label_gap
+
+
             for j in range(len(self.symbolList_sp)):
 
                 # create labels
                 self.label = Label(self.fr_input_dw_inside, text=Misc.showSymbol(self.symbolList_sp[j]),
                                    borderwidth=2, justify="left", font=('Arial', 18))
-                self.label.place(x=509, y=34 + j * 40, width=label_width, height=label_height)
+                self.label.place(x=label_x_sp, y=label_y_init + j * laebl_y_gap, width=label_width, height=label_height)
 
                 inputStr = StringVar()
                 SlideStr = DoubleVar()
@@ -1491,20 +1514,20 @@ def run():
                                             command=lambda: self.autoPlot())
                         self.Spin.bind('<Return>', lambda x: self.autoPlot())
                         self.entryList_sp.append(self.Spin)
-                        self.Spin.place(x=559, y=34, width=100, height=40)
+                        self.Spin.place(x=spinbox_x_sp, y=label_y_init, width=100, height=label_height)
                     else:
                         self.Spin = Spinbox(self.fr_input_dw_inside, from_=-10, to=10, textvariable=SlideStr, relief='groove',
                                             validate='key', validatecommand=range_validation,
                                             command=lambda: self.autoPlot())
                         self.entryList_sp.append(self.Spin)
                         self.Spin.bind('<Return>', lambda x: self.autoPlot())
-                        self.Spin.place(x=559, y=34 + j * 40, width=100, height=40)
+                        self.Spin.place(x=spinbox_x_sp, y=label_y_init + j * laebl_y_gap, width=100, height=label_height)
                 else:
                     self.Spin = Spinbox(self.fr_input_dw_inside, from_=-10, to=10, textvariable=SlideStr, relief='groove',
                                         validate='key', validatecommand=range_validation, command=lambda: self.autoPlot())
                     self.entryList_sp.append(self.Spin)
                     self.Spin.bind('<Return>', lambda x: self.autoPlot())
-                    self.Spin.place(x=559, y=34 + j * 40, width=100, height=40)
+                    self.Spin.place(x=spinbox_x_sp, y=label_y_init + j * laebl_y_gap, width=100, height=label_height)
 
                 count = count + 1
                 value = self.Spin.get()
@@ -1516,7 +1539,7 @@ def run():
                 # create labels
                 self.label = Label(self.fr_input_dw_inside, text=Misc.showSymbol(self.symbolList_ps[k]),
                                    borderwidth=2, justify="left", font=('Arial', 18))
-                self.label.place(x=835, y=34 + k * 40, width=label_width, height=label_height)
+                self.label.place(x=label_x_ps, y=label_y_init + k * laebl_y_gap, width=label_width, height=label_height)
 
                 SlideStr = DoubleVar()
 
@@ -1528,20 +1551,20 @@ def run():
                         self.Spin.bind('<Return>', lambda x: self.autoPlot())
 
                         self.entryList_ps.append(self.Spin)
-                        self.Spin.place(x=885, y=34, width=100, height=40)
+                        self.Spin.place(x=spinbox_x_ps, y=label_y_init, width=100, height=label_height)
                     else:
                         self.Spin = Spinbox(self.fr_input_dw_inside, from_=-10, to=10, textvariable=SlideStr, relief='groove',
                                             validate='key', validatecommand=range_validation,
                                             command=lambda: self.autoPlot())
                         self.entryList_ps.append(self.Spin)
                         self.Spin.bind('<Return>', lambda x: self.autoPlot())
-                        self.Spin.place(x=885, y=34 + k * 40, width=100, height=40)
+                        self.Spin.place(x=spinbox_x_ps, y=label_y_init + k * laebl_y_gap, width=100, height=label_height)
                 else:
                     self.Spin = Spinbox(self.fr_input_dw_inside, from_=-10, to=10, textvariable=SlideStr, relief='groove',
                                         validate='key', validatecommand=range_validation, command=lambda: self.autoPlot())
                     self.entryList_ps.append(self.Spin)
                     self.Spin.bind('<Return>', lambda x: self.autoPlot())
-                    self.Spin.place(x=885, y=34 + k * 40, width=100, height=40)
+                    self.Spin.place(x=spinbox_x_ps, y=label_y_init + k * laebl_y_gap, width=100, height=label_height)
 
                 count = count + 1
             count = 0
@@ -1552,7 +1575,7 @@ def run():
                 # create labels
                 self.label = Label(self.fr_input_dw_inside, text=Misc.showSymbol(self.symbolList_pp[h]),
                                    borderwidth=2, justify="left", font=('Arial', 18))
-                self.label.place(x=1153, y=34 + h * 40, width=label_width, height=label_height)
+                self.label.place(x=label_x_pp, y=label_y_init + h * 40, width=label_width, height=label_height)
                 inputStr = StringVar()
                 SlideStr = DoubleVar()
                 if h == 0:
@@ -1563,21 +1586,21 @@ def run():
                         self.Spin.bind('<Return>', lambda x: self.autoPlot())
                         self.entryList_pp.append(self.Spin)
                         # self.Spin.pack()
-                        self.Spin.place(x=1203, y=34, width=100, height=40)
+                        self.Spin.place(x=spinbox_x_pp, y=label_y_init, width=100, height=label_height)
                     else:
                         self.Spin = Spinbox(self.fr_input_dw_inside, from_=-10, to=10, textvariable=SlideStr, relief='groove',
                                             validate='key', validatecommand=range_validation,
                                             command=lambda: self.autoPlot())
                         self.entryList_pp.append(self.Spin)
                         self.Spin.bind('<Return>', lambda x: self.autoPlot())
-                        self.Spin.place(x=1203, y=34 + h * 40, width=100, height=40)
+                        self.Spin.place(x=spinbox_x_pp, y=34 + h * laebl_y_gap, width=100, height=label_height)
 
                 else:
                     self.Spin = Spinbox(self.fr_input_dw_inside, from_=-10, to=10, textvariable=SlideStr, relief='groove',
                                         validate='key', validatecommand=range_validation, command=lambda: self.autoPlot())
                     self.entryList_pp.append(self.Spin)
                     self.Spin.bind('<Return>', lambda x: self.autoPlot())
-                    self.Spin.place(x=1203, y=34 + h * 40, width=100, height=40)
+                    self.Spin.place(x=1203, y=34 + h * laebl_y_gap, width=100, height=label_height)
 
                 count = count + 1
                 value = self.Spin.get()
