@@ -56,7 +56,7 @@ Note: Linux users can run `StartGui.py` to install all the required packages.
 1. All the expressions can be found under `SHG-Simulation/ExpressAndLatex/`.
 
 ## Update Notes
-New Features in Version 0.0.5 include:
+New Features in Version 0.5.0 include:
 
     *   New feature of Orientation selection
     *   An initialization file to install all the required packages 
