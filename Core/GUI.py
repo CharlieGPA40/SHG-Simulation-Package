@@ -136,7 +136,7 @@ def run():
 
             self.root.geometry('%dx%d+%d+%d' % (width, height, x, y))
             self.root.maxsize(width, height)
-            self.root.title("Group Website")
+            self.root.title("Web")
             self.root.protocol("WM_DELETE_WINDOW", self.close)
             qr_code = Image.open("Core/Image/frame.png")
             qr_code = qr_code.resize((193, 250))
@@ -170,24 +170,28 @@ def run():
 
             self.root.geometry('%dx%d+%d+%d' % (width, height, x, y))
             self.root.maxsize(width, height)
-            self.root.title("Caculation Model")
+            self.root.title("Calculation Model")
             self.root.protocol("WM_DELETE_WINDOW", self.close)
+            self.click_loop = 0
+            self.number_of_models = 2
 
             def image_forward():
                 var.set(1)
-                if self.click_loop < 2:
+                if self.click_loop < self.number_of_models - 1:
                     self.click_loop += 1
                 else:
-                    self.click_loop = self.click_loop
+                    self.click_loop = 0
 
             def image_backward():
                 var.set(2)
-                if self.click_loop >= 1:
+                if self.click_loop >= self.number_of_models - 1:
                     self.click_loop -= 1
-
+                else:
+                    self.click_loop = self.number_of_models - 1
             self.click_loop = 0
-            self.number_of_models = 2
-            while 0 <= self.click_loop < self.number_of_models+1 :
+
+
+            while 0 <= self.click_loop < self.number_of_models :
                 image = Image.open('Core/Image/Model{}.png'.format(self.click_loop + 1))
                 self.slide_counter = Label(self.root,
                                            text=str(self.click_loop + 1) + "/" + str(self.number_of_models),
@@ -241,7 +245,7 @@ def run():
             label_au = Label(self.root, image=au_logo)
             label_au.image = au_logo
             label_au.grid(column=0, row=0,padx=70)
-            lbl = Label(self.root, text="SHG Simulation Package",font='Helvetica 14 bold')
+            lbl = Label(self.root, text="SHG Simulation Tool",font='Helvetica 14 bold')
             lbl.grid(column=0, row=1, padx=10)
             lbl = Label(self.root,
                         text=Misc.current_version(), font='Helvetica 11', fg='#5b5b5b')
@@ -280,6 +284,7 @@ def run():
                 self.app_size(root, 641, 306)
             else:
                 self.app_size(root, 580, 320)
+
             self.win2_status = 0
             self.win3_status = 0
             self.win4_status = 0
