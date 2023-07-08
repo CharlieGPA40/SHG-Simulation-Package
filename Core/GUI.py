@@ -39,8 +39,8 @@ def run():
         def __init__(self, _root):
             self.root = _root
             if platform.system() == 'Windows':
-                width = 760  # Width (670)
-                height = 650  # Height
+                width = 647  # Width (670)
+                height = 740  # Height
             elif platform.system() == 'Darwin':
                 width = 570  # Width
                 height = 668  # Height
@@ -152,8 +152,8 @@ def run():
         def __init__(self, _root):
             self.root = _root
             if platform.system() == 'Windows':
-                width = 760  # Width (670)
-                height = 650  # Height
+                width = 850  # Width (670)
+                height = 530  # Height
             elif platform.system() == 'Darwin':
                 width = 850  # Width
                 height = 530  # Height
@@ -214,13 +214,15 @@ def run():
         def __init__(self, _root):
             self.root = _root
             if platform.system() == 'Windows':
-                width = 312  # Width
-                height = 232  # Height
-            elif platform.system() == 'Linux':
-                OS = 'Linux'
+                width = 356  # Width
+                height = 210  # Height
+
             elif platform.system() == 'Darwin':
                 width = 300  # Width
                 height = 200  # Height
+            else:
+                width = 356  # Width
+                height = 210  # Height
 
             screen_width = root.winfo_screenwidth()  # Width of the screen
             screen_height = root.winfo_screenheight()  # Height of the screen
@@ -273,8 +275,8 @@ def run():
             # os.chdir(sys._MEIPASS)
             self.master = root
             if self.OS == 'Windows':
-                self.app_size(root, 673, 295)
-            if self.OS == 'Darwin':
+                self.app_size(root, 580, 295)
+            elif self.OS == 'Darwin':
                 self.app_size(root, 641, 306)
             else:
                 self.app_size(root, 673, 295)
@@ -297,7 +299,6 @@ def run():
             window_height = height
             x = (screen_width - window_width) // 2
             y = (screen_height - window_height) // 2
-
             widget.geometry(f"{window_width}x{window_height}+{x}+{y}")
             widget.maxsize(width, height)
             widget.minsize(width, height)
@@ -364,7 +365,7 @@ def run():
                 x_padding = 320
                 y_padding = 152
             elif self.OS == 'Windows':
-                x_padding = 320
+                x_padding = 300
                 y_padding = 152
             else:
                 x_padding = 320
@@ -403,30 +404,30 @@ def run():
                 back_button_width = 5
                 self.cal_button_width = 10
             elif self.OS == 'Windows':
-                label_font = 12
-                self.list_box_font = 13
-                self.button_y = 288
+                label_font = 11
+                self.list_box_font = 10
+                self.button_y = 250
 
                 label_y = 15
                 self.listbox_y = 40
-                self.list_box_height = 10
+                self.list_box_height = 11
 
                 radiation_label_x = 19
                 self.crystal_label_x = 181
-                point_group_label_x = 340
-                orientation_label_x = 499
+                point_group_label_x = 310
+                orientation_label_x = 439
 
                 radiation_listbox_x = 19
                 self.crystal_listbox_x = 181
-                self.point_group_listbox_x = 340
-                orientation_listbox_x = 499
+                self.point_group_listbox_x = 310
+                orientation_listbox_x = 439
 
-                radiation_listbox_width = 17
-                self.Other_listbox_width = 16
+                radiation_listbox_width = 18
+                self.Other_listbox_width = 17
 
-                back_button_x = 430
-                tip_button_x = 507
-                self.cal_button_x = 550
+                back_button_x = 335
+                tip_button_x = 412
+                self.cal_button_x = 455
 
                 back_button_width = 5
                 self.cal_button_width = 10
@@ -834,9 +835,11 @@ def run():
                 if self.OS == 'Darwin':
                     width = 1520
                     height = 872
+                    textbox_width = 214
                 elif self.OS == 'Windows':
-                    width = 1602
-                    height = 920
+                    width = 1600
+                    height = 930
+                    textbox_width = 200
                 else:
                     width = 1602
                     height = 920
@@ -850,7 +853,7 @@ def run():
             self.option_var = [itm]
             self.fr_button_dw_message = Frame(self.newWindow)
             self.fr_button_dw_message.grid(row=4, column=0,)
-            self.text_box = Text(self.fr_button_dw_message, height=1, width=214, bg='#D3D3D3')
+            self.text_box = Text(self.fr_button_dw_message, height=1, width=textbox_width, bg='#D3D3D3')
 
             self.path_exp = 'Core/ExpressAndLatex/' + str(self.input_matrix_c) + '/' + str(self.option_var_1[0]) + '/' + str(
                 self.option_var[0]) + '/' + str(
@@ -1097,13 +1100,12 @@ def run():
             if self.OS == 'Darwin':
                 tab2_scrollable_x = 600
                 tab2_scrollable_y = 100
-                height = 872
             elif self.OS == 'Windows':
-                width = 1602
-                height = 920
+                tab2_scrollable_x = 600
+                tab2_scrollable_y = 50
             else:
-                width = 1602
-                height = 920
+                tab2_scrollable_x = 600
+                tab2_scrollable_y = 50
 
             # Tab #2
             # tab 1
@@ -1371,16 +1373,30 @@ def run():
 
             # Create a frame within the ScrolledFrame
             self.fr_input_dw_inside = self.fr_input_dw.display_widget(Frame)
-
+            if self.OS == 'Windows':
+                width = 13
+                num_cols = 15
+                self.label_position = 320
+                self.label_gap = 320
+            elif self.OS == 'Darwin':
+                width = 15
+                num_cols = 10
+                self.label_position = 275
+                self.label_gap = 320
+            else:
+                width = 13
+                num_cols = 15
+                self.label_position = 320
+                self.label_gap = 320
             if len(self.symbolList_pp) < len(self.symbolList_ps):
                 num_rows = len(self.symbolList_ps)+1
             else:
                 num_rows = len(self.symbolList_pp)+1
-            num_cols = 10
+
             for row in range(num_rows):
                 for column in range(num_cols):
                     w = Label(self.fr_input_dw_inside,
-                              width=15,
+                              width=width,
                               height=2,
                               borderwidth=0,
                               relief="groove",
@@ -1399,19 +1415,35 @@ def run():
             # loop over the symbolList and create labels and entries for each symbol within it
             count = 0
             self.label = Label(self.fr_input_dw_inside, text="SS", borderwidth=2, justify="left", font=('Arial', 18))
-            self.label_position = 275
-            self.label_gap = 320
+
             self.label.place(x=self.label_position, y=4)
             self.label_position += self.label_gap
             range_validation = (root.register(self.validate), '%P', '%W')
 
             SlideStr_theta = DoubleVar()
-
+            if self.OS == 'Windows':
+                label_x_init = 191
+                label_y_init = 34
+                laebl_y_gap = 40
+                label_width = 40
+                label_height = 40
+            elif self.OS == 'Darwin':
+                label_x_init = 191
+                label_y_init = 34
+                laebl_y_gap = 40
+                label_width = 40
+                label_height = 40
+            else:
+                label_x_init = 191
+                label_y_init = 34
+                laebl_y_gap = 40
+                label_width = 40
+                label_height = 40
             for i in range(len(self.symbolList_ss)):
                 # create labels
                 self.label = Label(self.fr_input_dw_inside, text=Misc.showSymbol(self.symbolList_ss[i]),
                                    borderwidth=2, justify="left", font=('Arial', 18))
-                self.label.place(x=191, y=34 + i * 40, width=40, height=40)
+                self.label.place(x=label_x_init, y=label_y_init + i * laebl_y_gap, width=label_width, height=label_height)
 
                 inputStr = StringVar()
                 SlideStr = IntVar()
@@ -1447,7 +1479,7 @@ def run():
                 # create labels
                 self.label = Label(self.fr_input_dw_inside, text=Misc.showSymbol(self.symbolList_sp[j]),
                                    borderwidth=2, justify="left", font=('Arial', 18))
-                self.label.place(x=509, y=34 + j * 40, width=40, height=40)
+                self.label.place(x=509, y=34 + j * 40, width=label_width, height=label_height)
 
                 inputStr = StringVar()
                 SlideStr = DoubleVar()
@@ -1484,7 +1516,7 @@ def run():
                 # create labels
                 self.label = Label(self.fr_input_dw_inside, text=Misc.showSymbol(self.symbolList_ps[k]),
                                    borderwidth=2, justify="left", font=('Arial', 18))
-                self.label.place(x=835, y=34 + k * 40, width=40, height=40)
+                self.label.place(x=835, y=34 + k * 40, width=label_width, height=label_height)
 
                 SlideStr = DoubleVar()
 
@@ -1520,7 +1552,7 @@ def run():
                 # create labels
                 self.label = Label(self.fr_input_dw_inside, text=Misc.showSymbol(self.symbolList_pp[h]),
                                    borderwidth=2, justify="left", font=('Arial', 18))
-                self.label.place(x=1153, y=34 + h * 40, width=40, height=40)
+                self.label.place(x=1153, y=34 + h * 40, width=label_width, height=label_height)
                 inputStr = StringVar()
                 SlideStr = DoubleVar()
                 if h == 0:
@@ -1603,7 +1635,8 @@ def run():
     try:
         root = Tk()
         sv_ttk.set_theme('light')
-        root.title("SHG Simulation Tool v1")
+        version = Misc.current_version()
+        root.title("SHG Simulation Tool {}".format(version))
         window1 = polarplotGUI(root)
         window1.grid(row=0, column=0)
         root.mainloop()
