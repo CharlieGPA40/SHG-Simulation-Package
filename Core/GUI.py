@@ -45,8 +45,8 @@ def run():
                 width = 570  # Width
                 height = 668  # Height
             else:
-                width = 760  # Width (670)
-                height = 650  # Height
+                width = 647  # Width (670)
+                height = 740  # Height
 
             screen_width = root.winfo_screenwidth()  # Width of the screen
             screen_height = root.winfo_screenheight()  # Height of the screen
@@ -158,8 +158,8 @@ def run():
                 width = 850  # Width
                 height = 530  # Height
             else:
-                width = 760  # Width (670)
-                height = 650  # Height
+                width = 850  # Width (670)
+                height = 530  # Height
 
             screen_width = root.winfo_screenwidth()  # Width of the screen
             screen_height = root.winfo_screenheight()  # Height of the screen
@@ -279,7 +279,7 @@ def run():
             elif self.OS == 'Darwin':
                 self.app_size(root, 641, 306)
             else:
-                self.app_size(root, 673, 295)
+                self.app_size(root, 580, 320)
             self.win2_status = 0
             self.win3_status = 0
             self.win4_status = 0
@@ -368,7 +368,7 @@ def run():
                 x_padding = 300
                 y_padding = 152
             else:
-                x_padding = 320
+                x_padding = 300
                 y_padding = 152
             self.fr_input_up = Frame(master=self.master, bg='#F2F3F4')
             self.fr_input_up.grid(row=1, column=0, ipadx=x_padding, ipady=y_padding, sticky='NW')
@@ -432,30 +432,30 @@ def run():
                 back_button_width = 5
                 self.cal_button_width = 10
             else:
-                label_font = 12
-                self.list_box_font = 13
-                self.button_y = 288
+                label_font = 11
+                self.list_box_font = 10
+                self.button_y = 250
 
                 label_y = 15
                 self.listbox_y = 40
-                self.list_box_height = 10
+                self.list_box_height = 11
 
                 radiation_label_x = 19
                 self.crystal_label_x = 181
-                point_group_label_x = 340
-                orientation_label_x = 499
+                point_group_label_x = 310
+                orientation_label_x = 439
 
                 radiation_listbox_x = 19
                 self.crystal_listbox_x = 181
-                self.point_group_listbox_x = 340
-                orientation_listbox_x = 499
+                self.point_group_listbox_x = 310
+                orientation_listbox_x = 439
 
-                radiation_listbox_width = 17
-                self.Other_listbox_width = 16
+                radiation_listbox_width = 18
+                self.Other_listbox_width = 17
 
-                back_button_x = 430
-                tip_button_x = 507
-                self.cal_button_x = 550
+                back_button_x = 335
+                tip_button_x = 412
+                self.cal_button_x = 455
 
                 back_button_width = 5
                 self.cal_button_width = 10
@@ -841,8 +841,9 @@ def run():
                     height = 930
                     textbox_width = 200
                 else:
-                    width = 1602
-                    height = 920
+                    width = 1600
+                    height = 925
+                    textbox_width = 200
                 self.app_size(self.newWindow, width, height)
             else:
                 self.newWindow.destroy()
@@ -1448,18 +1449,18 @@ def run():
                 spinbox_x_ps = label_x_ps + 50
                 spinbox_x_pp = label_x_pp + 50
             else:
-                label_x_ss = 191
-                label_x_sp = 509
-                label_x_ps = 835
-                label_x_pp = 1153
-                label_y_init = 34
+                label_x_ss = 230
+                label_x_sp = 549
+                label_x_ps = 875
+                label_x_pp = 1193
+                label_y_init = 40
                 laebl_y_gap = 40
-                label_width = 40
+                label_width = 50
                 label_height = 40
-                spinbox_x_ss = 241
-                spinbox_x_sp = 509
-                spinbox_x_ps = 885
-                spinbox_x_pp = 1203
+                spinbox_x_ss = label_x_ss + 60
+                spinbox_x_sp = label_x_sp + 60
+                spinbox_x_ps = label_x_ps + 60
+                spinbox_x_pp = label_x_pp + 60
             for i in range(len(self.symbolList_ss)):
                 # create labels
                 self.label = Label(self.fr_input_dw_inside, text=Misc.showSymbol(self.symbolList_ss[i]),
