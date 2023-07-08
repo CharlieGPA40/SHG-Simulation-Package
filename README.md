@@ -7,32 +7,28 @@ The purpose of this package is to assist the Condensed Matter Physics community 
 1. Easier confirmation of RA-SHG experimental results with an all-in-one package.
 2. Quick visualization of the symmetries of quantum materials.
 3. Simulation of the nonlinear optical response for the electric dipole (ED), electric quadrupole (EQ), and magnetic dipole (MD) radiation sources.
+
+Check our poster: [Link](https://jinlab.auburn.edu/research/software/)
 	
-Note: This pacakge is for academic research and educational purposes.
+Note: This package is for academic and educational research (WITHOUT WARRANTIES, our software does not collect any data from users).
 
 ## Requirements
-1. Latex is required. Install Latex on your computer before run the program.
-2. We tested the program on python version 3.9-3.11 on both M1 Mac, Intel Mac, and Windows Machine.
-3. All the required packages are listed in `requirements.txt`.
+1. This package is compatible with Python 3.7 or newer. 
+2. Latex is required on all platforms:
+   1. Windows users need to install Latex before running the program
+   2. Mac and Linux users can install the package by simply running `StartGui.py` or install before running.
+2. We tested the program on Python version 3.9-3.11 on M1 Mac (macOS 13.4.1), Intel Mac (macOS 12.6.7), Windows (win 10 & 11), and Linux (Ubuntu 22.04 LST) Machines.
 
 ## Setup
-#### Create new virtual enviroment based on your python version:
-First, create a python virtural enviroment:
+#### Create a new virtual environment based on your Python version:
+First, create a Python virtual environment:
 ```bash
 sudo apt install python3.xx-venv
 python3 -m venv name
 ```
-Second, activate the enviroment:
+Second, activate the environment:
 ```bash
 source name/bin/activate
-```
-Install required packages:
-```bash
-pip install -r requirements.txt
-```
-for linux user only, install idle library:
-```bash
-sudo apt install idle3
 ```
 
 linux common issue (tested on Ubuntu):
@@ -48,22 +44,44 @@ sudo apt install cm-super
 ```bash
 sudo apt install dvipng
 ```
-
+4. install idle library:
+```bash
+sudo apt install idle3
+```
+Note: Linux users can run `StartGui.py` to install all the required packages.
 ## Running
-1. Run from the python IDE using code `SHG Simulation (Windows/Mac/Linux) Version.py`. (PyCharm Recommended)
+1. Run from the Python IDE using code `StartGui.py`.
 
 ## Expression and Latex
 1. All the expressions can be found under `SHG-Simulation/ExpressAndLatex/`.
-2. The calculation geometry is under `SHG-Simulation/Image/Model1.png`.
 
-## About us 
+## Update Notes
+New Features in Version 0.0.5 include:
+
+    *   New feature of Orientation selection
+    *   An initialization file to install all the required packages 
+    *   Combining the running files into one file
+    *   Improving the calculation model and updating Logo
+    *   Relocating all the calculation functions into separate folders
+    *   Improving the symbolic format calculation by using Cython package symengine
+    *   Small modifications to improve user interface and enhance user experience
+
+Version 0.0.1
+
+    *   Thanks for supporting us and we released our first beta for users to test
+    *   General Rotational Anisotropy - Second Harmonic Generation simulation on four different channels
+
+    
+## About us
 Our group focuses on studying novel phases of matter in low-dimensional quantum systems. We exploit a variety of experimental techniques, such as femtosecond laser-based nonlinear optical spectroscopy and synchrotron-based photoemission spectroscopy/microscopy, to investigate the electronic and magnetic structure at the surface and interface.
 
 ## Contact
 This project is contributed by:
-* Chunli Tang (Auburn Univeristy – Electrical and Computer Engineering: chunli.tang@auburn.edu)
-* Hussam Mustafa (Auburn Univeristy – Physics Department: hnm0037@auburn.edu)
+* Chunli Tang (Auburn University – Electrical and Computer Engineering: chunli.tang@auburn.edu)
+* Hussam Mustafa (Auburn University – Physics Department: hnm0037@auburn.edu)
 
 Advisor:
-* [Dr. Masoud Mahjouri-Samani](http://wp.auburn.edu/Mahjouri/) (Auburn Univeristy – Electrical and Computer Engineering: mzm0185@auburn.edu)
-* [Dr. Wencan Jin](http://wp.auburn.edu/JinLab/) (Auburn Univeristy – Physics Department: wjin@auburn.edu)
+* [Dr. Masoud Mahjouri-Samani](http://wp.auburn.edu/Mahjouri/) (Auburn University – Electrical and Computer Engineering: mzm0185@auburn.edu)
+* [Dr. Wencan Jin](http://wp.auburn.edu/JinLab/) (Auburn University – Physics Department: wjin@auburn.edu)
+
+Join our SHG Simulation Software Google group: shg-simulation-package@googlegroup.com
