@@ -81,7 +81,7 @@ This project is contributed by:
 * Hussam Mustafa (Auburn University – Physics Department: hnm0037@auburn.edu)
 
 Advisor:
-* [Dr. Masoud Mahjouri-Samani](http://wp.auburn.edu/Mahjouri/) (Auburn University – Electrical and Computer Engineering: mzm0185@auburn.edu)
+* [Dr. Masoud Mahjouri-Samani](http://wp.auburn.edu/Mahjouri/) (Auburn University – Electrical and Computer Engineering: Mahjouri@auburn.edu)
 * [Dr. Wencan Jin](http://wp.auburn.edu/JinLab/) (Auburn University – Physics Department: wjin@auburn.edu)
 
 Join our SHG Simulation Software Google group: shg-simulation-package@googlegroup.com
