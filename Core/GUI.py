@@ -633,6 +633,7 @@ def run():
                 self.sample_rot.delete(0, END)
                 self.sample_rot.insert(1, '(001)')
                 self.sample_rot.insert(2, '(010)')
+                self.sample_rot.insert(3, '(100)')
             elif self.input_matrix_g == 'Cubic':
                 self.sample_rot.delete(0, END)
                 self.sample_rot.insert(1, '(001)')
