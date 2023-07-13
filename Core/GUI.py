@@ -952,7 +952,9 @@ def run():
                     # Sympy
                     t1 = clock()
                     self.exprpp = se.sympify((pxp * cos(theta)) ** 2 + (pzp * sin(theta)) ** 2)
+                    # self.exprpp = simplify(trigsimp(self.exprpp))
                     self.exprps = se.sympify((pys ** 2))
+                    # self.exprps = simplify(trigsimp(self.exprps))
                     sxp = 0
                     sys = 0
                     szp = 0
@@ -968,7 +970,9 @@ def run():
                                 szp = szp + szp_temp
 
                     self.exprsp = se.sympify((sxp * cos(theta)) ** 2 + (szp * sin(theta)) ** 2)
+                    # self.exprsp = simplify(trigsimp(self.exprsp))
                     self.exprss = se.sympify((sys ** 2))
+                    # self.exprss = simplify(trigsimp(self.exprss))
                     t2 = clock()
                     print("%s s" % ((t2 - t1)))
                     self.exprss = str(self.exprss)
