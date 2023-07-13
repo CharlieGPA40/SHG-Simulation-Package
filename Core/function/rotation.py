@@ -5,13 +5,18 @@ from Core.function import TensorMath as tm
 
 
 def rotation(phi_angle):
-    cos_holder = np.cos(phi_angle)
-    sin_holder = np.sin(phi_angle)
-    cos_holder = round(Decimal(str(cos_holder)), 6)
-    sin_holder = round(Decimal(str(sin_holder)), 6)
-    rotx = Matrix([[1, 0, 0], [0, cos_holder, -sin_holder], [0, sin_holder, cos_holder]])
-    roty = Matrix([[cos_holder, 0, sin_holder], [0, 1, 0], [-sin_holder, 0, cos_holder]])
-    rotz = Matrix([[cos_holder, sin_holder, 0], [sin_holder, cos_holder, 0], [0, 0, 1]])
+    if phi_angle == np.pi / 2:
+        rotx = Matrix([[1, 0, 0], [0, 0, -1], [0, 1, 0]])
+        roty = Matrix([[0, 0, 1], [0, 1, 0], [-1, 0, 0]])
+        rotz = Matrix([[0, 1, 0], [1, 0, 0], [0, 0, 1]])
+    else:
+        cos_holder = np.cos(phi_angle)
+        sin_holder = np.sin(phi_angle)
+        cos_holder = round(Decimal(str(cos_holder)), 6)
+        sin_holder = round(Decimal(str(sin_holder)), 6)
+        rotx = Matrix([[1, 0, 0], [0, cos_holder, -sin_holder], [0, sin_holder, cos_holder]])
+        roty = Matrix([[cos_holder, 0, sin_holder], [0, 1, 0], [-sin_holder, 0, cos_holder]])
+        rotz = Matrix([[cos_holder, sin_holder, 0], [sin_holder, cos_holder, 0], [0, 0, 1]])
     return rotx, roty, rotz
 
 
