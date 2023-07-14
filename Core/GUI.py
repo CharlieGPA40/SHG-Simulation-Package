@@ -606,7 +606,7 @@ def run():
                 md_class = list(self.dic_mag_dip[self.input_matrix_g].keys())
                 for x in range(len(md_class)):
                     self.group_box_group.insert(END, md_class[x])
-            elif self.input_matrix_c == 'Coming Soon...':
+            elif self.input_matrix_c == 'EFISH (Coming Soon...)':
                 self.group_box_group.insert(1, 'Coming Soon...')
             self.opened = false
             self.sample_rot.delete(0, END)
