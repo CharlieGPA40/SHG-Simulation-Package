@@ -15,7 +15,7 @@ Note: This package is for academic and educational research (WITHOUT WARRANTIES,
 ## Requirements
 1. This package is compatible with Python 3.7 or newer. 
 2. Latex is required on all platforms:
-   1. Windows users need to install Latex before running the program
+   1. Windows users need to install Latex before running the program (MiKTeX).
    2. Mac and Linux users can install the package by simply running `StartGui.py` or install before running.
 2. We tested the program on Python version 3.9-3.11 on M1 Mac (macOS 13.4.1), Intel Mac (macOS 12.6.7), Windows (win 10 & 11), and Linux (Ubuntu 22.04 LST) Machines.
 
